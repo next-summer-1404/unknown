@@ -18,7 +18,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 export const Mitra = localFont({
-  src: "../../assets/fonts/Aban.ttf",
+  src: "../../assets/fonts/Roya.ttf",
 });
 
 export const metadata: Metadata = {
