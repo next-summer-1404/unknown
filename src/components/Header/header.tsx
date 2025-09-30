@@ -117,7 +117,7 @@ const Header = () => {
 
       <nav className="flex items-center gap-1.5 mr-auto ml-3">
         <Image src={user1} alt="!!" width={16} height={16} />
-        <Link className=" text-white text-lg font-bold text-center" href="/">
+        <Link href="/register" className=" text-white text-lg font-bold text-center" >
           ورود/ثبت نام
         </Link>
       </nav>
