@@ -50,7 +50,7 @@ const Header = () => {
             href="/rentals"
           >
             رهن و اجاره
-            <svg
+            <svg 
               className="w-4 h-4 mr-2.5"
               fill="none"
               stroke="currentColor" // take its color from subject
