@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import auth1 from "@/assets/images/auth1.png";
 
-const StartUserRegistration = () => {
+const BaseAuth = () => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -106,4 +106,4 @@ const StartUserRegistration = () => {
   );
 };
 
-export default StartUserRegistration;
+export default BaseAuth;
