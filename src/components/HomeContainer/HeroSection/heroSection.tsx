@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 import backgroundImg from "../../../../public/assets/Rectangle6481.png";
 import textImg from "../../../../public/assets/Group12.png";
 import building from "../../../../public/assets/building.png";
 
 const HeroSection = () => {
   return (
-      <section className="relative w-full h-screen bg-gradient-to-t from-black/80 to-transparent">
+    <section className="relative w-full h-screen bg-gradient-to-t from-black/80 to-transparent">
       {/* لایه پس‌زمینه */}
       <div className="absolute inset-0 -z-10">
         <Image
@@ -29,15 +29,13 @@ const HeroSection = () => {
           src={building}
           alt="Building"
           width={530}
-        
           className=""
           priority
         />
       </div>
       <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/80 to-transparent z-50"></div>
-     
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
