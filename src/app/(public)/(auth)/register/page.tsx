@@ -1,11 +1,12 @@
+import RegisterPage from '@/components/auth/register/RegisterPage'
 import React from 'react'
 
-const RegisterPage = () => {
+const RegisterAuthPage = () => {
   return (
     <div>
-      
+      <RegisterPage/>
     </div>
   )
 }
 
-export default RegisterPage
+export default RegisterAuthPage
