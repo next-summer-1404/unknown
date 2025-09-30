@@ -33,7 +33,7 @@ const HeroSection = () => {
           priority
         />
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/80 to-transparent z-50"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/100 to-transparent z-50"></div>
     </section>
   );
 };
