@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data: any) => {
-    console.log("اطلاعات فرم:", data);
+    // console.log("اطلاعات فرم:", data);
   };
 
   return (
@@ -68,7 +68,6 @@ const LoginPage = () => {
           <ArrowLongLeftIcon className="h-5 w-5 ml-2" />
         </button>
       </div>
-      {/* دکمه ورود */}
       <button
         type="submit"
         className="w-full bg-[#8CFF45] mt-14 text-[#363636] py-2 rounded-xl flex items-center justify-center gap-2 text-lg font-bold"
