@@ -7,7 +7,7 @@ import building from "../../../../public/assets/building.png";
 const HeroSection = () => {
   return (
     <section className="relative w-full h-screen bg-gradient-to-t from-black/80 to-transparent">
-      {/* لایه پس‌زمینه */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <Image
           src={backgroundImg}
@@ -18,12 +18,12 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* لایه متن (بین پس‌زمینه و ساختمان) */}
+      {/* text */}
       <div className="absolute left-[8%] top-[12%] transform   z-0">
         <Image src={textImg} alt="Text" width={1100} height={200} />
       </div>
 
-      {/* لایه ساختمان */}
+      {/* building */}
       <div className="absolute top-[26%] left-1/2 transform -translate-x-1/2  inset-0 z-10 ">
         <Image
           src={building}
