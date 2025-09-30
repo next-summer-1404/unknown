@@ -1,9 +1,13 @@
+import HeroSection from '@/components/HomeContainer/HeroSection/heroSection'
 import React from 'react'
 
 const Landing = () => {
   return (
     <div>
-      Landing
+      {/* herosection */}
+      <HeroSection />
+
+
     </div>
   )
 }
