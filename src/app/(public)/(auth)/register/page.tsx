@@ -1,13 +1,12 @@
-import StartUserRegistration from '@/components/auth/register/StartUserRegistration'
+import RegisterPage from '@/components/auth/register/RegisterPage'
 import React from 'react'
 
-const RegisterPage = () => {
+const RegisterAuthPage = () => {
   return (
     <div>
-      <StartUserRegistration/>
-      
+      <RegisterPage/>
     </div>
   )
 }
 
-export default RegisterPage
+export default RegisterAuthPage
