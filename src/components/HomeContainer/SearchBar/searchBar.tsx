@@ -1,28 +1,50 @@
+"use client";
 import {
   BuildingOffice2Icon,
   CalendarDaysIcon,
   DocumentCurrencyDollarIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
+import { useState } from "react";
 const SearchBar = () => {
+  const [activeTab, setActiveTab] = useState("reserve");
+const handleSubmit = (e)=>{
+e.preventDefault();
+}
+
   return (
     <div className="absolute bottom-2 lg:w-full  z-50 flex flex-col items-center">
-      <div className="flex w-3/4 items-center gap-2 px-5 py-2">
-        <button className="flex items-center gap-1 cursor-pointer text-[#8C8C8C]">
-          <CalendarDaysIcon className="w-5 h-5 text-[#8C8C8C]" />
+      <form onSubmit={handleSubmit} className="flex w-3/4 items-center gap-2 px-5 py-2">
+        <button
+          type="button"
+          value="reserve"
+          onClick={()=>setActiveTab("reserve")}
+          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"}`}
+        >
+          <CalendarDaysIcon className={`w-5 h-5 ${ activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"}`} />
           <span>رزرو ملک</span>
         </button>
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl overflow-hidden"></div>
-        <button className="flex items-center gap-1 cursor-pointer text-[#8C8C8C]">
-          <BuildingOffice2Icon className="w-5 h-5 text-[#8C8C8C]" />
+        <button
+          type="button"
+          value="rent"
+          onClick={()=>setActiveTab("rent")}
+          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"}`}
+        >
+          <BuildingOffice2Icon className={`w-5 h-5 ${ activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"}`}  />
           <span>رهن و اجاره</span>
         </button>
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl"></div>
-        <button className="flex items-center gap-1 cursor-pointer text-[#8C8C8C]">
-          <DocumentCurrencyDollarIcon className="w-5 h-5 text-[#8C8C8C]" />
+        <button
+          type="button"
+          value="sell"
+          onClick={()=>setActiveTab("sell")}
+          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"}`}
+        >
+          <DocumentCurrencyDollarIcon className={`w-5 h-5 ${ activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"}`}  />
           <span>خرید و فروش</span>
         </button>
-      </div>
+      </form>
       <div className="w-3/4 h-fit py-5 bg-[#363636] rounded-3xl drop-shadow-[0px_12px_24px_rgba(0,0,0,0.16)] shadow-[inset_2px_2px_16px_0px_rgba(255,255,255,0.08)]">
         <div className="flex justify-center flex-wrap gap-2">
           <div className="w-64  relative">
@@ -51,7 +73,7 @@ const SearchBar = () => {
               تاریخ ورود:
             </label>
             <input
-              type="text"
+              type="date"
               id="username"
               placeholder="وارد کنید..."
               className="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
@@ -65,7 +87,7 @@ const SearchBar = () => {
               تاریخ خروج:
             </label>
             <input
-              type="text"
+              type="date"
               id="username"
               placeholder="وارد کنید..."
               className="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
