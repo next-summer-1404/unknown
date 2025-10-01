@@ -5,43 +5,71 @@ import {
   DocumentCurrencyDollarIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
+import { FormEvent } from "react";
 import { useState } from "react";
+import DatePicker , { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+
 const SearchBar = () => {
   const [activeTab, setActiveTab] = useState("reserve");
-const handleSubmit = (e)=>{
-e.preventDefault();
-}
+  const [startDate, setStartDate] = useState<DateObject | null>(null);
+  const [endDate, setEndDate] = useState<DateObject | null>(null);
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="absolute bottom-2 lg:w-full  z-50 flex flex-col items-center">
-      <form onSubmit={handleSubmit} className="flex w-3/4 items-center gap-2 px-5 py-2">
+      <form
+        onSubmit={handleSubmit}
+        className="flex w-3/4 items-center gap-2 px-5 py-2"
+      >
         <button
           type="button"
           value="reserve"
-          onClick={()=>setActiveTab("reserve")}
-          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"}`}
+          onClick={() => setActiveTab("reserve")}
+          className={`flex items-center gap-1 cursor-pointer ${
+            activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"
+          }`}
         >
-          <CalendarDaysIcon className={`w-5 h-5 ${ activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"}`} />
+          <CalendarDaysIcon
+            className={`w-5 h-5 ${
+              activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"
+            }`}
+          />
           <span>رزرو ملک</span>
         </button>
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl overflow-hidden"></div>
         <button
           type="button"
           value="rent"
-          onClick={()=>setActiveTab("rent")}
-          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"}`}
+          onClick={() => setActiveTab("rent")}
+          className={`flex items-center gap-1 cursor-pointer ${
+            activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"
+          }`}
         >
-          <BuildingOffice2Icon className={`w-5 h-5 ${ activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"}`}  />
+          <BuildingOffice2Icon
+            className={`w-5 h-5 ${
+              activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"
+            }`}
+          />
           <span>رهن و اجاره</span>
         </button>
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl"></div>
         <button
           type="button"
           value="sell"
-          onClick={()=>setActiveTab("sell")}
-          className={`flex items-center gap-1 cursor-pointer ${ activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"}`}
+          onClick={() => setActiveTab("sell")}
+          className={`flex items-center gap-1 cursor-pointer ${
+            activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"
+          }`}
         >
-          <DocumentCurrencyDollarIcon className={`w-5 h-5 ${ activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"}`}  />
+          <DocumentCurrencyDollarIcon
+            className={`w-5 h-5 ${
+              activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"
+            }`}
+          />
           <span>خرید و فروش</span>
         </button>
       </form>
@@ -72,11 +100,14 @@ e.preventDefault();
             >
               تاریخ ورود:
             </label>
-            <input
-              type="date"
-              id="username"
+         
+            <DatePicker
+              calendar={persian}
+              locale={persian_fa}
               placeholder="وارد کنید..."
-              className="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              value={startDate}
+              onChange={(date) => setStartDate(date)}
+              inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
             />
           </div>
           <div className="w-44  relative">
@@ -86,11 +117,13 @@ e.preventDefault();
             >
               تاریخ خروج:
             </label>
-            <input
-              type="date"
-              id="username"
+          <DatePicker
+              calendar={persian}
+              locale={persian_fa}
               placeholder="وارد کنید..."
-              className="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              value={endDate}
+              onChange={(date) => setEndDate(date)}
+              inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
             />
           </div>
           <div className="w-44  relative">
