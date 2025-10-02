@@ -9,10 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@avant-arte/react-code-input": "^3.10.1",
     "@heroicons/react": "^2.2.0",
     "@nextui-org/react": "^2.6.11",
     "next": "15.5.4",
     "react": "19.1.0",
+    "react-code-input": "^1.0.2",
+    "react-countdown": "^2.3.6",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.63.0",
     "react-multi-date-picker": "^4.5.2"

@@ -1,10 +1,10 @@
-import RegisterPage from '@/components/auth/register/RegisterPage'
+import BaseAuth from '@/components/auth/login/BaseAuth'
 import React from 'react'
 
 const RegisterAuthPage = () => {
   return (
     <div>
-      <RegisterPage/>
+      <BaseAuth/>
     </div>
   )
 }

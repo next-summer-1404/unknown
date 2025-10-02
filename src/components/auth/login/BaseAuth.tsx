@@ -5,7 +5,8 @@ import {
 } from "@heroicons/react/24/solid";
 import LoginPage from "./LoginPage";
 import ImageAuth from "@/components/common/ImageAuth/ImageAuth";
-import RegisterPage from "../register/RegisterPage";
+import StartUserRegistration from "../register/StartUserRegistration";
+import VerifyEmail from "../register/VerifyEmail";
 
 const BaseAuth = () => {
   return (
@@ -20,7 +21,7 @@ const BaseAuth = () => {
             با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
             پروژه‌هاتون خبر بگیرید!
           </p>
-          <div className="w-full flex gap-3 bg-[#303030] rounded-2xl mt-4 ">
+          <div className="w-full flex gap-3 bg-[#303030] rounded-2xl mt-10 ">
             <button className="w-1/2 flex gap-2 items-center text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
               <UserIcon className="h-6 w-6 text-[#AAAAAA] " />
               ورود به حساب کاربری
@@ -32,13 +33,14 @@ const BaseAuth = () => {
           </div>
           <div className="flex items-center my-6">
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
-            <span className="mx-4 text-[#AAAAAA] font-medium whitespace-nowrap">
+            <span className="m-4 text-[#AAAAAA] font-medium whitespace-nowrap">
               یا می‌توانید
             </span>
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
           </div>
           {/* <LoginPage /> */}
-          <RegisterPage/>
+          {/* <StartUserRegistration/> */}
+          <VerifyEmail/>
         </div>
         <div className=" w-1/2 h-auto">
           <ImageAuth />
