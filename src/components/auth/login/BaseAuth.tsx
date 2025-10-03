@@ -1,14 +1,16 @@
 "use client";
-import {
-  UserIcon,
-  UserPlusIcon,
-} from "@heroicons/react/24/solid";
-import LoginPage from "./LoginPage";
+import { UserIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import ImageAuth from "@/components/common/ImageAuth/ImageAuth";
-import StartUserRegistration from "../register/StartUserRegistration";
-import VerifyEmail from "../register/VerifyEmail";
+import { FC, ReactNode } from "react";
+import ResetPassword from "../forgetpass/ResetPassword";
+import VerifyTheRequest from "../forgetpass/VerifyTheRequest";
+import SendRequest from "../forgetpass/SendRequest";
 
-const BaseAuth = () => {
+interface IAuth {
+  children: ReactNode;
+}
+
+const BaseAuth: FC<IAuth> = ({ children }) => {
   return (
     <div className="w-full  py-10 ">
       <div className="w-11/12 mx-auto flex flex-col md:flex-row gap-6 ">
@@ -38,9 +40,10 @@ const BaseAuth = () => {
             </span>
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
           </div>
-          {/* <LoginPage /> */}
-          {/* <StartUserRegistration/> */}
-          <VerifyEmail/>
+          {/* <SendRequest/> */}
+          {/* <VerifyTheRequest/> */}
+            <ResetPassword/>
+          {children}
         </div>
         <div className=" w-1/2 h-auto">
           <ImageAuth />

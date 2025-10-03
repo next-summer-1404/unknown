@@ -52,9 +52,8 @@ const Header = () => {
             <Link
               className={`flex items-center px-5 py-2.5 text-lg text-center transition-colors 
                   ${pathname === "/rentals" ? "text-[#8CFF45]" : ""}`}
-
-            href="/rentals"
-          >
+              href="/rentals"
+            >
               رهن و اجاره
               <svg
                 className="w-4 h-4 mr-2.5"
