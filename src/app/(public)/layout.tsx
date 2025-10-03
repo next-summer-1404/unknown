@@ -17,8 +17,8 @@ import Header from "@/components/Header/header";
 const inter = Inter({
   subsets: ["latin"],
 });
-export const Mitra = localFont({
-  src: "../../assets/fonts/Roya.ttf",
+export const Peyda = localFont({
+  src: "../../assets/fonts/Peyda.ttf",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${Mitra.className} antialiased`}>
+      <body className={`${Peyda.className} antialiased`}>
         <Header />
         {children}
       </body>
