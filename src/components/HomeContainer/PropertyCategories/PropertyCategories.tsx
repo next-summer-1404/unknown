@@ -7,7 +7,7 @@ import cottage from "./../../../assets/images/cottage.png";
 import house from "./../../../assets/images/house.png";
 import villa from "./../../../assets/images/villa.png";
 import woodenHouse from "./../../../assets/images/wooden-house.png";
-import { FC } from "react";
+// import { FC } from "react";
 
 const PropertyCategories = () => {
   type Card = {
