@@ -1,55 +1,87 @@
 "use client";
-import React from "react";
+import { ArrowPathIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
+import React, { FC, Fragment } from "react";
 import Countdown from "react-countdown";
-import ReactCodeInput from "@avant-arte/react-code-input";
 
-const VerifyEmail = () => {
-  const renderer = ({ minutes, seconds, completed }: any) => {
-    if (completed) {
-      return <span className="text-white">00:00</span>;
-    } else {
-      return (
-        <span className="text-white font-bold">
-          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-        </span>
-      );
+interface Props {
+  onNext: () => void;
+  onBack: () => void;
+}
+
+const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
+  const [otp, setOtp] = React.useState(["", "", "", "", "", ""]);
+  const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
+
+  const handleChange = (value: string, index: number) => {
+    if (/^\d?$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      if (value && index < 4) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
 
-  return (
-    <div className="w-full  text-white p-6 rounded-xl flex justify-center gap-12 items-center border border-red-600">
-      {/* فیلدهای کد تأیید */}
-      <div className="flex gap-3 border border-amber-800  justify-center items-center">
-        <ReactCodeInput
-          type="number"
-          fields={6}
-          inputStyle={{
-            fontFamily: "inherit",
-            margin: "4px",
-            MozAppearance: "textfield",
-            width: "40px",
-            borderRadius: "8px",
-            fontSize: "24px",
-            height: "40px",
-            paddingLeft: "8px",
-            backgroundColor: "#000",
-            color: "#fff",
-            border: "1px solid #aaa",
-            textAlign: "center",
-          }}
-        />
-      </div>
+  const renderer = ({ minutes, seconds, completed }: any) => {
+    return (
+      <span className="text-white font-bold text-sm">
+        {completed
+          ? "00:00"
+          : `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}
+      </span>
+    );
+  };
 
-      {/* تایمر و دکمه ارسال دوباره */}
-      <div className="flex items-center gap-4 mt-4 border border-amber-300 w-[220px] ">
-        <button className="bg-[#7569FF] text-white px-4 py-2 rounded-xl flex items-center gap-2 ">
-          <Countdown date={Date.now() + 120000} renderer={renderer} />
+  return (
+    <>
+      <div className="w-full flex items-center justify-between  rounded-xl text-white">
+        <div className="flex justify-between w-1/2 ">
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              // ref={(el) => (inputRefs.current[index] = el)}
+              type=""
+              maxLength={1}
+              value={digit}
+              onChange={(e) => handleChange(e.target.value, index)}
+              className="w-10 h-10 text-center text-xl border border-gray-400 rounded-md  text-white focus:outline-none"
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center w-2/5 h-10 bg-[#7569FF] gap-10   rounded-xl ">
+          <button
+            className="bg-white text-black text-md font-semibold px-3 py-2 w-3/5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap"
+            onClick={() => {}}
+          >
+            ارسال دوباره رمز
+            <ChevronLeftIcon className="w-4 h-4 inline-block ml-1 " />
+          </button>
+          <div className=" text-white text-sm font-bold px-4 py-2 rounded-md">
+            <Countdown date={Date.now() + 120000} renderer={renderer} />
+          </div>
+        </div>
+      </div>
+      <div className="w-full h-auto mt-20 flex items-center justify-around gap-10">
+        <button
+          className="w-1/2 flex items-center justify-center  gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45] "
+          onClick={onBack}
+        >
+          <ArrowPathIcon className="w-4 h-4 text-white " />
+          <p className="text-white text-md font-semibold">تغییر شماره موبایل</p>
         </button>
-        <button className="text-black bg-white text-sm flex items-center gap-2 w-full h-auto">
-          ارسال دوباره رمز
+
+        <button
+          className="w-1/2 flex items-center justify-center gap-2 border border-white  h-auto p-3 rounded-2xl hover:bg-[#8CFF45]"
+          onClick={onNext}
+        >
+          <p className="text-white text-md font-semibold">ساخت حساب کاربری</p>
+          <ChevronLeftIcon className="w-4 h-4 inline-block ml-1 text-white " />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,12 +1,24 @@
-import BaseAuth from '@/components/auth/login/BaseAuth'
-import React from 'react'
+"use client";
+import LoginPage from "@/components/auth/login/LoginPage";
+import React, { FC, ReactNode, useState } from "react";
 
-const LoginPage = () => {
-  return (
-    <div>
-      <BaseAuth/>
-    </div>
-  )
+interface IProps {
+  children: ReactNode;
+  navigateFlga: number;
 }
 
-export default LoginPage
+const LoginAuthPage: FC<IProps> = ({ children, navigateFlga }) => {
+  const [state, setState] = useState<number>(1);
+
+  const goToDashboard = () => {
+
+  };
+
+  if (state === 1) {
+    return <LoginPage />;
+  }
+
+  return null;
+};
+
+export default LoginAuthPage;
