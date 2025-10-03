@@ -37,7 +37,7 @@ const HeroSection = () => {
 //       <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/100 to-transparent z-50"></div>
 //       <SearchBar />
 //     </section>
-<section className="relative w-full h-[900px] bg-gradient-to-t from-black/80 to-transparent">
+<section className=" relative w-full h-[900px] bg-gradient-to-t from-black/80 to-transparent">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <Image
