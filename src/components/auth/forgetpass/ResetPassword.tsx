@@ -3,10 +3,16 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 
-const ResetPassword = () => {
+interface Props {
+  onNext: () => void;
+}
+
+
+const ResetPassword: FC<Props> = ({ onNext }) => {
+
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 

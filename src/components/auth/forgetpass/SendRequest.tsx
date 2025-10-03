@@ -1,14 +1,17 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/solid';
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+import React, { FC } from "react";
+import { useForm } from "react-hook-form";
 
-const onSubmit = (data: any) => {
-   
+interface Props {
+  onNext: () => void;
+}
+
+const SendRequest: FC<Props> = ({ onNext }) => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data: any) => {
+    onNext();
   };
-
-const SendRequest = () => {
-      const { register, handleSubmit } = useForm();
-    
   return (
     <div>
       <div className="w-full  h-20 flex flex-wrap">
@@ -30,13 +33,13 @@ const SendRequest = () => {
       <button
         className="w-full bg-[#8CFF45] mt-14 text-[#363636] py-2 rounded-xl flex items-center justify-center gap-2 text-lg font-bold"
         type="submit"
-
+        onClick={onNext}
       >
-          تایید
+        تایید
         <ChevronLeftIcon className="h-5 w-5" />
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default SendRequest
+export default SendRequest;

@@ -8,6 +8,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import ForgetPassPage from "@/app/(public)/(auth)/forgetpass/page";
 
 
 const LoginPage= () => {
@@ -56,13 +58,12 @@ const LoginPage= () => {
         </div>
 
         <div className="flex justify-end">
-          <button
-            type="button"
+          <Link href={'/forgetpass'}
             className="flex items-center text-white text-sm"
           >
             رمز عبور خود را فراموش کردم
             <ArrowLongLeftIcon className="h-5 w-5 ml-2" />
-          </button>
+          </Link>
         </div>
 
         <button

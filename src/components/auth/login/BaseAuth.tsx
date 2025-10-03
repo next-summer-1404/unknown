@@ -5,6 +5,7 @@ import { FC, ReactNode } from "react";
 import ResetPassword from "../forgetpass/ResetPassword";
 import VerifyTheRequest from "../forgetpass/VerifyTheRequest";
 import SendRequest from "../forgetpass/SendRequest";
+import Link from "next/link";
 
 interface IAuth {
   children: ReactNode;
@@ -19,19 +20,19 @@ const BaseAuth: FC<IAuth> = ({ children }) => {
           <p className="font-bold text-white text-3xl mt-4">
             به خانواده دلتا، خوش برگشتی!
           </p>
-          <p className="text-white text-xl mt-4">
+          <p className="text-white text-[18px] mt-4">
             با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
             پروژه‌هاتون خبر بگیرید!
           </p>
           <div className="w-full flex gap-3 bg-[#303030] rounded-2xl mt-10 ">
-            <button className="w-1/2 flex gap-2 items-center text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
+            <Link href={"/login"} className="w-1/2 flex gap-2 items-center text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
               <UserIcon className="h-6 w-6 text-[#AAAAAA] " />
               ورود به حساب کاربری
-            </button>
-            <button className="w-1/2 flex gap-2 items-center   text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
+            </Link>
+            <Link href={"/register"} className="w-1/2 flex gap-2 items-center   text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
               <UserPlusIcon className="h-6 w-6 text-[#AAAAAA] " />
               ساخت حساب کاربری
-            </button>
+            </Link>
           </div>
           <div className="flex items-center my-6">
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
@@ -40,9 +41,9 @@ const BaseAuth: FC<IAuth> = ({ children }) => {
             </span>
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
           </div>
-          {/* <SendRequest/> */}
+          {/*  */}
           {/* <VerifyTheRequest/> */}
-            <ResetPassword/>
+            {/* <ResetPassword/> */}
           {children}
         </div>
         <div className=" w-1/2 h-auto">
