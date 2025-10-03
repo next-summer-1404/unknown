@@ -123,7 +123,7 @@ const Header = () => {
         <nav className="flex items-center gap-1.5 mr-auto ml-3">
           <Image src={user1} alt="!!" width={16} height={16} />
           <Link
-            href="/register"
+            href="/login"
             className=" text-white text-lg font-bold text-center"
           >
             ورود/ثبت نام
