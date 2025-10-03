@@ -1,16 +1,14 @@
-import HeroSection from '@/components/HomeContainer/HeroSection/heroSection'
-import PropertyCategories from '@/components/HomeContainer/PropertyCategories/PropertyCategories'
-import React from 'react'
+import HeroSection from "@/components/HomeContainer/HeroSection/heroSection";
+import PropertyCategories from "@/components/HomeContainer/PropertyCategories/PropertyCategories";
+import React from "react";
 
 const Landing = () => {
   return (
     <div>
-  
       <HeroSection />
-<PropertyCategories />
-
+      <PropertyCategories />
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
