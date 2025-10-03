@@ -3,6 +3,7 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -87,10 +88,10 @@ const ResetPassword: FC<Props> = ({ onNext }) => {
         </div>
         </div>
       </div>
-      <button className="w-full h-10  mt-6 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2">
+      <Link href={'dashboard'} className="w-full h-10  mt-6 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2">
         <p className="text-md text-[#363636] "> تایید</p>
         <ChevronLeftIcon className="h-4 w-4 " />
-      </button>
+      </Link>
     </div>
   );
 };

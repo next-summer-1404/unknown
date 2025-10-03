@@ -61,12 +61,12 @@ const CompleteRegistration: FC<Props> = ({ onNext }) => {
           </div>
         </div>
       </div>
-      <button
+      <Link href={"/dashboard"}
         className="w-full h-10  mt-15 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2"
       >
         <p className="text-md text-[#363636] ">بررسی کد تایید</p>
         <ChevronLeftIcon className="h-4 w-4 " />
-      </button>
+      </Link>
     </>
   );
 };
