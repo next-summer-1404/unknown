@@ -63,10 +63,10 @@ const DiscountSection = () => {
           slidesOffsetBefore={30}
           // slidesOffsetAfter={30}
           breakpoints={{
-            320: { slidesPerView: 1, slidesOffsetBefore:35},
-    490: { slidesPerView: 2},
-    780: { slidesPerView: 3 },
-    1044: { slidesPerView: 4},
+            320: { slidesPerView: 1, slidesOffsetBefore: 35 },
+            490: { slidesPerView: 2 },
+            780: { slidesPerView: 3 },
+            1044: { slidesPerView: 4 },
           }}
           pagination={{
             clickable: true,
