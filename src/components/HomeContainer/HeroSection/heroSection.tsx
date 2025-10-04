@@ -39,7 +39,7 @@ const HeroSection = () => {
 //     </section>
 <section className=" relative w-full h-[900px] bg-gradient-to-t from-black/80 to-transparent">
       {/* Background */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 ">
         <Image
           src={backgroundImg}
           alt="Background"
@@ -65,7 +65,7 @@ const HeroSection = () => {
       </div>
 
       {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/100 to-transparent z-50"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#232323] to-transparent z-50"></div>
 
       <SearchBar />
     </section>

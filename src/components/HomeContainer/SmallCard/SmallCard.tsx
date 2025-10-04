@@ -11,7 +11,7 @@ const SmallCard: FC<SmallCardProps> = ({ title, image }) => {
   return (
     <div className="relative w-52 h-20 bg-[#2E2E2E] hover:bg-[#8CFF45] text-white hover:text-black rounded-3xl cursor-pointer">
       <div
-        className={`${styles.cardShape} w-7/12 h-1/3 absolute top-0 left-0 bg-black rounded-[0_0_20px_0]`}
+        className={`${styles.cardShape} w-7/12 h-1/3 absolute top-0 left-0 bg-[#232323] rounded-[0_0_20px_0]`}
       >
         <Image
           src={Arrow}

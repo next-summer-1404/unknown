@@ -23,10 +23,10 @@ const DiscountSection = () => {
     { id: 6 },
   ];
   return (
-    <section className="flex flex-col h-fit pt-20 px-5 ">
+    <section className="flex flex-col h-fit pt-20 px-5 bg-[#232323]">
       <div className="relative w-full bg-[#2D2D2D] rounded-3xl px-6 pt-3 pb-6">
         <div
-          className={`${styles.cardShape} w-10/12 h-16 absolute top-0 left-0 bg-black rounded-[0_0_40px_0]`}
+          className={`${styles.cardShape} w-10/12 h-16 absolute top-0 left-0 bg-[#232323] rounded-[0_0_40px_0]`}
         ></div>
         <div className="flex justify-center items-center gap-3 rounded-3xl h-10 w-44 mt-0.5 bg-[#FF5555]">
           <div className=""> sssssssssbbbbb</div>
@@ -56,17 +56,17 @@ const DiscountSection = () => {
         </div>
 
         <Swiper
-          slidesPerView="auto"
+          slidesPerView={"auto"}
           spaceBetween={30}
           centeredSlides={false}
           // put in center of swiper
-          slidesOffsetBefore={30}
+          // slidesOffsetBefore={20}
           // slidesOffsetAfter={30}
           breakpoints={{
-            320: { slidesPerView: 1, slidesOffsetBefore: 35 },
-            490: { slidesPerView: 2 },
-            780: { slidesPerView: 3 },
-            1044: { slidesPerView: 4 },
+            320: { slidesPerView: 1 },
+            490: { slidesPerView: 1 },
+            780: { slidesPerView: 2 },
+            1044: { slidesPerView: 3},
           }}
           pagination={{
             clickable: true,

@@ -24,7 +24,7 @@ const PropertyCategories = () => {
     { id: 6, title: "ملک ساحلی", image: apartment },
   ];
   return (
-    <div className="relative w-full overflow-hidden min-h-96 ">
+    <div className="relative w-full overflow-hidden min-h-96 bg-[#232323]">
       <div className="flex flex-col items-center justify-center gap-8 mt-24 ">
         <div className="h-fit flex flex-col justify-center items-center gap-6 text-white">
           <div className="h-fit flex justify-center items-center gap-5 ">
