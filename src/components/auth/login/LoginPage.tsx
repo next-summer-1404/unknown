@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import http from "../../../utils/service/interceptor/axiosClient"
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
@@ -20,13 +21,13 @@ const LoginPage = () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const res = await fetch("/auth/login", {
+      const res = await http.post("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await res.json();
+      const result = await res.data();
 
       if (result.success && result.token) {
         Cookies.set("token", result.token, { expires: 7 }); // ذخیره توکن برای ۷ روز
