@@ -16,9 +16,29 @@ const LoginPage= () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: any) => {
-    router.push("/dashboard");
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        router.push("/dashboard");
+      } else {
+        alert(result.message || "ورود ناموفق بود");
+      }
+    } catch (error) {
+      alert("خطا در اتصال به سرور");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,9 +69,9 @@ const LoginPage= () => {
               className="absolute left-5 top-3 flex items-center text-[#DDDDDD]"
             >
               {showPassword ? (
-                <EyeSlashIcon className="h-5 w-5" />
-              ) : (
                 <EyeIcon className="h-5 w-5" />
+              ) : (
+                <EyeSlashIcon className="h-5 w-5" />
               )}
             </button>
           </div>
