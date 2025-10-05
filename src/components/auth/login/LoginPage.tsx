@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowLongLeftIcon,
   ChevronLeftIcon,
@@ -9,10 +9,10 @@ import {
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import ForgetPassPage from "@/app/(public)/(auth)/forgetpass/page";
+import Cookies from "js-cookie";
+import http from "../../../utils/service/interceptor/axiosClient"
 
-
-const LoginPage= () => {
+const LoginPage = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -21,15 +21,16 @@ const LoginPage= () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const res = await fetch("/api/login", {
+      const res = await http.post("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      const result = await res.json();
+      const result = await res.data();
 
-      if (result.success) {
+      if (result.success && result.token) {
+        Cookies.set("token", result.token, { expires: 7 }); // ذخیره توکن برای ۷ روز
         router.push("/dashboard");
       } else {
         alert(result.message || "ورود ناموفق بود");
@@ -78,9 +79,7 @@ const LoginPage= () => {
         </div>
 
         <div className="flex justify-end">
-          <Link href={'/forgetpass'}
-            className="flex items-center text-white text-sm"
-          >
+          <Link href={"/forgetpass"} className="flex items-center text-white text-sm">
             رمز عبور خود را فراموش کردم
             <ArrowLongLeftIcon className="h-5 w-5 ml-2" />
           </Link>
