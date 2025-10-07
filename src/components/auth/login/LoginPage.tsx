@@ -33,7 +33,7 @@ const LoginPage = () => {
       // console.log(result.accessToken);
      
 
-      router.push("/dashboard");
+      router.push("/");
     } else {
       alert(result.message || "ورود ناموفق بود");
     }

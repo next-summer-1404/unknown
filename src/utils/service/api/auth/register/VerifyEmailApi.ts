@@ -1,8 +1,8 @@
 import http from "../../../interceptor/axiosClient";
 
-const startRegisterationApi = async (data: { email: string }) => {
+const VerifyEmailApi = async (data: { tempUserId: string,verificationCode:string }) => {
   try {
-    const res = await http.post("/auth/register", data);
+    const res = await http.post("/auth/verify-email", data);
     return res.data;
   } catch (error: any) {
     console.error("Register API Error:", error?.response?.data || error.message);
@@ -10,4 +10,4 @@ const startRegisterationApi = async (data: { email: string }) => {
   }
 };
 
-export default startRegisterationApi;
+export default VerifyEmailApi;
