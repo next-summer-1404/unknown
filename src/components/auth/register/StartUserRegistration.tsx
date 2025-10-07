@@ -3,6 +3,7 @@ import startRegisterationApi from "@/utils/service/api/auth/register/startRegist
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface Props {
   onNext: () => void;
@@ -23,10 +24,10 @@ const StartUserRegistration: FC<Props> = ({ onNext }) => {
 
     if (result?.status === 200) {
       onNext(); 
-      alert("  رفتن به مرحله بعد  ");
+      toast.success("ایمیل با موفقیت تأیید شد");
 
     } else {
-      alert("ارسال کد تایید ناموفق بود");
+      toast.error("ارسال کد تایید ناموفق بود");
     }
 
     setLoading(false);

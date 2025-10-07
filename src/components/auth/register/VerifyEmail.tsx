@@ -1,16 +1,20 @@
 "use client";
+import VerifyEmailApi from "@/utils/service/api/auth/register/VerifyEmailApi";
 import { ArrowPathIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import Countdown from "react-countdown";
+import { toast } from "react-hot-toast";
 
 interface Props {
   onNext: () => void;
   onBack: () => void;
+  tempUserId: string;
 }
 
-const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
+const VerifyEmail: FC<Props> = ({ onNext, onBack, tempUserId }) => {
   const [otp, setOtp] = React.useState(["", "", "", "", "", ""]);
   const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleChange = (value: string, index: number) => {
     if (/^\d?$/.test(value)) {
@@ -18,10 +22,30 @@ const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (value && index < 4) {
+      if (value && index < 5) {
         inputRefs.current[index + 1]?.focus();
       }
     }
+  };
+
+  const handleVerify = async () => {
+    const code = otp.join("");
+    if (code.length !== 6) {
+      toast.error("کد تأیید باید ۶ رقم باشد");
+      return;
+    }
+
+    setLoading(true);
+    const result = await VerifyEmailApi({ tempUserId, verificationCode: code });
+
+    if (result?.success) {
+      toast.success("ایمیل با موفقیت تأیید شد");
+      onNext();
+    } else {
+      toast.error(result?.message || "تأیید ایمیل ناموفق بود");
+    }
+
+    setLoading(false);
   };
 
   const renderer = ({ minutes, seconds, completed }: any) => {
@@ -33,6 +57,7 @@ const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
       </span>
     );
   };
+
 
   return (
     <>
@@ -54,7 +79,7 @@ const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
         <div className="flex items-center w-2/5 h-10 bg-[#7569FF] gap-10   rounded-xl ">
           <button
             className="bg-white text-black text-md font-semibold px-3 py-2 w-3/5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap"
-            onClick={() => {}}
+            onClick={() => toast("ارسال مجدد کد فعال‌سازی هنوز پیاده‌سازی نشده")}
           >
             ارسال دوباره رمز
             <ChevronLeftIcon className="w-4 h-4 inline-block ml-1 " />
@@ -75,7 +100,7 @@ const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
 
         <button
           className="w-1/2 flex items-center justify-center gap-2 border border-white  h-auto p-3 rounded-2xl hover:bg-[#8CFF45]"
-          onClick={onNext}
+          onClick={handleVerify}
         >
           <p className="text-white text-md font-semibold">ساخت حساب کاربری</p>
           <ChevronLeftIcon className="w-4 h-4 inline-block ml-1 text-white " />

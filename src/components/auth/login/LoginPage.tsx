@@ -11,6 +11,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import LoginApi from "@/utils/service/api/auth/LoginApi";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface ILoginForm {
   email: string;
@@ -35,7 +36,7 @@ const LoginPage = () => {
 
       router.push("/about");
     } else {
-      alert( "ورود ناموفق بود");
+      toast.error( "ورود ناموفق بود");
     }
 
     setLoading(false);

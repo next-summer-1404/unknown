@@ -1,4 +1,5 @@
 "use client";
+import CompleteRegistrationApi from "@/utils/service/api/auth/register/CompleteRegistrationApi";
 import {
   ChevronLeftIcon,
   EyeIcon,
@@ -7,17 +8,36 @@ import {
 import Link from "next/link";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface Props {
   onNext: () => void;
+  userId: string;
 }
 
-const CompleteRegistration: FC<Props> = ({ onNext }) => {
+const CompleteRegistration: FC<Props> = ({ onNext,userId }) => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: any) => {
-    onNext();
+  const onSubmit = async (data: any) => {
+    const payload = {
+      userId,
+      password: data.password,
+      phoneNumber: data.phoneNumber,
+    };
+
+    setLoading(true);
+    const result = await CompleteRegistrationApi(payload);
+
+    if (result?.verificationCode) {
+      toast.success("ثبت‌نام کامل شد");
+      onNext();
+    } else {
+      toast.error("ثبت‌نام ناموفق بود");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -61,7 +81,8 @@ const CompleteRegistration: FC<Props> = ({ onNext }) => {
           </div>
         </div>
       </div>
-      <Link href={"/dashboard"}
+      <Link
+        href={"/dashboard"}
         className="w-full h-10  mt-15 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2"
       >
         <p className="text-md text-[#363636] ">بررسی کد تایید</p>
