@@ -12,19 +12,18 @@ import Cookies from "js-cookie";
 import LoginApi from "@/utils/service/api/auth/LoginApi";
 import { useRouter } from "next/navigation";
 
-const LoginPage = () => {
-  const { register, handleSubmit } = useForm();
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  interface ILoginForm {
+interface ILoginForm {
     email: string;
     password: string;
   }
 
+const LoginPage = () => {
+  const { register, handleSubmit } = useForm<ILoginForm>();
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ILoginForm) => {
     setLoading(true);
     const result = await LoginApi(data);
 
@@ -32,8 +31,8 @@ const LoginPage = () => {
       Cookies.set("accessToken", result.accessToken, { expires: 1 });
       Cookies.set("refreshToken", result.refreshToken, { expires: 7 });
 
-      console.log("Access Token:", result.accessToken);
-      console.log("Refresh Token:", result.refreshToken);
+      // console.log("Access Token:", result.accessToken);
+      // console.log("Refresh Token:", result.refreshToken);
 
       router.push("/dashboard"); 
     } else {
