@@ -7,39 +7,28 @@ import {
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import http from "../../../utils/service/interceptor/axiosClient"
+import LoginApi from "@/utils/service/api/auth/LoginApi";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: any) => {
+ const onSubmit = async (data: any) => {
     setLoading(true);
-    try {
-      const res = await http.post("/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+    const result = await LoginApi(data);
 
-      const result = await res.data();
-
-      if (result.success && result.token) {
-        Cookies.set("token", result.token, { expires: 7 }); // ذخیره توکن برای ۷ روز
-        router.push("/dashboard");
-      } else {
-        alert(result.message || "ورود ناموفق بود");
-      }
-    } catch (error) {
-      alert("خطا در اتصال به سرور");
-    } finally {
-      setLoading(false);
+    if (result.success && result.token) {
+      Cookies.set("token", result.token, { expires: 7 });
+      redirect("/dashboard");
+    } else {
+      alert(result.message || "ورود ناموفق بود");
     }
+
+    setLoading(false);
   };
 
   return (
