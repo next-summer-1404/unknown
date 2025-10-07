@@ -30,7 +30,7 @@ const LoginPage = () => {
     if (result && result.accessToken && result.refreshToken) {
       Cookies.set("accessToken", result.accessToken, { expires: 1 });
       Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
-      console.log( "token", result.accessToken);
+      // console.log( "token", result.accessToken);
      
 
       router.push("/about");
