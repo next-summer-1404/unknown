@@ -1,18 +1,35 @@
 "use client";
+import startRegisterationApi from "@/utils/service/api/auth/register/startRegisterationApi";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
   onNext: () => void;
 }
 
-const StartUserRegistration: FC<Props> = ({ onNext }) => {
-  const { register, handleSubmit } = useForm();
+interface IRegisterForm {
+  email: string;
+}
 
-  const onSubmit = (data: any) => {
-    // console.log("اطلاعات فرم:", data);
-    onNext();
+
+const StartUserRegistration: FC<Props> = ({ onNext }) => {
+  const { register, handleSubmit } = useForm<IRegisterForm>();
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data: IRegisterForm) => {
+    setLoading(true);
+    const result = await startRegisterationApi(data);
+
+    if (result?.status === 200) {
+      onNext(); 
+      alert("  رفتن به مرحله بعد  ");
+
+    } else {
+      alert("ارسال کد تایید ناموفق بود");
+    }
+
+    setLoading(false);
   };
 
   return (
