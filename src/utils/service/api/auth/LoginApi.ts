@@ -3,10 +3,11 @@ import { ILoginRequest, ILoginResponse } from "../../../../types/LoginTypes";
 
 const LoginApi = async (data: ILoginRequest): Promise<ILoginResponse | null> => {
   try {
-    const res = await http.post<ILoginResponse>("/auth/login", data);
-    console.log("Response data:", res.data.accessToken);
+    const res:ILoginResponse  = await http.post("/auth/login", data);
+    console.log("Response data:", res.accessToken);
+    
 
-    return res.data;
+    return res;
     
   } catch (error) {
      console.error("LoginApi Error:", error);

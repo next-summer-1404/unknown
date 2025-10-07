@@ -13,9 +13,9 @@ import LoginApi from "@/utils/service/api/auth/LoginApi";
 import { useRouter } from "next/navigation";
 
 interface ILoginForm {
-    email: string;
-    password: string;
-  }
+  email: string;
+  password: string;
+}
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm<ILoginForm>();
@@ -27,14 +27,13 @@ const LoginPage = () => {
     setLoading(true);
     const result = await LoginApi(data);
 
-    if (result.accessToken && result.refreshToken) {
+    if (result && result.accessToken && result.refreshToken) {
       Cookies.set("accessToken", result.accessToken, { expires: 1 });
       Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
+      // console.log(result.accessToken);
+     
 
-      // console.log("Access Token:", result.accessToken);
-      // console.log("Refresh Token:", result.refreshToken);
-
-      router.push("/dashboard"); 
+      router.push("/dashboard");
     } else {
       alert(result.message || "ورود ناموفق بود");
     }
