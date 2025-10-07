@@ -27,9 +27,9 @@ const LoginPage = () => {
     setLoading(true);
     const result = await LoginApi(data);
 
-    if (result.success && result.accessToken && result.refreshToken) {
+    if (result.accessToken && result.refreshToken) {
       Cookies.set("accessToken", result.accessToken, { expires: 1 });
-      Cookies.set("refreshToken", result.refreshToken, { expires: 7 });
+      Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
 
       // console.log("Access Token:", result.accessToken);
       // console.log("Refresh Token:", result.refreshToken);
