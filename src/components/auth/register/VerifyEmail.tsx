@@ -55,7 +55,6 @@ const VerifyEmail: FC<Props> = ({ onNext, onBack }) => {
     if (result?.success) {
       toast.success("ایمیل با موفقیت تأیید شد");
 
-      // ✅ ذخیره‌سازی در کوکی
       if (result.accessToken) {
         Cookies.set("accessToken", result.accessToken, { expires: 1 });
       }
