@@ -35,7 +35,7 @@ const LoginPage = () => {
 
       router.push("/dashboard");
     } else {
-      alert("ورود ناموفق بود");
+      toast.error("ورود ناموفق بود");
     }
 
     setLoading(false);
