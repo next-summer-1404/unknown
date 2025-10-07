@@ -7,26 +7,51 @@ import {
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import LoginApi from "@/utils/service/api/auth/LoginApi";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
- const onSubmit = async (data: any) => {
+  interface ILoginForm {
+    email: string;
+    password: string;
+  }
+
+  const onSubmit = async (data: any) => {
     setLoading(true);
     const result = await LoginApi(data);
 
-    if (result.success && result.token) {
-      Cookies.set("token", result.token, { expires: 7 });
-      redirect("/dashboard");
-    } else {
-      alert(result.message || "ورود ناموفق بود");
-    }
+    const onSubmit = async (data: ILoginForm) => {
+      setLoading(true);
+      const result = await LoginApi(data);
+
+      if (result.success && result.accessToken && result.refreshToken) {
+        Cookies.set("accessToken", result.accessToken, {
+          expires: 1,
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("refreshToken", result.refreshToken, {
+          expires: 7,
+          secure: true,
+          sameSite: "Strict",
+        });
+
+        console.log("Access Token:", result.accessToken);
+        console.log("Refresh Token:", result.refreshToken);
+
+        Router.push("/dashboard");
+      } else {
+        alert(result.message || "ورود ناموفق بود");
+      }
+
+      setLoading(false);
+    };
 
     setLoading(false);
   };
@@ -68,7 +93,10 @@ const LoginPage = () => {
         </div>
 
         <div className="flex justify-end">
-          <Link href={"/forgetpass"} className="flex items-center text-white text-sm">
+          <Link
+            href={"/forgetpass"}
+            className="flex items-center text-white text-sm"
+          >
             رمز عبور خود را فراموش کردم
             <ArrowLongLeftIcon className="h-5 w-5 ml-2" />
           </Link>

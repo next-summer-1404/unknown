@@ -1,9 +1,10 @@
-import http from "../../interceptor/axiosClient";  //changed
+import http from "../../interceptor/axiosClient";
+import { ILoginRequest, ILoginResponse } from "../../../../types/LoginTypes";
 
-const LoginApi = async (data) => {
+const LoginApi = async (data: ILoginRequest): Promise<ILoginResponse> => {
   try {
-    const res = await http.post("/auth/login", data);
-    return res.data; 
+    const res = await http.post<ILoginResponse>("/auth/login", data);
+    return res.data;
   } catch (error) {
     return { success: false, message: "خطا در لاگین" };
   }
