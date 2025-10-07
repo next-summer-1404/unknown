@@ -9,7 +9,7 @@ interface IRegistration {
 const CompleteRegistrationApi = async(data:IRegistration) => {
   try {
     const res = await http.post("/auth/complete-registration", data);
-    return res.data;
+    return res;
   } catch (error: any) {
     console.error(
       "Register API Error:",
