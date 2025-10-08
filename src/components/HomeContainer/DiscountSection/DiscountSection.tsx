@@ -66,7 +66,7 @@ const DiscountSection = () => {
             320: { slidesPerView: 1 },
             490: { slidesPerView: 1 },
             780: { slidesPerView: 2 },
-            1044: { slidesPerView: 3},
+            1044: { slidesPerView: 3 },
           }}
           pagination={{
             clickable: true,
@@ -77,7 +77,13 @@ const DiscountSection = () => {
           {slide.map((Item, index) => {
             return (
               <SwiperSlide key={index}>
-                <CommonCard id={Item.id} />
+                <CommonCard
+                  id={Item.id}
+                  showTitle={true}
+                  showLocation={true}
+                  showDetails={true}
+                  showPrice={true}
+                />
               </SwiperSlide>
             );
           })}

@@ -69,10 +69,6 @@ const Rental = () => {
                 <SwiperSlide key={index}>
                   <CommonCard
                     id={Item.id}
-                    showTitle={false}
-                    showLocation={false}
-                    showDetails={false}
-                    showPrice={false}
                     showItemNumber={true}
                   />
                 </SwiperSlide>
@@ -102,7 +98,9 @@ const Rental = () => {
                   value="rent"
                   onClick={() => setActiveTab("rent")}
                   className={`w-1/2 h-11/12 text-md rounded cursor-pointer ${
-                    activeTab === "rent" ? "text-black bg-[#8CFF45]" : "text-[#8C8C8C]"
+                    activeTab === "rent"
+                      ? "text-black bg-[#8CFF45]"
+                      : "text-[#8C8C8C]"
                   }`}
                 >
                   اجاره ملک
@@ -112,7 +110,9 @@ const Rental = () => {
                   value="mortgage"
                   onClick={() => setActiveTab("mortgage")}
                   className={`w-1/2 h-11/12 text-md rounded cursor-pointer ${
-                    activeTab === "mortgage" ? "text-black bg-[#8CFF45]" : "text-[#8C8C8C]"
+                    activeTab === "mortgage"
+                      ? "text-black bg-[#8CFF45]"
+                      : "text-[#8C8C8C]"
                   }`}
                 >
                   رهن خونه
@@ -151,7 +151,13 @@ const Rental = () => {
             {slide.map((Item, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <CommonCard id={Item.id} />
+                  <CommonCard
+                    id={Item.id}
+                    showSecondTitle={true}
+                    showLocation={true}
+                    showSecondDetails={true}                    
+                    showSecondPrice={true}
+                  />
                 </SwiperSlide>
               );
             })}

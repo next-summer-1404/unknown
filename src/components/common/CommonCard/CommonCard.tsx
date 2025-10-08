@@ -1,18 +1,26 @@
 import React, { FC } from "react";
 import styles from "./CommonCard.module.css";
 import { ArrowLongLeftIcon, StarIcon } from "@heroicons/react/24/solid";
-import { BuildingOffice2Icon, MapPinIcon } from "@heroicons/react/24/outline";
+import {
+  BuildingOffice2Icon,
+  HomeIcon,
+  HomeModernIcon,
+  InboxArrowDownIcon,
+  InboxIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 import { ICommonCardProps } from "@/types/ICommonCardProps";
 
-
 const CommonCard: FC<ICommonCardProps> = ({
-  showTitle = true,
-  showLocation = true,
-  showDetails = true,
-  showPrice = true,
+  showTitle = false,
+  showLocation = false,
+  showDetails = false,
+  showPrice = false,
   showItemNumber = false,
+  showSecondTitle = false,
+  showSecondPrice = false,
+  showSecondDetails = false,
 }) => {
-  
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
       <div className="relative flex flex-col gap-7 w-full h-60 bg-[#393939] group-hover:bg-[#8CFF45] rounded-3xl px-6 pt-3 pb-6">
@@ -32,14 +40,12 @@ const CommonCard: FC<ICommonCardProps> = ({
 
         <div className=" w-full h-36 bg-white rounded-2xl"></div>
       </div>
-      <div className="flex flex-col gap-2.5 w-full py-2">
+      <div className="flex flex-col gap-4 w-full py-2">
         {showItemNumber && (
           <div className="flex items-center gap-1">
             <h1 className="text-white">اجاره ویلا در گیلان ،</h1>
-          
-            <span className="h-fit  text-[#AAAAAA]  pt-0.5 ">
-             (15 مورد)
-            </span>
+
+            <span className="h-fit  text-[#AAAAAA]  pt-0.5 ">(15 مورد)</span>
           </div>
         )}
         {showTitle && (
@@ -48,6 +54,11 @@ const CommonCard: FC<ICommonCardProps> = ({
             <span className="h-fit bg-[#FF5555] text-white rounded-2xl pt-0.5 px-2">
               %15
             </span>
+          </div>
+        )}
+        {showSecondTitle && (
+          <div className="flex items-center">
+            <h1 className="text-white">آپارتمان لوکس زعفرانیه</h1>
           </div>
         )}
         {showLocation && (
@@ -66,8 +77,35 @@ const CommonCard: FC<ICommonCardProps> = ({
             </span>
           </div>
         )}
+        {showSecondDetails && (
+          <div className="flex items-center  gap-1">
+            <div className="flex items-center gap-1">
+              <InboxIcon className="text-[#AAAAAA] w-5 h-5" />
+              <span className="text-xs font-normal text-[#AAAAAA]">
+                4 خوابه
+              </span>
+            </div>
+            <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
+            <div className="flex items-center gap-1">
+              <HomeModernIcon className="text-[#AAAAAA] w-5 h-5" />
+              <span className="text-xs font-normal text-[#AAAAAA]">
+                1 پارکینگ
+              </span>
+            </div>
+            <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
+            <div className="flex items-center gap-1">
+              <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
+              <span className="text-xs font-normal text-[#AAAAAA]">2 حمام</span>
+            </div>
+            <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
+            <div className="flex items-center gap-1">
+              <HomeIcon className="text-[#AAAAAA] w-5 h-5" />
+              <span className="text-xs font-normal text-[#AAAAAA]">حیاط</span>
+            </div>
+          </div>
+        )}
         {showPrice && (
-          <div className="flex items-center justify-around w-full h-8 rounded bg-[#444444] group-hover:bg-[#8CFF45]">
+          <div className="flex items-center justify-around w-full h-8 rounded-xl bg-[#444444] group-hover:bg-[#8CFF45]">
             <span className="relative text-[#AAAAAA] text-sm">
               8.000.000 ت
               <span className="absolute left-0 top-[35%] w-full h-[2px] bg-[#AAAAAA] rotate-[-8deg]"></span>
@@ -75,6 +113,18 @@ const CommonCard: FC<ICommonCardProps> = ({
             <div className="w-0.5 h-1/2 bg-white group-hover:bg-black"></div>
             <span className="text-white group-hover:text-black text-sm">
               5.000.000 ت/ هر شب
+            </span>
+          </div>
+        )}
+        {showSecondPrice && (
+          <div className="flex items-center justify-around w-full h-8 rounded-xl bg-[#444444] group-hover:bg-[#8CFF45]">
+            <span className="relative text-[#AAAAAA] text-sm">
+              اجاره ماهیانه:
+            </span>
+
+            <span className="text-white group-hover:text-black text-sm">
+              5.000.000 ت
+              <span className="text-[#AAAAAA] text-sm">/ هر ماه</span>
             </span>
           </div>
         )}

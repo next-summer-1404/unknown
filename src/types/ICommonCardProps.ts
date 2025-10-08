@@ -1,5 +1,5 @@
 export interface ICommonCardProps {
-  id?:number
+  id?: number;
   // title: string;
   // discount?: string;
   // location?: string;
@@ -7,9 +7,11 @@ export interface ICommonCardProps {
   // oldPrice?: string;
   // newPrice?: string;
   showTitle?: boolean;
-  
+  showSecondTitle?: boolean;
   showLocation?: boolean;
   showDetails?: boolean;
+  showSecondDetails?: boolean;
   showPrice?: boolean;
+  showSecondPrice?: boolean;
   showItemNumber?: boolean;
 }
