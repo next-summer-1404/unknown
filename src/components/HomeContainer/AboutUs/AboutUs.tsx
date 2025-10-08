@@ -43,7 +43,7 @@ const AboutUs = () => {
             <div
               className={`${styles.cardShape} w-9/12 h-7 absolute top-0 left-0 z-50 bg-[#232323] rounded-[0_0_40px_0]`}
             ></div>
-            <div className="relative rounded-3xl  bg-[#444444] h-full overflow-hidden pt-7">
+            <div className="relative rounded-3xl  bg-[#232323] h-full overflow-hidden pt-7">
               <div
                 className={`${styles.insideCardShape} w-[79%] h-7 absolute top-0 left-0 z-0 bg-[#2D2D2D]  rounded-[0_0_40px_0]`}
               ></div>
@@ -75,7 +75,7 @@ const AboutUs = () => {
             <div
               className={`${styles.cardShape} w-9/12 h-7 absolute top-0 left-0 z-50 bg-[#232323] rounded-[0_0_40px_0]`}
             ></div>
-            <div className="relative rounded-3xl  bg-[#444444] h-full overflow-hidden pt-7">
+            <div className="relative rounded-3xl  bg-[#232323] h-full overflow-hidden pt-7">
               <div
                 className={`${styles.insideCardShape} w-[79%] h-7 absolute top-0 left-0 z-0 bg-[#2D2D2D]  rounded-[0_0_40px_0]`}
               ></div>
