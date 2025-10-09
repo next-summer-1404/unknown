@@ -1,17 +1,15 @@
 "use client";
-import CompleteRegistrationApi from "@/utils/service/api/auth/register/CompleteRegistrationApi";
 import {
   ChevronLeftIcon,
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
-import Link from "next/link";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { RegisterActionStep3 } from "./registerActions";
+import toast from "react-hot-toast";
 
 type CompleteRegistrationFormType = {
   password: string;
@@ -22,37 +20,61 @@ const CompleteRegistration = () => {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const userId = Cookies.get("tempUserId");
+  // const userId = Cookies.get("tempUserId");
   const route = useRouter();
 
-  const onSubmit = async (e: any) => {
-    // console.log(await e);
-    // const payload = {
-    //   userId: userId || "",
-    //   password: data.password,
-    //   phoneNumber: data.phoneNumber,
-    // };
+  // const onSubmit = async (e: any) => {
+  //   // console.log(await e);
+  //   // const payload = {
+  //   //   userId: userId || "",
+  //   //   password: data.password,
+  //   //   phoneNumber: data.phoneNumber,
+  //   // };
 
-    // setLoading(true);
+  //   // setLoading(true);
 
-    // try {
-    //   CompleteRegistrationApi(payload);
-    //   toast.success("ثبت‌نام کامل شد");
-    //   route.push("/dashboard");
-    // } catch (error) {
-    //   toast.error("ثبت‌نام ناموفق بود");
-    // }
+  //   // try {
+  //   //   CompleteRegistrationApi(payload);
+  //   //   toast.success("ثبت‌نام کامل شد");
+  //   //   route.push("/dashboard");
+  //   // } catch (error) {
+  //   //   toast.error("ثبت‌نام ناموفق بود");
+  //   // }
+  //   // setLoading(false);
 
-   
-    // setLoading(false);
-  };
+    
+  // };
+
+  const onSubmit = async (data: CompleteRegistrationFormType) => {
+  setLoading(true);
+
+  try {
+    const formData = new FormData();
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("password", data.password);
+
+    const result = await RegisterActionStep3(formData);
+
+    if (result?.message === "Registration completed successfully") {
+      toast.success("ثبت‌نام کامل شد");
+      route.push("/dashboard");
+    } else {
+      toast.error(result?.message || "ثبت‌نام ناموفق بود");
+    }
+  } catch (error) {
+    toast.error("خطا در ارتباط با سرور");
+    console.error("Registration error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form action={RegisterActionStep3} className="p-2">
       <div className="w-full h-20 mt-5 flex items-center justify-around gap-10 ">
         <div className="flex flex-col  w-1/2">
           <p className="text-[#DDDDDD] mb-2">شماره تماس:</p>
-          <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl">
+          <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl p-2">
             <label htmlFor="phoneNumber" className="block text-[#DDDDDD]"></label>
             <input
               name="phoneNumber"
@@ -65,7 +87,7 @@ const CompleteRegistration = () => {
         </div>
         <div className="flex flex-col w-1/2 relative">
           <p className="text-[#DDDDDD] mb-2">کلمه عبور :</p>
-          <div className="w-full border  border-[#DDDDDD] flex items-center rounded-2xl">
+          <div className="w-full border  border-[#DDDDDD] flex items-center rounded-2xl p-2">
             <label htmlFor="password" className="block text-[#DDDDDD]"></label>
             <input
               name="password"
@@ -80,9 +102,9 @@ const CompleteRegistration = () => {
               className="absolute left-5 top-11 flex items-center text-[#DDDDDD]"
             >
               {showPassword ? (
-                <EyeSlashIcon className="h-5 w-5" />
-              ) : (
                 <EyeIcon className="h-5 w-5" />
+              ) : (
+                <EyeSlashIcon className="h-5 w-5" />
               )}
             </button>
           </div>

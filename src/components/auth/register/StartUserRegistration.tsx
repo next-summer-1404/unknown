@@ -6,9 +6,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { Button } from "@heroui/react";
-
-
 
 interface IRegisterForm {
   email: string;
@@ -22,11 +19,11 @@ const StartUserRegistration = () => {
   const onSubmit = async (data: IRegisterForm) => {
     setLoading(true);
     const result = await startRegisterationApi(data);
-    // console.log(result?.tempUserId);
+    // console.log(result?.tempUserId ,'dddddddd');
     
     try {
       const result = await startRegisterationApi(data);
-      console.log(result?.tempUserId);
+      // console.log(result?.tempUserId,'ggggg');
 
       if (result?.tempUserId) {
         Cookies.set("tempUserId", result.tempUserId, { expires: 1 });

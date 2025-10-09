@@ -11,7 +11,7 @@ const startRegisterationApi = async (data: { email: string }) => {
       "Register API Error:",
       error?.response?.data || error.message
     );
-    return null;
+    return error?.response?.data || null;
   }
 };
 
