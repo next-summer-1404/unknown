@@ -4,6 +4,7 @@ import "./globals.css";
 // import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "@/components/Header/header";
+import Provider from "./provider";
 // import Header from "@/components/Header/header";
 
 // const geistSans = Geist({
@@ -35,8 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${Peyda.className} antialiased`}>
-        <Header />
-        {children}
+        <Provider>
+          <Header />
+          {children}
+        </Provider>
       </body>
     </html>
   );
