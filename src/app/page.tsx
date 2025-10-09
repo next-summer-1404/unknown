@@ -4,6 +4,8 @@ import HeroSection from "@/components/HomeContainer/HeroSection/heroSection";
 import PropertyCategories from "@/components/HomeContainer/PropertyCategories/PropertyCategories";
 import Rental from "@/components/HomeContainer/Rental/Rental";
 import React from "react";
+import RealEstateSection from "../components/HomeContainer/RealEstateSection/RealEstateSection";
+import NewPlace from "@/components/HomeContainer/NewPlace/NewPlace";
 
 const Landing = () => {
   return (
@@ -13,6 +15,8 @@ const Landing = () => {
       <DiscountSection />
       <Rental />
       <AboutUs />
+      <RealEstateSection />
+      <NewPlace />
     </div>
   );
 };

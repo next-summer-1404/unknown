@@ -14,4 +14,6 @@ export interface ICommonCardProps {
   showPrice?: boolean;
   showSecondPrice?: boolean;
   showItemNumber?: boolean;
+  showThirdPrice?: boolean;
+  bgColor?: string;
 }

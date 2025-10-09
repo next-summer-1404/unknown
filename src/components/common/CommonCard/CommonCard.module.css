@@ -6,7 +6,7 @@
   width: 26px;
   height: 22px;
   background: transparent;
-  box-shadow: -8px -6px 0 #2D2D2D;
+  box-shadow: -8px -6px 0 var(--shape-color, #2D2D2D);
   border-top-left-radius: 20px;
 }
 .cardShape::before {
@@ -17,6 +17,6 @@
   width: 20px;
   height: 20px;
   background: transparent;
-  box-shadow: -10px -5px 0 #2D2D2D;
+  box-shadow: -10px -5px 0 var(--shape-color, #2D2D2D);
   border-top-left-radius: 20px;
 }

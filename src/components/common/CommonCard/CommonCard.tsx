@@ -5,7 +5,6 @@ import {
   BuildingOffice2Icon,
   HomeIcon,
   HomeModernIcon,
-  InboxArrowDownIcon,
   InboxIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
@@ -20,12 +19,18 @@ const CommonCard: FC<ICommonCardProps> = ({
   showSecondTitle = false,
   showSecondPrice = false,
   showSecondDetails = false,
+  showThirdPrice = false,
+  bgColor = "#2D2D2D"
 }) => {
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
       <div className="relative flex flex-col gap-7 w-full h-60 bg-[#393939] group-hover:bg-[#8CFF45] rounded-3xl px-6 pt-3 pb-6">
         <div
-          className={`${styles.cardShape} w-2/3 h-9 absolute top-0 left-0 bg-[#2D2D2D] rounded-[0_0_40px_0]`}
+          className={`${styles.cardShape} w-2/3 h-9 absolute top-0 left-0 rounded-[0_0_40px_0]`}
+      style={{
+    backgroundColor: bgColor,
+    "--shape-color": bgColor,
+  } as CSSWithVars}
         >
           <div className="absolute w-11 h-6 bg-[#393939] left-1 top-1 rounded group-hover:bg-[#8CFF45]">
             <ArrowLongLeftIcon className=" w-full h-full text-white group-hover:text-black cursor-pointer" />
@@ -125,6 +130,17 @@ const CommonCard: FC<ICommonCardProps> = ({
             <span className="text-white group-hover:text-black text-sm">
               5.000.000 ت
               <span className="text-[#AAAAAA] text-sm">/ هر ماه</span>
+            </span>
+          </div>
+        )}
+        {showThirdPrice && (
+          <div className="flex items-center justify-between px-3 w-full h-8 rounded-xl bg-[#444444] group-hover:bg-[#8CFF45]">
+            <span className="relative text-[#AAAAAA] text-sm">
+              قیمت خرید:
+            </span>
+
+            <span className="text-white group-hover:text-black text-sm">
+              5.000.000 ت
             </span>
           </div>
         )}
