@@ -19,8 +19,8 @@ const RealEstateSection = () => {
     { id: 6 },
   ];
   return (
-    <div className="pb-10">
-      <div className="relative w-full bg-[#2D2D2D] mt-24 px-10 ">
+    <div className="pb-10 pt-24 bg-[#2d2d2d]">
+      <div className="relative w-full bg-[#2D2D2D]  px-10 ">
         <div className="flex items-center gap-3 mt-5 w-fit">
           <h3 className="text-[#8CFF45] text-sm">خونه از خودت میخوای !</h3>
           <Image

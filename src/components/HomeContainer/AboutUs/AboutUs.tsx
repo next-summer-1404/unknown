@@ -15,7 +15,7 @@ import {
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col gap-7 justify-center bg-[#232323] rounded-b-[60px] w-full min-h-96 py-10 px-7">
+    <div className="bg-[#2d2d2d]"> <div className="flex flex-col gap-7 justify-center bg-[#232323] rounded-b-[60px] w-full  py-10 px-7">
       <div className="h-fit flex flex-col justify-center items-center gap-6 text-white">
         <div className="h-fit flex justify-center items-center gap-5 ">
           <Image src={GreenArrow} width={60} height={70} alt="" />
@@ -172,7 +172,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
+   
   );
 };
 

@@ -5,16 +5,18 @@ import PropertyCategories from "@/components/HomeContainer/PropertyCategories/Pr
 import Rental from "@/components/HomeContainer/Rental/Rental";
 import React from "react";
 import RealEstateSection from "../components/HomeContainer/RealEstateSection/RealEstateSection";
+import NewPlace from "@/components/HomeContainer/NewPlace/NewPlace";
 
 const Landing = () => {
   return (
-    <div className="bg-[#2d2d2d]">
+    <div className="">
       <HeroSection />
       <PropertyCategories />
       <DiscountSection />
       <Rental />
       <AboutUs />
       <RealEstateSection />
+      <NewPlace />
     </div>
   );
 };
