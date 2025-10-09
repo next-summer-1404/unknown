@@ -1,5 +1,9 @@
 // src/lib/axiosClient.ts
-import axios, { InternalAxiosRequestConfig, AxiosHeaders } from "axios";
+import axios, {
+  InternalAxiosRequestConfig,
+  AxiosHeaders,
+  AxiosInstance,
+} from "axios";
 import Cookies from "js-cookie";
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -37,4 +41,22 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export default instance;
+type AxiosResponseData<T> = Promise<T>;
+
+export default instance as Omit<
+  AxiosInstance,
+  "get" | "post" | "delete" | "put"
+> & {
+  get<T = any>(
+    ...args: Parameters<AxiosInstance["get"]>
+  ): AxiosResponseData<T>;
+  post<T = any>(
+    ...args: Parameters<AxiosInstance["post"]>
+  ): AxiosResponseData<T>;
+  put<T = any>(
+    ...args: Parameters<AxiosInstance["put"]>
+  ): AxiosResponseData<T>;
+  delete<T = any>(
+    ...args: Parameters<AxiosInstance["delete"]>
+  ): AxiosResponseData<T>;
+};

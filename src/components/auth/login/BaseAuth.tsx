@@ -29,7 +29,7 @@ const BaseAuth: FC<IAuth> = ({ children }) => {
               <UserIcon className="h-6 w-6 text-[#AAAAAA] " />
               ورود به حساب کاربری
             </Link>
-            <Link href={"/register"} className="w-1/2 flex gap-2 items-center   text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
+            <Link href={"/register/1"} className="w-1/2 flex gap-2 items-center   text-[#AAAAAA] font-bold text-lg  py-2 px-4 rounded-2xl hover:bg-[#8CFF45] transition">
               <UserPlusIcon className="h-6 w-6 text-[#AAAAAA] " />
               ساخت حساب کاربری
             </Link>

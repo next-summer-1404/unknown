@@ -5,29 +5,35 @@ import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { Button } from "@heroui/react";
 
-interface Props {
-  onNext: () => void;
-}
+
 
 interface IRegisterForm {
   email: string;
 }
 
-const StartUserRegistration: FC<Props> = ({ onNext }) => {
+const StartUserRegistration = () => {
   const { register, handleSubmit } = useForm<IRegisterForm>();
   const [loading, setLoading] = useState(false);
+  const route = useRouter()
 
   const onSubmit = async (data: IRegisterForm) => {
     setLoading(true);
     const result = await startRegisterationApi(data);
+    // console.log(result?.tempUserId);
+    
+    try {
+      const result = await startRegisterationApi(data);
+      console.log(result?.tempUserId);
 
-    if (result?.userId) {
-      Cookies.set("tempUserId", result.userId.toString(), { expires: 1 });
-
-      toast.success("ایمیل با موفقیت ثبت شد");
-      onNext();
-    } else {
+      if (result?.tempUserId) {
+        Cookies.set("tempUserId", result.tempUserId, { expires: 1 });
+        toast.success("ایمیل با موفقیت ثبت شد");
+        route.push("/register/2")
+      }
+    } catch {
       toast.error("ارسال کد تایید ناموفق بود");
     }
 
