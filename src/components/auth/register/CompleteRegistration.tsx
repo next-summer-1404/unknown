@@ -42,32 +42,23 @@ const CompleteRegistration = () => {
   //   // }
   //   // setLoading(false);
 
-    
   // };
 
   const onSubmit = async (data: CompleteRegistrationFormType) => {
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const formData = new FormData();
-    formData.append("phoneNumber", data.phoneNumber);
-    formData.append("password", data.password);
+    try {
+      const formData = new FormData();
+      formData.append("phoneNumber", data.phoneNumber);
+      formData.append("password", data.password);
 
-    const result = await RegisterActionStep3(formData);
-
-    if (result?.message === "Registration completed successfully") {
+      await RegisterActionStep3(formData);
       toast.success("ثبت‌نام کامل شد");
       route.push("/dashboard");
-    } else {
-      toast.error(result?.message || "ثبت‌نام ناموفق بود");
+    } catch (error) {
+      toast.error("ثبت‌نام ناموفق بود");
     }
-  } catch (error) {
-    toast.error("خطا در ارتباط با سرور");
-    console.error("Registration error:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <form action={RegisterActionStep3} className="p-2">
@@ -75,7 +66,10 @@ const CompleteRegistration = () => {
         <div className="flex flex-col  w-1/2">
           <p className="text-[#DDDDDD] mb-2">شماره تماس:</p>
           <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl p-2">
-            <label htmlFor="phoneNumber" className="block text-[#DDDDDD]"></label>
+            <label
+              htmlFor="phoneNumber"
+              className="block text-[#DDDDDD]"
+            ></label>
             <input
               name="phoneNumber"
               id="phoneNumber"
@@ -110,7 +104,6 @@ const CompleteRegistration = () => {
           </div>
         </div>
       </div>
-
 
       {/* <label htmlFor="phoneNumber" className="block text-[#DDDDDD]">
         Phone

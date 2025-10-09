@@ -1,7 +1,6 @@
 import CompleteRegistration from "@/components/auth/register/CompleteRegistration";
 import StartUserRegistration from "@/components/auth/register/StartUserRegistration";
 import VerifyEmail from "@/components/auth/register/VerifyEmail";
-import { Button } from "@heroui/react";
 
 
 const RegisterAuthPage = async ({
