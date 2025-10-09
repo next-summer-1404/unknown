@@ -79,6 +79,7 @@ const NewPlace = () => {
                     showLocation={true}
                     showSecondDetails={true}
                     showThirdPrice={true}
+                    bgColor = {"#232323"}
                   />
                 </SwiperSlide>
               );
