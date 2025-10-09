@@ -5,7 +5,6 @@ import {
   BuildingOffice2Icon,
   HomeIcon,
   HomeModernIcon,
-  InboxArrowDownIcon,
   InboxIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
@@ -20,6 +19,7 @@ const CommonCard: FC<ICommonCardProps> = ({
   showSecondTitle = false,
   showSecondPrice = false,
   showSecondDetails = false,
+  showThirdPrice = false,
 }) => {
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
@@ -125,6 +125,17 @@ const CommonCard: FC<ICommonCardProps> = ({
             <span className="text-white group-hover:text-black text-sm">
               5.000.000 ت
               <span className="text-[#AAAAAA] text-sm">/ هر ماه</span>
+            </span>
+          </div>
+        )}
+        {showThirdPrice && (
+          <div className="flex items-center justify-between px-3 w-full h-8 rounded-xl bg-[#444444] group-hover:bg-[#8CFF45]">
+            <span className="relative text-[#AAAAAA] text-sm">
+              قیمت خرید:
+            </span>
+
+            <span className="text-white group-hover:text-black text-sm">
+              5.000.000 ت
             </span>
           </div>
         )}
