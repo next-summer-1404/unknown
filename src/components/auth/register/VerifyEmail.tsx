@@ -14,8 +14,8 @@ const VerifyEmail = () => {
   const [loading, setLoading] = React.useState(false);
   const [tempUserId, setTempUserId] = React.useState<string | null>(null);
   const [otpStatet, setOtpState] = useState("");
-
   const rout = useRouter();
+
   useEffect(() => {
     const id = Cookies.get("tempUserId");
     if (!id) {
