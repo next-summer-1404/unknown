@@ -6,6 +6,7 @@ import Rental from "@/components/HomeContainer/Rental/Rental";
 import React from "react";
 import RealEstateSection from "../components/HomeContainer/RealEstateSection/RealEstateSection";
 import NewPlace from "@/components/HomeContainer/NewPlace/NewPlace";
+import UserComments from "@/components/HomeContainer/UserComments/UserComments";
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
       <AboutUs />
       <RealEstateSection />
       <NewPlace />
+      <UserComments />
     </div>
   );
 };
