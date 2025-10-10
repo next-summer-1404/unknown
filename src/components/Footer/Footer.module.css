@@ -1,0 +1,33 @@
+.cardShape::after {
+  content: "";
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  box-shadow: -14px -4px 0 #232323;
+  border-top-left-radius: 40px;
+}
+.cardShape::before {
+  content: "";
+  position: absolute;
+  right: -55px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 59px solid #232323; /* رنگ مثلث */
+  border-right: 75px solid transparent; /* ضلع شفاف */
+}
+/* .cardShape::before {
+  content: "";
+  position: absolute;
+  right: -35px;
+  top: -6px;
+  width: 35px;
+  height: 35px;
+  background:#8CFF45;
+  box-shadow: -20px -4px 0 white;
+  border-top-left-radius: 50px;
+} */
+/* #232323 */

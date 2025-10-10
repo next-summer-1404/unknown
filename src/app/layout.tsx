@@ -5,6 +5,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Header from "@/components/Header/header";
 import Provider from "./provider";
+import Footer from "@/components/Footer/Footer";
 // import Header from "@/components/Header/header";
 
 // const geistSans = Geist({
@@ -39,6 +40,7 @@ export default function RootLayout({
         <Provider>
           <Header />
           {children}
+          <Footer />
         </Provider>
       </body>
     </html>
