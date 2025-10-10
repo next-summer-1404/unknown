@@ -1,4 +1,4 @@
-// import ResetPassword from '@/components/auth/forgetpass/ResetPassword';
+import ResetPassword from '@/components/auth/forgetpass/ResetPassword';
 import SendRequest from '@/components/auth/forgetpass/SendRequest';
 import VerifyTheRequest from '@/components/auth/forgetpass/VerifyTheRequest';
 
@@ -16,7 +16,7 @@ const ForgetPassPage= async ({
     case 2:
       return <VerifyTheRequest   />;
     case 3:
-      // return <ResetPassword   />;
+      return <ResetPassword   />;
     default:
       return <p>مرحله نامعتبر است.</p>;
   }

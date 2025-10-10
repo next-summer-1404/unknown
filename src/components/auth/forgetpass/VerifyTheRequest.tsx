@@ -19,7 +19,9 @@ const VerifyTheRequest = () => {
 
   const onSubmit = async (data: { email: string; resetCode: string }) => {
     try {
-      const result: VerifyTheRequestTyps | null = await VerifyTheRequestApi(data);
+      const result: VerifyTheRequestTyps | null = await VerifyTheRequestApi(
+        data
+      );
       if (result) {
         Cookies.set("resetCode", result.resetCode);
         toast.error("پاسخی از سرور دریافت نشد");
@@ -38,7 +40,7 @@ const VerifyTheRequest = () => {
       <div className="w-full h-20 mt-5 flex items-center justify-around gap-10 ">
         <div className="flex flex-col  w-1/2">
           <p className="text-[#DDDDDD] mb-2"> ایمیل:</p>
-          <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl">
+          <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl p-2">
             <div>
               <input
                 type="email"
@@ -56,40 +58,32 @@ const VerifyTheRequest = () => {
             </div>
           </div>
         </div>
-        {/* <div className="flex flex-col w-1/2 relative">
-          <p className="text-[#DDDDDD] mb-2">کلمه عبور :</p>
-          <div className="w-full border  border-[#DDDDDD] flex items-center rounded-2xl">
+        <div className="flex flex-col w-1/2 relative">
+          <p className="text-[#DDDDDD] mb-2"> کد بازیابی</p>
+          <div className="w-full border  border-[#DDDDDD] flex items-center rounded-2xl p-2">
+            <label htmlFor="password" className="block text-[#DDDDDD]"></label>
             <input
-              type="text"
+              name="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
               placeholder=" ******"
               className="text-[#DDDDDD] outline-none"
             />
-            <label className="block text-[#DDDDDD]"></label>
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute left-5 top-11 flex items-center text-[#DDDDDD]"
             >
               {showPassword ? (
-                <EyeSlashIcon className="h-5 w-5" />
-              ) : (
                 <EyeIcon className="h-5 w-5" />
+              ) : (
+                <EyeSlashIcon className="h-5 w-5" />
               )}
             </button>
           </div>
-        </div> */}
-        <div className="flex flex-col w-1/2 relative">
-          <p className="text-[#DDDDDD] mb-2">کد بازیابی :</p>
-          <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl">
-            <input
-              type="text"
-              {...register("resetCode", { required: true })}
-              placeholder="مثال: 221821"
-              className="text-[#DDDDDD] outline-none w-full"
-            />
-          </div>
         </div>
       </div>
+      
       <button className="w-full h-10  mt-15 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2">
         <p className="text-md text-[#363636] "> تایید</p>
         <ChevronLeftIcon className="h-4 w-4 " />
