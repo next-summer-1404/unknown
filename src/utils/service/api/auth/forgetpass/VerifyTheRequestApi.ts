@@ -1,7 +1,9 @@
 import http from "../../../interceptor/axiosClient";
 
-type VerifyTheRequestType = {
+export type VerifyTheRequestType = {
   message:string
+  resetCode: string;
+  email: string;
 }
 
 

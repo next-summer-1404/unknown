@@ -4,7 +4,7 @@ import React from 'react'
 const TopFilter = () => {
   return (
     
-      <div className="w-11/12 m-auto bg-[#2A2A2A] p-4 rounded-xl border border-blue-500 flex flex-wrap items-center gap-4">
+      <div className="w-11/12 m-auto bg-[#2A2A2A] p-4 rounded-xl flex flex-wrap items-center gap-4">
         <div className="w-48 flex flex-col relative">
           <p className="text-sm text-[#FFFFFF] mb-1 ">مقصد یا هتل شما:</p>
           <select
@@ -39,15 +39,15 @@ const TopFilter = () => {
               <option value="books">کتاب</option>
             </select>
 
-            <BarsArrowDownIcon className="absolute top-2 right-2 w-5 h-5 text-white pointer-events-none" />
+            <BarsArrowDownIcon className="absolute top-3 right-4 w-5 h-5 text-white pointer-events-none" />
             <ChevronDownIcon className="absolute top-2 left-2 w-5 h-5 text-white pointer-events-none" />
           </div>
         </div>
 
         <div className="flex flex-col   rounded-lg  py-2 w-5/12 ">
           <p className="text-sm text-[#FFFFFF] mb-1">جستجو:</p>
-          <div className="flex items-center justify-center   p-2 rounded-lg border border-[#AAAAAA]">
-            <MagnifyingGlassIcon className="w-5 h-5 text-white mr-2" />
+          <div className="flex items-center justify-center gap-1  p-2 rounded-lg border border-[#AAAAAA]">
+            <MagnifyingGlassIcon className="w-5 h-5 text-white mr-1" />
             <input
               type="text"
               placeholder="نام هتل موردنظر..."

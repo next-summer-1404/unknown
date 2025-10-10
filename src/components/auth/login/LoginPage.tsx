@@ -79,7 +79,7 @@ const LoginPage = () => {
 
         <div className="flex justify-end">
           <Link
-            href={"/forgetpass"}
+            href={"/forgetpass/1"}
             className="flex items-center text-white text-sm"
           >
             رمز عبور خود را فراموش کردم

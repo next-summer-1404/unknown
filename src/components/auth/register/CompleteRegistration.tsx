@@ -4,9 +4,8 @@ import {
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
-import React, { FC, useState } from "react";
-import { useForm } from "react-hook-form";
-import Cookies from "js-cookie";
+import React, {useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { RegisterActionStep3 } from "./registerActions";
 import toast from "react-hot-toast";
@@ -16,35 +15,14 @@ type CompleteRegistrationFormType = {
   phoneNumber: string;
 };
 
+
 const CompleteRegistration = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<CompleteRegistrationFormType>();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const userId = Cookies.get("tempUserId");
   const route = useRouter();
 
-  // const onSubmit = async (e: any) => {
-  //   // console.log(await e);
-  //   // const payload = {
-  //   //   userId: userId || "",
-  //   //   password: data.password,
-  //   //   phoneNumber: data.phoneNumber,
-  //   // };
-
-  //   // setLoading(true);
-
-  //   // try {
-  //   //   CompleteRegistrationApi(payload);
-  //   //   toast.success("ثبت‌نام کامل شد");
-  //   //   route.push("/dashboard");
-  //   // } catch (error) {
-  //   //   toast.error("ثبت‌نام ناموفق بود");
-  //   // }
-  //   // setLoading(false);
-
-  // };
-
-  const onSubmit = async (data: CompleteRegistrationFormType) => {
+  const onSubmit: SubmitHandler<CompleteRegistrationFormType> = async (data ) => {
     setLoading(true);
 
     try {
@@ -61,7 +39,7 @@ const CompleteRegistration = () => {
   };
 
   return (
-    <form action={RegisterActionStep3} className="p-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="p-2">
       <div className="w-full h-20 mt-5 flex items-center justify-around gap-10 ">
         <div className="flex flex-col  w-1/2">
           <p className="text-[#DDDDDD] mb-2">شماره تماس:</p>
@@ -104,27 +82,6 @@ const CompleteRegistration = () => {
           </div>
         </div>
       </div>
-
-      {/* <label htmlFor="phoneNumber" className="block text-[#DDDDDD]">
-        Phone
-      </label>
-      <input
-        name="phoneNumber"
-        id="phoneNumber"
-        type="text"
-        placeholder="مثال: 09000000000"
-        className="text-[#DDDDDD] outline-none"
-      />
-      <label htmlFor="password" className="block text-[#DDDDDD]">
-        PASSWORD
-      </label>
-      <input
-        name="password"
-        id="password"
-        type={showPassword ? "text" : "password"}
-        placeholder=" ******"
-        className="text-[#DDDDDD] outline-none"
-      /> */}
       <button
         type="submit"
         className="w-full h-10  mt-15 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2"
