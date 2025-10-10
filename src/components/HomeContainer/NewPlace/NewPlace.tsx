@@ -75,10 +75,7 @@ const NewPlace = () => {
                 <SwiperSlide key={index}>
                   <CommonCard
                     id={Item.id}
-                    showSecondTitle={true}
-                    showLocation={true}
-                    showSecondDetails={true}
-                    showThirdPrice={true}
+                    showItemNumber={true}
                     bgColor = {"#232323"}
                   />
                 </SwiperSlide>
