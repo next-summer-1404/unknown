@@ -42,7 +42,7 @@ const Header = () => {
                 />
               </svg>
             </Link>
-            {pathname === "/" && (
+            {pathname === "/houseReserve" && (
               <span className="absolute w-3/4 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
             )}
           </div>

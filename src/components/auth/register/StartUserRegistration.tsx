@@ -18,13 +18,8 @@ const StartUserRegistration = () => {
 
   const onSubmit = async (data: IRegisterForm) => {
     setLoading(true);
-    const result = await startRegisterationApi(data);
-    // console.log(result?.tempUserId ,'dddddddd');
-    
     try {
       const result = await startRegisterationApi(data);
-      // console.log(result?.tempUserId,'ggggg');
-
       if (result?.tempUserId) {
         Cookies.set("tempUserId", result.tempUserId, { expires: 1 });
         toast.success("ایمیل با موفقیت ثبت شد");
