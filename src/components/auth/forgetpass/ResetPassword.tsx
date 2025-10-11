@@ -1,27 +1,50 @@
 "use client";
+import ResetPasswordApi, {
+  IResetPasswordType,
+} from "@/utils/service/api/auth/forgetpass/ResetPasswordApi";
 import {
   ChevronLeftIcon,
   EyeIcon,
   EyeSlashIcon,
 } from "@heroicons/react/24/solid";
-import Link from "next/link";
-import React, { FC, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-// تعریف تایپ‌های ورودی برای react-hook-form
-interface ResetFormInputs {
+interface FormData {
   email: string;
   verificationCode: string;
   newpassword: string;
 }
 
 const ResetPassword = () => {
-  const { register, handleSubmit } = useForm<ResetFormInputs>();
+  const { register, handleSubmit } = useForm<FormData>();
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const route = useRouter();
 
-  const onSubmit = (data: ResetFormInputs) => {
-    // console.log("Form Data:", data);
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const apiPayload: IResetPasswordType = {
+      email: data.email,
+      resetCode: data.verificationCode, 
+      newPassword: data.newpassword,
+      // message: null, 
+    };
+
+    try {
+      const result: IResetPasswordType | null = await ResetPasswordApi(apiPayload);
+      console.log(apiPayload)
+
+      
+        Cookies.set("newPassword", result?.newPassword || "");
+        toast.success("رمز عبور با موفقیت تغییر کرد.");
+        route.push("/dashboard");
+      
+    } catch {
+      toast.error("خطا در تأیید کد"); 
+    }
   };
 
   return (
