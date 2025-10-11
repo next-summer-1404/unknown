@@ -1,5 +1,5 @@
 "use client";
-import VerifyTheRequestApi from "@/utils/service/api/auth/forgetpass/VerifyTheRequestApi";
+import VerifyTheRequestApi, { VerifyTheRequestType } from "@/utils/service/api/auth/forgetpass/VerifyTheRequestApi";
 import {
   ChevronLeftIcon,
   EyeIcon,
@@ -7,21 +7,22 @@ import {
 } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { VerifyTheRequestTyps } from "@/types/VerifyTheRequestTyps";
+
 
 const VerifyTheRequest = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<VerifyTheRequestType>();
   const [showPassword, setShowPassword] = useState(false);
   const route = useRouter();
 
-  const onSubmit = async (data: { email: string; resetCode: string }) => {
+  const onSubmit:SubmitHandler<VerifyTheRequestType> = async (data) => {
     try {
-      const result: VerifyTheRequestTyps | null = await VerifyTheRequestApi(
+      const result: VerifyTheRequestType | null = await VerifyTheRequestApi(
         data
       );
+      // console.log(data)
       if (result) {
         Cookies.set("resetCode", result.resetCode);
         toast.error("پاسخی از سرور دریافت نشد");

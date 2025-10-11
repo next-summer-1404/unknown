@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { InputOtp } from "@heroui/react";
+import Link from "next/link";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = React.useState(["", "", "", "", "", ""]);
@@ -95,10 +96,10 @@ const VerifyEmail = () => {
       </div>
 
       <div className="w-full h-auto mt-20 flex items-center justify-around gap-10">
-        <button className="w-1/2 flex items-center justify-center gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45]">
+        <Link href={'/register/1'} className="w-1/2 flex items-center justify-center gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45]">
           <ArrowPathIcon className="w-4 h-4 text-white" />
           <p className="text-white text-md font-semibold">تغییر شماره موبایل</p>
-        </button>
+        </Link>
 
         <button
           className="w-1/2 flex items-center justify-center gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45]"

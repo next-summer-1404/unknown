@@ -20,6 +20,7 @@ const SendRequest = () => {
     setLoading(true);
     try {
       const result = await SendRequestApi(data);
+      // console.log(data,'dataaaaaaa')
       if (result?.resetCode) {
         Cookies.set("resetCode", result.resetCode, { expires: 1 });
         toast.success("کد با موفقیت ثبت شد");
