@@ -9,7 +9,6 @@ import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 const UserCommentCard: FC<ICommentCardProps> = ({
   showUserDetail = false,
   showComment = false,
-
   bgColor = "#2D2D2D",
 }) => {
   return (
