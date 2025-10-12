@@ -21,11 +21,11 @@ const SendRequest = () => {
     try {
       const result = await SendRequestApi(data);
       // console.log(data,'dataaaaaaa')
-      if (result?.resetCode) {
+      
         Cookies.set("resetCode", result.resetCode, { expires: 1 });
         toast.success("کد با موفقیت ثبت شد");
         route.push("/forgetpass/2");
-      }
+      
     } catch (error) {
       toast.error("ارسال کد تایید ناموفق بود");
     }
