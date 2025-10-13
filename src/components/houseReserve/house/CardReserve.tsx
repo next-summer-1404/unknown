@@ -9,8 +9,9 @@ import styles from "./HouseReserve.module.css";
 import { HouseReserveTypes } from "@/types/HouseReserveTypes";
 
 interface Props {
-  house: HouseReserveTypes[];
+  house: HouseReserveTypes;
 }
+
 const CardReserve = ({ house }: Props) => {
   const originalPrice = parseInt(house.price);
   const discountedPrice = house.discounted_price
