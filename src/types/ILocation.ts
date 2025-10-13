@@ -1,3 +1,6 @@
+export interface IGetAllLocationResponse {
+  data: ILocation[];
+}
 export interface ILocation {
   id: string; 
   area_name: string;
