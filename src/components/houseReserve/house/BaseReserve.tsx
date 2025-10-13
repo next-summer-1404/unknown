@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC, ReactNode } from "react";
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
-import MapReserve from "./MapReserve";
-import CardReserve from "./CardReserve";
+import MapReserve from "../house/MapReserve";
+import CardReserve from "../house/CardReserve";
 
 const BaseReserve = () => {
   return (
@@ -13,6 +13,7 @@ const BaseReserve = () => {
         <div className="w-3/5 h-auto">
         <BottomFilter/>
           <CardReserve/>
+          {/* {children} */}
         </div>
         {/*map*/}
         <MapReserve/>

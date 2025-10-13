@@ -42,8 +42,6 @@ const BaseAuth: FC<IAuth> = ({ children }) => {
             <div className="flex-grow h-px bg-[#AAAAAA]"></div>
           </div>
           {/*  */}
-          {/* <VerifyTheRequest/> */}
-            {/* <ResetPassword/> */}
           {children}
         </div>
         <div className=" w-1/2 h-auto">
