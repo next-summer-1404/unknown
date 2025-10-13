@@ -22,7 +22,7 @@ const VerifyTheRequest = () => {
       const result: VerifyTheRequestType | null = await VerifyTheRequestApi(
         data
       );
-      // console.log(data)
+      console.log(data,'data')
       if (result) {
         Cookies.set("resetCode", result.resetCode);
         toast.error("پاسخی از سرور دریافت نشد");
