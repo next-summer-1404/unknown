@@ -24,7 +24,7 @@ const Header = () => {
             {" "}
             <Link
               className={`flex items-center px-5 py-2.5 text-lg text-center transition-colors 
-                  ${pathname === "/" ? "text-[#8CFF45]" : ""}`}
+                  ${pathname === "/houseReserve" ? "text-[#8CFF45]" : ""}`}
               href="/houseReserve"
             >
               رزرو سریع

@@ -1,3 +1,4 @@
+'use client'
 import React, { FC, ReactNode, useEffect, useState } from "react";
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
