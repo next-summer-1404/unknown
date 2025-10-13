@@ -18,8 +18,7 @@ const CardReserve = ({ house }: Props) => {
     ? parseInt(house.discounted_price)
     : originalPrice;
   const discountPercent = house.discounted_price
-    ? Math.round(((originalPrice - discountedPrice) / originalPrice) * 100)
-    : 0;
+    ? Math.round(((originalPrice - discountedPrice) / originalPrice) * 100): 0;
 
   return (
     <div className="w-full h-11/12">
@@ -31,9 +30,9 @@ const CardReserve = ({ house }: Props) => {
             <div
               className={`${styles.cardShape} w-9/12 h-7 absolute top-0 left-0 z-50 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
             ></div>
-            {/* <div className="relative rounded-2xl bg-[#b44343] h-full overflow-hidden pt-7 flex items-center justify-center">
-                <span className="text-gray-400">تصویر هتل</span>
-              </div> */}
+            <div className="relative rounded-2xl bg-[#b44343] h-full overflow-hidden pt-7 flex items-center justify-center">
+                <span className="text-gray-400"> {house.photos}</span>
+              </div>
           </div>
         </div>
 
