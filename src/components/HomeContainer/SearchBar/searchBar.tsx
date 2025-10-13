@@ -12,14 +12,20 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { ILocation } from "@/types/ILocation";
 import { getAllLocation } from "@/utils/service/api/location";
+import { getHouses } from "@/utils/service/api/getAllHouses";
+import { IHouses } from "@/types/IHouses";
 
 const SearchBar = () => {
-  const [activeTab, setActiveTab] = useState("reserve");
+  const [activeTab, setActiveTab] = useState("reservation");
   const [startDate, setStartDate] = useState<DateObject | null>(null);
   const [endDate, setEndDate] = useState<DateObject | null>(null);
   const [locations, setLocations] = useState<ILocation[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [houses, setHouses] = useState<IHouses[]>([]);
+  const [guestCount, setGuestCount] = useState<number | null>(null);
+
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
 
   console.log(locations);
 
@@ -39,34 +45,59 @@ const SearchBar = () => {
     Location();
   }, []);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (activeTab === "reserve") {
-      console.log("reserve");
-    } else if (activeTab === "rent") {
-      console.log("rent");
-    } else if (activeTab === "sell") {
-      console.log("sell");
-    }
-  };
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   let transactionType = "";
+  //   if (activeTab === "reservation") transactionType = "reservation";
+  //   else if (activeTab === "rental") transactionType = "rental";
+  //   else if (activeTab === "direct_purchase")
+  //     transactionType = "direct_purchase";
+
+  //   // if (activeTab === "reservation") {
+  //   //   console.log("reservation");
+  //   // } else if (activeTab === "rental") {
+  //   //   console.log("rental");
+  //   // } else if (activeTab === "direct_purchase") {
+  //   //   console.log("direct_purchase");
+  //   // }
+
+  //   try {
+  //     const result = await getHouses({
+  //       page: 1,
+  //       limit: 100,
+  //       transactionType: transactionType,
+  //       location: selectedLocation || undefined,
+  //       guest_count: guestCount || undefined,
+
+  //       // start_date: startDate ? startDate.format("YYYY-MM-DD") : undefined,
+  //       // end_date: endDate ? endDate.format("YYYY-MM-DD") : undefined,
+  //     });
+
+  //     setHouses(result.data);
+  //     console.log("نتیجه جستجو:", result.data);
+  //   } catch (error) {
+  //     console.error("خطا در جستجو:", error);
+  //     setError(String(error));
+  //   }
+  // };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
       className="absolute bottom-2 lg:w-full  z-50 flex flex-col items-center"
     >
       <div className="flex w-3/4 items-center gap-2 px-5 py-2">
         <button
           type="button"
-          value="reserve"
-          onClick={() => setActiveTab("reserve")}
+          value="reservation"
+          onClick={() => setActiveTab("reservation")}
           className={`flex items-center gap-1 cursor-pointer ${
-            activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"
+            activeTab === "reservation" ? "text-white" : "text-[#8C8C8C]"
           }`}
         >
           <CalendarDaysIcon
             className={`w-5 h-5 ${
-              activeTab === "reserve" ? "text-white" : "text-[#8C8C8C]"
+              activeTab === "reservation" ? "text-white" : "text-[#8C8C8C]"
             }`}
           />
           <span>رزرو ملک</span>
@@ -74,15 +105,15 @@ const SearchBar = () => {
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl overflow-hidden"></div>
         <button
           type="button"
-          value="rent"
-          onClick={() => setActiveTab("rent")}
+          value="rental"
+          onClick={() => setActiveTab("rental")}
           className={`flex items-center gap-1 cursor-pointer ${
-            activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"
+            activeTab === "rental" ? "text-white" : "text-[#8C8C8C]"
           }`}
         >
           <BuildingOffice2Icon
             className={`w-5 h-5 ${
-              activeTab === "rent" ? "text-white" : "text-[#8C8C8C]"
+              activeTab === "rental" ? "text-white" : "text-[#8C8C8C]"
             }`}
           />
           <span>رهن و اجاره</span>
@@ -90,15 +121,15 @@ const SearchBar = () => {
         <div className="w-0.5 h-4 bg-gray-800 rounded-4xl"></div>
         <button
           type="button"
-          value="sell"
-          onClick={() => setActiveTab("sell")}
+          value="direct_purchase"
+          onClick={() => setActiveTab("direct_purchase")}
           className={`flex items-center gap-1 cursor-pointer ${
-            activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"
+            activeTab === "direct_purchase" ? "text-white" : "text-[#8C8C8C]"
           }`}
         >
           <DocumentCurrencyDollarIcon
             className={`w-5 h-5 ${
-              activeTab === "sell" ? "text-white" : "text-[#8C8C8C]"
+              activeTab === "direct_purchase" ? "text-white" : "text-[#8C8C8C]"
             }`}
           />
           <span>خرید و فروش</span>
@@ -107,7 +138,6 @@ const SearchBar = () => {
       <div className="w-3/4 h-fit py-5 bg-[#363636] rounded-3xl drop-shadow-[0px_12px_24px_rgba(0,0,0,0.16)] shadow-[inset_2px_2px_16px_0px_rgba(255,255,255,0.08)]">
         <div className="flex justify-center flex-wrap gap-2">
           <div className="w-1/2 md:w-64  relative">
-            {/* {loading && <div className="text-white mb-2">در حال بارگذاری...</div>} */}
             <label
               htmlFor="username"
               className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
@@ -116,6 +146,7 @@ const SearchBar = () => {
             </label>
             <select
               id="username"
+              onChange={(e) => setSelectedLocation(e.target.value)}
               className=" w-full border bg-[#363636] border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
             >
               <option value="">استان، شهر، اقامتگاه...</option>
@@ -172,7 +203,8 @@ const SearchBar = () => {
             </label>
             <input
               type="text"
-              id="username"
+              value={guestCount ?? ""}
+              onChange={(e) => setGuestCount(Number(e.target.value))}
               placeholder="وارد کنید..."
               className="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
             />
