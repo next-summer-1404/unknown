@@ -1,7 +1,13 @@
-import { HouseReserveTypes } from "@/types/HouseReserveTypes";
+import { HouseReserveTypes } from "../../../../types/HouseReserveTypes";
 import http from "../../interceptor/axiosClient";
 
-export const getAllHouses = async (): Promise<HouseReserveTypes[]> => {
+export interface GetAllHousesResponse {
+  houses: HouseReserveTypes[];
+  totalCount: number;
+}
+
+export const getAllHouses = async (): Promise<GetAllHousesResponse> => {
   const res = await http.get("/houses");
-  return res.data.houses;
+  // console.log(res ,'cccccccc')
+  return res
 };
