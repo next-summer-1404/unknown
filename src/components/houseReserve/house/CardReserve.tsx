@@ -6,7 +6,6 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import styles from "./HouseReserve.module.css";
-// import { HouseReserveTypes } from "@/types/HouseReserveTypes";
 import { IHouses } from "@/types/IHouses";
 import auth1 from "../../../assets/images/auth1.png";
 
@@ -32,10 +31,10 @@ const CardReserve = ({ house }: Props) => {
         {/* */}
 
         <div className="w-3/12 h-auto">
-          <div className="relative w-full rounded-2xl overflow-hidden">
-            <div className="relative bg-[#351cb3] rounded-2xl min-h-[200px] p-0 overflow-hidden">
+          <div className="relative w-full rounded-2xl  overflow-hidden">
+            <div className="relative bg-[#351cb3] rounded-2xl  min-h-[200px] p-0 overflow-hidden">
               <div
-                className={`${styles.cardShape} absolute top-0 left-0 w-9/12 h-7 z-20 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
+                className={`${styles.cardShape} absolute  top-0 left-0 w-9/12 h-7 z-20 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
               ></div>
               <img
                 src={mainPhoto}

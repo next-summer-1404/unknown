@@ -3,7 +3,7 @@ import React from 'react'
 
 const BottomFilter = () => {
   return (
-      <div className="w-full h-1/12 border-b border-[#4E4E4E] flex gap-2 pb-3">
+      <div className="w-full h-1/12 border-b border-[#4E4E4E] flex gap-2 pb-3 ">
             <div className="w-1/3 flex flex-col relative ">
               <p className="text-sm text-[#FFFFFF] mb-1 "> امکانات هتل:</p>
               <select
