@@ -37,11 +37,11 @@ const BaseReserve = () => {
         : true;
 
       const destMatch = destination
-        ? h.categories?.name?.toLowerCase().includes(destination.toLowerCase()) ||
+        ?
           h.address?.toLowerCase().includes(destination.toLowerCase()) ||
           h.tags?.some((t) => t.toLowerCase().includes(destination.toLowerCase()))
         : true;
-
+      {/*bottomFilter*/}
       const facilityMatch = facility
         ? (facility === "استخر دار" && h.yard_type?.includes("استخر")) ||
           (facility === "پارکینگ" && h.parking > 0) ||
@@ -61,7 +61,7 @@ const BaseReserve = () => {
 
       return titleMatch && destMatch && facilityMatch && priceMatch;
     });
-
+   {/*sort*/}
     switch (sort) {
       case "newest":
         result = result.sort(
@@ -92,10 +92,10 @@ const BaseReserve = () => {
   const totalCount = filteredHouses.length;
 
   return (
-    <div className="w-full h-auto">
+    <div className="w-full h-auto ">
       <TopFilter totalCount={totalCount} />
 
-      <div className="w-11/12 h-[1080px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
+      <div className="w-11/12 h-[700px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
         <div className="w-3/5 overflow-y-auto flex flex-col gap-5">
           <BottomFilter />
           {filteredHouses.length ? (

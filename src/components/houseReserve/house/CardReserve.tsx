@@ -9,6 +9,7 @@ import React from "react";
 import styles from "./HouseReserve.module.css";
 import { IHouses } from "@/types/IHouses";
 import auth1 from "../../../assets/images/auth1.png";
+import Image from "next/image";
 
 interface Props {
   house: IHouses;
@@ -30,15 +31,18 @@ const CardReserve = ({ house }: Props) => {
     <div className="w-full border-b border-[#4E4E4E] flex items-center gap-5">
       {/* */}
       <div className="w-3/12 h-auto">
-        <div className="relative w-full rounded-2xl  overflow-hidden">
-          <div className="flex items-center justify-center relative bg-[#351cb3] rounded-2xl  min-h-[200px] p-0 overflow-hidden">
+        <div className="relative w-full rounded-2xl overflow-hidden">
+          <div className="relative bg-[#351cb3] rounded-2xl min-h-[200px] overflow-hidden">
             <div
-              className={`${styles.cardShape} absolute  top-0 left-0 w-9/12 h-7 z-20 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
+              className={`${styles.cardShape} absolute top-0 left-0 w-9/12 h-7 z-20 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
             ></div>
-            <img
+            <Image
               src={mainPhoto}
               alt={house.title || "house"}
-              className="bg-amber-50 w-11/12 h-[150px] mt-7 rounded-2xl overflow-hidden"
+              fill
+              className="object-cover rounded-2xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+              priority={true}
             />
           </div>
         </div>
