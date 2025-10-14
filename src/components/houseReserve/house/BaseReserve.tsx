@@ -1,7 +1,6 @@
 "use client";
-
 import TopFilter from "./topFilter/TopFilter";
-import BottomFilter from "./BottomFilter";
+import BottomFilter from "./bottomFilter/BottomFilter";
 import MapReserve from "../house/MapReserve";
 import CardReserve from "../house/CardReserve";
 import { IHouses } from "@/types/IHouses";
@@ -12,10 +11,12 @@ import { useSearchParams } from "next/navigation";
 const BaseReserve = () => {
   const [houses, setHouses] = useState<IHouses[]>([]);
   const searchParams = useSearchParams();
-
   const query = searchParams.get("query") || "";
   const destination = searchParams.get("destination") || "";
   const sort = searchParams.get("sort") || "";
+  const facility = searchParams.get("facility") || "";
+  const minPrice = searchParams.get("minPrice") || "";
+  const maxPrice = searchParams.get("maxPrice") || "";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,30 +37,44 @@ const BaseReserve = () => {
         : true;
 
       const destMatch = destination
-        ? h.categories?.name
-            ?.toLowerCase()
-            .includes(destination.toLowerCase()) ||
+        ? h.categories?.name?.toLowerCase().includes(destination.toLowerCase()) ||
           h.address?.toLowerCase().includes(destination.toLowerCase()) ||
-          h.tags?.some((t) =>
-            t.toLowerCase().includes(destination.toLowerCase())
-          )
+          h.tags?.some((t) => t.toLowerCase().includes(destination.toLowerCase()))
         : true;
 
-      return titleMatch && destMatch;
+      const facilityMatch = facility
+        ? (facility === "استخر دار" && h.yard_type?.includes("استخر")) ||
+          (facility === "پارکینگ" && h.parking > 0) ||
+          (facility === "تعداد اتاق" && h.rooms > 0) ||
+          (facility === "تعداد سرویس بهداشتی" && h.bathrooms > 0)
+        : true;
+
+      const price = parseInt(h.price);
+      const min = parseInt(minPrice);
+      const max = parseInt(maxPrice);
+
+      const priceMatch =
+        (!minPrice && !maxPrice) ||
+        (!isNaN(min) && !isNaN(max) && price >= min && price <= max) ||
+        (!isNaN(min) && isNaN(max) && price >= min) ||
+        (isNaN(min) && !isNaN(max) && price <= max);
+
+      return titleMatch && destMatch && facilityMatch && priceMatch;
     });
 
-    // مرتب‌سازی
     switch (sort) {
       case "newest":
         result = result.sort(
           (a, b) =>
-            new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime()
+            new Date(b.last_updated).getTime() -
+            new Date(a.last_updated).getTime()
         );
         break;
       case "oldest":
         result = result.sort(
           (a, b) =>
-            new Date(a.last_updated).getTime() - new Date(b.last_updated).getTime()
+            new Date(a.last_updated).getTime() -
+            new Date(b.last_updated).getTime()
         );
         break;
       case "price_asc":
@@ -71,16 +86,16 @@ const BaseReserve = () => {
       default:
         break;
     }
-
     return result;
-  }, [houses, query, destination, sort]);
+  }, [houses, query, destination, sort, facility, minPrice, maxPrice]);
+
+  const totalCount = filteredHouses.length;
 
   return (
     <div className="w-full h-auto">
-      <TopFilter />
+      <TopFilter totalCount={totalCount} />
 
       <div className="w-11/12 h-[1080px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
-        {/* لیست */}
         <div className="w-3/5 overflow-y-auto flex flex-col gap-5">
           <BottomFilter />
           {filteredHouses.length ? (
@@ -93,7 +108,6 @@ const BaseReserve = () => {
             </p>
           )}
         </div>
-
         {/* نقشه */}
         <MapReserve />
       </div>
