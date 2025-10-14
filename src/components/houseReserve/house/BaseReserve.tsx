@@ -29,7 +29,7 @@ const BaseReserve = () => {
   }, []);
 
   return (
-    <div className="w-full h-auto border border-amber-300">
+    <div className="w-full h-auto ">
       <TopFilter />
 
       <div className="w-11/12 h-[1080px] m-auto mt-5 bg-[#2A2A2A] p-4 rounded-xl flex gap-5 ">
