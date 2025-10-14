@@ -6,10 +6,11 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import styles from "./HouseReserve.module.css";
-import { HouseReserveTypes } from "@/types/HouseReserveTypes";
+// import { HouseReserveTypes } from "@/types/HouseReserveTypes";
+import { IHouses } from "@/types/IHouses";
 
 interface Props {
-  house: HouseReserveTypes;
+  house: IHouses;
 }
 
 const CardReserve = ({ house }: Props) => {

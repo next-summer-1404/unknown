@@ -35,6 +35,6 @@ import { HousesQueryParams, IHouses } from "@/types/IHouses";
 // };
 
 export const getHouses = async (params?: HousesQueryParams) => {
-  const  data  = await http.get("/api/houses", { params });
+  const  data  = await http.get("/houses", { params });
   return data;
 };

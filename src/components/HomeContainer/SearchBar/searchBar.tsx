@@ -23,11 +23,14 @@ const SearchBar = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [houses, setHouses] = useState<IHouses[]>([]);
+  const [number, setNumber] = useState();
   const [guestCount, setGuestCount] = useState<number | null>(null);
 
   const [selectedLocation, setSelectedLocation] = useState<string>("");
 
-  console.log(locations);
+  // console.log(locations);
+   console.log(houses);
+   console.log(number);
 
   const Location = async () => {
     setLoading(true);
@@ -41,8 +44,25 @@ const SearchBar = () => {
       setLoading(false);
     }
   };
+
+    const GetHouses = async () => {
+    setLoading(true);
+    try {
+      const result = await getHouses({ page: 1, limit: 100 });
+      setHouses(result.houses);
+      setNumber(result.totalCount)
+    } catch (error) {
+      console.error(error);
+      setError(String(error));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   useEffect(() => {
     Location();
+    GetHouses();
   }, []);
 
   // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
