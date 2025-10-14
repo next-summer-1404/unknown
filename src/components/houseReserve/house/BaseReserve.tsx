@@ -109,7 +109,7 @@ const BaseReserve = () => {
           )}
         </div>
         {/* نقشه */}
-        <MapReserve />
+        <MapReserve houses={filteredHouses} />
       </div>
     </div>
   );
