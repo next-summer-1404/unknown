@@ -1,4 +1,5 @@
 "use client";
+
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
 import MapReserve from "../house/MapReserve";
@@ -7,12 +8,14 @@ import { IHouses } from "@/types/IHouses";
 import { getHouses } from "@/utils/service/api/getAllHouses";
 import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import SearchFilter from "./topFilter/SearchFilter";
 
 const BaseReserve = () => {
   const [houses, setHouses] = useState<IHouses[]>([]);
   const searchParams = useSearchParams();
+
   const query = searchParams.get("query") || "";
+  const destination = searchParams.get("destination") || "";
+  const sort = searchParams.get("sort") || "";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,18 +30,54 @@ const BaseReserve = () => {
   }, []);
 
   const filteredHouses = useMemo(() => {
-    if (!query) return houses;
-    return houses.filter((h) =>
-      h.title?.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [houses, query]);
+    let result = houses.filter((h) => {
+      const titleMatch = query
+        ? h.title?.toLowerCase().includes(query.toLowerCase())
+        : true;
+
+      const destMatch = destination
+        ? h.categories?.name
+            ?.toLowerCase()
+            .includes(destination.toLowerCase()) ||
+          h.address?.toLowerCase().includes(destination.toLowerCase()) ||
+          h.tags?.some((t) =>
+            t.toLowerCase().includes(destination.toLowerCase())
+          )
+        : true;
+
+      return titleMatch && destMatch;
+    });
+
+    // مرتب‌سازی
+    switch (sort) {
+      case "newest":
+        result = result.sort(
+          (a, b) =>
+            new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime()
+        );
+        break;
+      case "oldest":
+        result = result.sort(
+          (a, b) =>
+            new Date(a.last_updated).getTime() - new Date(b.last_updated).getTime()
+        );
+        break;
+      case "price_asc":
+        result = result.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+        break;
+      case "price_desc":
+        result = result.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+        break;
+      default:
+        break;
+    }
+
+    return result;
+  }, [houses, query, destination, sort]);
 
   return (
     <div className="w-full h-auto">
       <TopFilter />
-      <div className="w-11/12 mx-auto mt-5">
-        <SearchFilter />
-      </div>
 
       <div className="w-11/12 h-[1080px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
         <div className="w-3/5 overflow-y-auto flex flex-col gap-5">
