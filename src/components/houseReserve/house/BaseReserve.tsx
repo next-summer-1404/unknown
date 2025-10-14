@@ -1,5 +1,4 @@
 "use client";
-
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
 import MapReserve from "../house/MapReserve";
@@ -15,7 +14,6 @@ const BaseReserve = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
 
-  // fetch only once (all data)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,7 +26,6 @@ const BaseReserve = () => {
     fetchData();
   }, []);
 
-  // filter client-side by title
   const filteredHouses = useMemo(() => {
     if (!query) return houses;
     return houses.filter((h) =>
@@ -39,7 +36,6 @@ const BaseReserve = () => {
   return (
     <div className="w-full h-auto">
       <TopFilter />
-      {/* اضافه کردن باکس جستجو */}
       <div className="w-11/12 mx-auto mt-5">
         <SearchFilter />
       </div>
