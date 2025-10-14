@@ -1,4 +1,4 @@
-cardShape::after {
+.cardShape::after {
   content: "";
   position: absolute;
   bottom: -19px;
