@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import styles from "./DiscountSection.module.css";
 import Image from "next/image";
@@ -6,22 +5,14 @@ import GreenArrow from "../../../assets/images/greenArrow.png";
 import Link from "next/link";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { ClockIcon } from "@heroicons/react/24/outline";
+import { getHouses } from "@/utils/service/api/getAllHouses";
+import Slider from "./Slider";
+import { IHouses } from "@/types/IHouses";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import CommonCard from "@/components/common/CommonCard/CommonCard";
-
-const DiscountSection = () => {
-  const slide = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ];
+const DiscountSection = async () => {
+  const HouseList = await getHouses();
+const Houses: IHouses[]  =HouseList.houses 
+  console.log()
   return (
     <section className="flex flex-col h-fit pt-20 px-5 bg-[#232323]">
       <div className="relative w-full bg-[#2D2D2D] rounded-3xl px-6 pt-3 pb-6">
@@ -55,39 +46,7 @@ const DiscountSection = () => {
           </Link>
         </div>
 
-        <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={30}
-          centeredSlides={false}
-          // put in center of swiper
-          // slidesOffsetBefore={20}
-          // slidesOffsetAfter={30}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            490: { slidesPerView: 1 },
-            780: { slidesPerView: 2 },
-            1044: { slidesPerView: 3 },
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper w-full mt-6 "
-        >
-          {slide.map((Item, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <CommonCard
-                  id={Item.id}
-                  showTitle={true}
-                  showLocation={true}
-                  showDetails={true}
-                  showPrice={true}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+        <Slider Houses ={Houses}/>
       </div>
     </section>
   );
