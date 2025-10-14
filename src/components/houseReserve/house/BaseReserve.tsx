@@ -1,29 +1,62 @@
+"use client";
+
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
 import MapReserve from "../house/MapReserve";
 import CardReserve from "../house/CardReserve";
-import toast from "react-hot-toast";
 import { IHouses } from "@/types/IHouses";
 import { getHouses } from "@/utils/service/api/getAllHouses";
+import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import SearchFilter from "./topFilter/SearchFilter";
 
-const BaseReserve = async () => {
- 
-  const Data = await getHouses();
-    // console.log(Data.houses)
-    const houses: IHouses[]  = Data.houses 
+const BaseReserve = () => {
+  const [houses, setHouses] = useState<IHouses[]>([]);
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query") || "";
+
+  // fetch only once (all data)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getHouses();
+        setHouses(data.houses ?? []);
+      } catch (error) {
+        console.error("Failed to fetch houses:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // filter client-side by title
+  const filteredHouses = useMemo(() => {
+    if (!query) return houses;
+    return houses.filter((h) =>
+      h.title?.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [houses, query]);
 
   return (
-    <div className="w-full h-auto ">
+    <div className="w-full h-auto">
       <TopFilter />
+      {/* اضافه کردن باکس جستجو */}
+      <div className="w-11/12 mx-auto mt-5">
+        <SearchFilter />
+      </div>
 
-      <div className="w-11/12 h-[1080px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5 ">
-        <div className="w-3/5  overflow-y-auto flex flex-col gap-5">
+      <div className="w-11/12 h-[1080px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
+        <div className="w-3/5 overflow-y-auto flex flex-col gap-5">
           <BottomFilter />
-          {houses.map((house) => (
-            <CardReserve key={house.id} house={house} />
-          ))}
+          {filteredHouses.length > 0 ? (
+            filteredHouses.map((house) => (
+              <CardReserve key={house.id} house={house} />
+            ))
+          ) : (
+            <p className="text-gray-400 text-center mt-10">
+              هیچ نتیجه‌ای یافت نشد.
+            </p>
+          )}
         </div>
-        {/*map*/}
         <MapReserve />
       </div>
     </div>

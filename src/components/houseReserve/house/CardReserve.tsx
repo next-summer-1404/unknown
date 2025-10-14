@@ -1,3 +1,4 @@
+"use client";
 import {
   BuildingOffice2Icon,
   ClockIcon,
@@ -64,7 +65,7 @@ const CardReserve = ({ house }: Props) => {
             <ClockIcon className="w-5 h-5 text-[#AAAAAA]" />
             <p className="text-[#AAAAAA] text-center">
               {" "}
-              مدت زمان:{house.bookings} رزرو
+              مدت رزرو:{house.bookings} رزرو
             </p>
           </div>
         </div>
