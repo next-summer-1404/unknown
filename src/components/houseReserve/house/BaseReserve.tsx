@@ -4,8 +4,6 @@ import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./BottomFilter";
 import MapReserve from "../house/MapReserve";
 import CardReserve from "../house/CardReserve";
-import { HouseReserveTypes } from "@/types/HouseReserveTypes";
-import { getAllHouses } from "@/utils/service/api/houseReserve/getAllHouses";
 import toast from "react-hot-toast";
 import { IHouses } from "@/types/IHouses";
 import { getHouses } from "@/utils/service/api/getAllHouses";
