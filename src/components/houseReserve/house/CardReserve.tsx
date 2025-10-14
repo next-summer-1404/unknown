@@ -30,7 +30,6 @@ const CardReserve = ({ house }: Props) => {
     <div className="w-full h-11/12 ">
       <div className="w-full m-auto border-b border-[#4E4E4E] h-60 flex items-center gap-5">
         {/* */}
-
         <div className="w-3/12 h-auto">
           <div className="relative w-full rounded-2xl  overflow-hidden">
             <div className="relative bg-[#351cb3] rounded-2xl  min-h-[200px] p-0 overflow-hidden">
