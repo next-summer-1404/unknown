@@ -45,7 +45,7 @@ const BaseAuth: FC<IAuth> = ({ children }) => {
           {children}
         </div>
         <div className=" w-1/2 h-auto">
-          <ImageAuth />
+          <ImageAuth  />
         </div>
       </div>
     </div>

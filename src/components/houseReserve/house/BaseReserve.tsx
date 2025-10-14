@@ -31,8 +31,9 @@ const BaseReserve = () => {
   return (
     <div className="w-full h-auto border border-amber-300">
       <TopFilter />
-      <div className="w-11/12 m-auto mt-5 bg-[#2A2A2A] p-4 rounded-xl  flex flex-col gap-5">
-        <div className="w-3/5 h-auto">
+
+      <div className="w-11/12 h-[1080px] m-auto mt-5 bg-[#2A2A2A] p-4 rounded-xl flex gap-5 ">
+        <div className="w-3/5  overflow-y-auto flex flex-col gap-5">
           <BottomFilter />
           {houses.map((house) => (
             <CardReserve key={house.id} house={house} />

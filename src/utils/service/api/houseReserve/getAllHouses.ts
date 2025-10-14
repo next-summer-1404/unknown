@@ -1,8 +1,8 @@
-import { HouseReserveTypes } from "../../../../types/HouseReserveTypes";
+import { IHouses } from "@/types/IHouses";
 import http from "../../interceptor/axiosClient";
 
 export interface GetAllHousesResponse {
-  houses: HouseReserveTypes[];
+  houses: IHouses[];
   totalCount: number;
 }
 
