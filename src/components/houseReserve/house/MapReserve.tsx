@@ -3,25 +3,32 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { IHouses } from "@/types/IHouses";
 
-const MyMap = dynamic<{ positions: [number, number][]; zoom: number }>(
+
+const MyMap = dynamic<{
+  zoom: number;
+  center: [number, number];
+  selectedHouse?: { lat: number; lng: number } | null;
+}>(
   () => import("./Map"),
   { ssr: false }
 );
 
 interface MapReserveProps {
-  houses: IHouses[];
+  selectedHouse: IHouses | null;
 }
 
-const MapReserve: React.FC<MapReserveProps> = ({ houses }) => {
-  const positions: [number, number][] = houses
-    .filter(h => h.location?.lat && h.location?.lng)
-    .map(h => [h.location.lat, h.location.lng]);
+const MapReserve: React.FC<MapReserveProps> = ({ selectedHouse }) => {
 
-  const zoom = 11;
+  const zoom = selectedHouse ? 17 : 15;
+  const center: [number, number] = selectedHouse?.location
+    ? [selectedHouse.location.lat, selectedHouse.location.lng]
+    : [35.6892, 51.3890];
+
+// console.log("Map rendered", selectedHouse.location)
 
   return (
     <div className="w-2/5 h-[650px] border border-green-300 rounded-xl overflow-hidden">
-      <MyMap positions={positions} zoom={zoom} />
+      <MyMap  selectedHouse={selectedHouse ? selectedHouse.location : null}  zoom={zoom} center={center}/>
     </div>
   );
 };
