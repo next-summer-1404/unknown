@@ -1,5 +1,4 @@
 import { ChevronLeftIcon, StarIcon } from "@heroicons/react/24/outline";
-import { div } from "framer-motion/client";
 import React from "react";
 
 const UserCommentsHouse = () => {
