@@ -1,6 +1,11 @@
+import { IHouses } from '@/types/IHouses';
 import React from 'react'
 
-const BaseDetail = () => {
+
+interface Props {
+  house: IHouses;
+}
+const BaseDetail = ({house}:Props) => {
   return (
     <div>
       BaseDetail

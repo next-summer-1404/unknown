@@ -10,6 +10,7 @@ import styles from "./HouseReserve.module.css";
 import { IHouses } from "@/types/IHouses";
 import auth1 from "../../../assets/images/auth1.png";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   house: IHouses;
@@ -89,10 +90,10 @@ const CardReserve = ({ house }: Props) => {
           <span>تومان</span>
         </p>
 
-        <button className="w-full h-10 border border-[#8CFF45] mt-15 rounded-xl hover:bg-[#8CFF45]  flex items-center justify-center gap-1 ">
+        <Link href={`/houseReserve/${house.id}`} className="w-full h-10 border border-[#8CFF45] mt-15 rounded-xl hover:bg-[#8CFF45]  flex items-center justify-center gap-1 ">
           <BuildingOffice2Icon className="w-5 h-5 text-[#AAAAAA] " />
           <p className="text-[#AAAAAA] text-center ">بررسی و رزرو هتل</p>
-        </button>
+        </Link>
       </div>
     </div>
   );
