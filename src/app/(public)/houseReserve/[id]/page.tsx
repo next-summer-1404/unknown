@@ -1,20 +1,17 @@
 import React from "react";
-import BaseDetail from "../../../../components/detailHouse/baseDetail/baseDetail"; 
+import BaseDetail from "../../../../components/detailHouse/baseDetail/baseDetail";
+import { getHouseDetail } from "../../../../utils/service/api/getHouseDetail"; 
+import { IHouses } from "@/types/IHouses";
 
 interface Props {
   params: { id: string };
 }
 
 const HouseDetailPage = async ({ params }: Props) => {
-  const res = await fetch(`/houses/${params.id}`, {
-    cache: "no-store",
-  });
-
-
-  const house = await res.json();
+  const house: IHouses = await getHouseDetail(params.id);
 
   return (
-    <div >
+    <div>
       <BaseDetail house={house} />
     </div>
   );

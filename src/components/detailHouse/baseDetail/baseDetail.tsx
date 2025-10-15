@@ -8,7 +8,7 @@ interface Props {
 const BaseDetail = ({house}:Props) => {
   return (
     <div>
-      BaseDetail
+      BaseDetail ززززززززززززز
     </div>
   )
 }
