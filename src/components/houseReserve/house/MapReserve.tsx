@@ -19,7 +19,7 @@ interface MapReserveProps {
 
 const MapReserve: React.FC<MapReserveProps> = ({ selectedHouse }) => {
 
-  const zoom = selectedHouse ? 14 : 11;
+  const zoom = selectedHouse ? 17 : 15;
   const center: [number, number] = selectedHouse?.location
     ? [selectedHouse.location.lat, selectedHouse.location.lng]
     : [35.6892, 51.3890];

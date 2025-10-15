@@ -54,6 +54,7 @@ const Map: React.FC<MapProps> = ({ selectedHouse, zoom, center }) => {
       zoom={zoom}
       style={{ width: "100%", height: "100%" }}
       // key={center.toString()}
+      key={selectedHouse ? selectedHouse.lat + selectedHouse.lng : "default"}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/">OSM</a> contributors'

@@ -5,7 +5,7 @@ import {
   MapPinIcon,
   StarIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { FC } from "react";
 import styles from "./HouseReserve.module.css";
 import { IHouses } from "@/types/IHouses";
 import auth1 from "../../../assets/images/auth1.png";
@@ -13,9 +13,10 @@ import Image from "next/image";
 
 interface Props {
   house: IHouses;
+  onSelect?: () => void;
 }
 
-const CardReserve = ({ house }: Props) => {
+const CardReserve: FC<Props> = ({ house, onSelect }) => {
   const originalPrice = parseInt(house.price);
   const discountedPrice = house.discounted_price
     ? parseInt(house.discounted_price)
@@ -28,9 +29,9 @@ const CardReserve = ({ house }: Props) => {
     house.photos && house.photos.length > 0 ? house.photos[0] : auth1.src;
 
   return (
-    <div className="w-full border-b border-[#4E4E4E] flex items-center gap-5">
+    <div className="w-full border-b border-[#4E4E4E] flex items-center gap-5" onClick={onSelect}>
       {/* */}
-      <div className="w-3/12 h-auto">
+      <div className="w-3/12 h-auto"  >
         <div className="relative w-full rounded-2xl overflow-hidden">
           <div className="relative bg-[#351cb3] rounded-2xl min-h-[200px] overflow-hidden">
             <div
