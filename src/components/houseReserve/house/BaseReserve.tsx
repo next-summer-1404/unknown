@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 
 const BaseReserve = () => {
   const [houses, setHouses] = useState<IHouses[]>([]);
+  const [selectedHouse, setSelectedHouse] = useState<IHouses | null>(null);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   const destination = searchParams.get("destination") || "";
@@ -37,11 +38,14 @@ const BaseReserve = () => {
         : true;
 
       const destMatch = destination
-        ?
-          h.address?.toLowerCase().includes(destination.toLowerCase()) ||
-          h.tags?.some((t) => t.toLowerCase().includes(destination.toLowerCase()))
+        ? h.address?.toLowerCase().includes(destination.toLowerCase()) ||
+          h.tags?.some((t) =>
+            t.toLowerCase().includes(destination.toLowerCase())
+          )
         : true;
-      {/*bottomFilter*/}
+      {
+        /*bottomFilter*/
+      }
       const facilityMatch = facility
         ? (facility === "استخر دار" && h.yard_type?.includes("استخر")) ||
           (facility === "پارکینگ" && h.parking > 0) ||
@@ -61,7 +65,9 @@ const BaseReserve = () => {
 
       return titleMatch && destMatch && facilityMatch && priceMatch;
     });
-   {/*sort*/}
+    {
+      /*sort*/
+    }
     switch (sort) {
       case "newest":
         result = result.sort(
@@ -100,7 +106,11 @@ const BaseReserve = () => {
           <BottomFilter />
           {filteredHouses.length ? (
             filteredHouses.map((house) => (
-              <CardReserve key={house.id} house={house} />
+              <CardReserve
+                key={house.id}
+                house={house}
+                onSelect={() => setSelectedHouse(house)}
+              />
             ))
           ) : (
             <p className="text-gray-400 text-center mt-10">
@@ -109,7 +119,7 @@ const BaseReserve = () => {
           )}
         </div>
         {/* نقشه */}
-        <MapReserve houses={filteredHouses} />
+        <MapReserve selectedHouse={selectedHouse}/>
       </div>
     </div>
   );
