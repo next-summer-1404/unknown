@@ -11,7 +11,7 @@ const HouseDetailPage = async ({ params }: Props) => {
   const house: IHouses = await getHouseDetail(params.id);
 
   return (
-    <div className="bg-[#232323] ">
+    <div className="">
       <BaseDetail house={house} />
     </div>
   );

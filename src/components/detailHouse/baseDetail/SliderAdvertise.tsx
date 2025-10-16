@@ -24,9 +24,6 @@ const SliderAdvertise = () => {
         slidesPerView={"auto"}
         spaceBetween={30}
         centeredSlides={false}
-        // put in center of swiper
-        // slidesOffsetBefore={20}
-        // slidesOffsetAfter={30}
         breakpoints={{
           320: { slidesPerView: 1 },
           490: { slidesPerView: 1 },
