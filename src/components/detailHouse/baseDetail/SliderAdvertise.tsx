@@ -42,6 +42,7 @@ const SliderAdvertise = () => {
           return (
             <SwiperSlide key={index}>
               <CommonCard
+                rate={"2.3"}
                 showSecondTitle={true}
                 showLocation={true}
                 showSecondDetails={true}
