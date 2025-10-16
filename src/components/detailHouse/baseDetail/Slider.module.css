@@ -1,0 +1,12 @@
+:global(.mySwiper.swiper) {
+  padding-bottom: 0 !important;
+}
+
+:global(.mySwiper .swiper-wrapper) {
+  padding-bottom: 0 !important;
+}
+
+:global(.mySwiper .swiper-pagination) {
+  bottom: 0 !important;
+  top: auto !important;
+}
