@@ -15,13 +15,28 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import AboutHouse from "../aboutHouse/AboutHouse";
 import HouseFacilities from "../houseFacilities/HouseFacilities";
 import UserCommentsHouse from "../userCommentsHouse/UserCommentsHouse";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const BottomBaseDetail = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const currentTab = searchParams.get("tab") || "aboutProperty";
+
+  const handleTabChange = (key: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("tab", key);
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 border border-white">
       <div className="w-4/6 rounded-xl p-4 border border-amber-300">
         <Tabs
           aria-label="house-detail-tabs"
+          selectedKey={currentTab}
+          onSelectionChange={(key) => handleTabChange(key.toString())}
           size="md"
           variant="solid"
           color="success"
@@ -38,36 +53,48 @@ const BottomBaseDetail = () => {
           }}
         >
           <Tab
-            key="درباره ملک"
+            key="aboutProperty"
             title={
               <div className="flex items-center gap-2">
                 <HomeModernIcon className="w-5 h-5" />
                 <span>درباره ملک</span>
               </div>
             }
-          />
+          >
+            <div>
+              <AboutHouse />
+            </div>
+          </Tab>
+
           <Tab
-            key="امکانات اقامتگاه"
+            key="facilityProperty"
             title={
               <div className="flex items-center gap-2">
                 <ClipboardDocumentListIcon className="w-5 h-5" />
                 <span>امکانات اقامتگاه</span>
               </div>
             }
-          />
+          >
+            <div>
+              <HouseFacilities />
+            </div>
+          </Tab>
+
           <Tab
-            key="نظرات کاربران"
+            key="userComments"
             title={
               <div className="flex items-center gap-2">
                 <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
                 <span>نظرات کاربران</span>
               </div>
             }
-          />
+          >
+            <div>
+              <UserCommentsHouse />
+            </div>
+          </Tab>
         </Tabs>
-        {/* <AboutHouse/> */}
-        {/* <HouseFacilities/> */}
-        <UserCommentsHouse/>
+
       </div>
       {/* */}
       <div className="w-2/6 p-4 rounded-xl">

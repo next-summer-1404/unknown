@@ -102,7 +102,7 @@ const BaseReserve = () => {
       <TopFilter totalCount={totalCount} />
 
       <div className="w-11/12 h-[700px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
-        <div className="w-3/5 overflow-y-auto flex flex-col gap-5">
+        <div className="w-3/5 overflow-y-auto flex flex-col gap-5 pl-3">
           <BottomFilter />
           {filteredHouses.length ? (
             filteredHouses.map((house) => (
