@@ -21,6 +21,8 @@ const CommonCard: FC<ICommonCardProps> = ({
   showSecondDetails = false,
   showThirdPrice = false,
   bgColor = "#2D2D2D",
+
+  rate,
 }) => {
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
@@ -40,7 +42,7 @@ const CommonCard: FC<ICommonCardProps> = ({
         </div>
         <div className="flex items-center justify-center gap-1.5 w-16 h-8 bg-white rounded group-hover:bg-[#2D2D2D] ">
           <span className="text-md font-medium text-black group-hover:text-white leading-none mt-1">
-            15.3
+      {rate}  
           </span>
           <StarIcon className="w-4 h-4 text-black group-hover:text-white" />
         </div>
