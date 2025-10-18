@@ -53,8 +53,8 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
 
 
   return (
-    <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 border border-white">
-      <div className="w-4/6 rounded-xl p-4 border border-amber-300">
+    <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 ">
+      <div className="w-4/6 rounded-xl p-4 ">
         <Tabs
           aria-label="house-detail-tabs"
           selectedKey={currentTab}
@@ -144,7 +144,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 onChange={(date) => setStartDate(date)}
                 minDate={new Date()}
                 className="w-full"
-                inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3  focus:outline-none"
               />
             </div>
             <div className="w-full relative mt-5 flex flex-col">
@@ -162,7 +162,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 onChange={(date) => setEndDate(date)}
                 minDate={startDate || new Date()} 
                 className="w-full"
-                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3  focus:outline-none"
               />
             </div>
 
