@@ -20,12 +20,14 @@ import { IHouses } from "@/types/IHouses";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import "react-multi-date-picker/styles/layouts/mobile.css";
 
 interface BottomBaseDetailProps {
   house: IHouses;
 }
 
 const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
+  const [guestCount, setGuestCount] = useState(1); 
   const [startDate, setStartDate] = useState<DateObject | null>(null);
   const [endDate, setEndDate] = useState<DateObject | null>(null);
 
@@ -41,9 +43,18 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
     router.push(`${pathname}?${params.toString()}`);
   };
 
+  const handleIncreaseGuests = () => {
+    setGuestCount(prevCount => prevCount + 1);
+  };
+
+  const handleDecreaseGuests = () => {
+    setGuestCount(prevCount => Math.max(1, prevCount - 1)); 
+  };
+
+
   return (
-    <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 border border-white">
-      <div className="w-4/6 rounded-xl p-4 border border-amber-300">
+    <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 ">
+      <div className="w-4/6 rounded-xl p-4 ">
         <Tabs
           aria-label="house-detail-tabs"
           selectedKey={currentTab}
@@ -101,7 +112,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
             }
           >
             <div>
-              <UserCommentsHouse />
+              <UserCommentsHouse house={house}/>
             </div>
           </Tab>
         </Tabs>
@@ -131,8 +142,9 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={startDate}
                 onChange={(date) => setStartDate(date)}
+                minDate={new Date()}
                 className="w-full"
-                inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3  focus:outline-none"
               />
             </div>
             <div className="w-full relative mt-5 flex flex-col">
@@ -148,8 +160,9 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={endDate}
                 onChange={(date) => setEndDate(date)}
+                minDate={startDate || new Date()} 
                 className="w-full"
-                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3  focus:outline-none"
               />
             </div>
 
@@ -161,19 +174,24 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
+                  onPress={handleIncreaseGuests} 
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   +
                 </Button>
-                <span>۲ نفر</span>
+                <span>{guestCount} نفر</span> 
                 <Button
                   size="sm"
+                  onPress={handleDecreaseGuests} 
+                  isDisabled={guestCount <= 1} 
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   -
                 </Button>
               </div>
             </div>
+
+
           </div>
           {/* */}
 
