@@ -17,8 +17,8 @@ const TopBaseDetail = () => {
         </div>
         <div className="w-1/6 h-auto ">
           <div className="flex items-center justify-center gap-3 mt-8">
-            <button className="flex items-center justify-center gap-1 px-1 py-2 rounded-xl bg-[#7569FF] text-white text-sm font-semibold  transition">
-              <StarIcon className="w-4 h-4 text-white" />۵ ستاره
+            <button className="flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-[#7569FF] text-white text-sm font-semibold  transition">
+              <StarIcon className="w-4 h-4 text-white" />۵ <p>ستاره</p>
             </button>
             <div className="w-[1px] h-6 bg-[#555] mx-2" />
 
