@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@heroui/react";
 import {
   ClipboardDocumentListIcon,
@@ -17,12 +17,18 @@ import UserCommentsHouse from "../userCommentsHouse/UserCommentsHouse";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import PriceReserve from "./PriceReserve";
 import { IHouses } from "@/types/IHouses";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 
 interface BottomBaseDetailProps {
-  house: IHouses; 
+  house: IHouses;
 }
 
-const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
+const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
+  const [startDate, setStartDate] = useState<DateObject | null>(null);
+  const [endDate, setEndDate] = useState<DateObject | null>(null);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -67,7 +73,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
             }
           >
             <div>
-              <AboutHouse house={house}/>
+              <AboutHouse house={house} />
             </div>
           </Tab>
 
@@ -81,7 +87,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
             }
           >
             <div>
-              <HouseFacilities house={house}/>
+              <HouseFacilities house={house} />
             </div>
           </Tab>
 
@@ -102,7 +108,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
       </div>
       {/* */}
       <div className="w-2/6 p-4 rounded-xl">
-        <Card className="bg-[#2A2A2A] text-white rounded-2xl  w-full">
+        <Card className="bg-[#2A2A2A] text-white rounded-2xl  w-full ">
           <div className="w-5/6 h-auto m-auto border-b-1 border-[#646464] pb-5">
             <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full  w-2/3 m-auto ">
               <BuildingOffice2Icon className="w-5 h-5 text-white" />
@@ -110,39 +116,40 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
             </h3>
 
             {/* تاریخ رفت */}
-            <Input
-              label="تاریخ رفت"
-              placeholder="۱۴۰۴/۰۵/۰۲"
-              variant="bordered"
-              fullWidth
-              className="mb-3 text-white"
-              startContent={
-                <CalendarDaysIcon className="text-[#B3B3B3] w-5 h-5 " />
-              }
-              classNames={{
-                inputWrapper:
-                  "border border-[#AAAAAA] bg-[#393939] hover:bg-[#393939] hover:border-[#AAAAAA]  shadow-none",
-                input: "text-white placeholder:text-[#B3B3B3]",
-                label: "text-[#B3B3B3]",
-              }}
-            />
+            
+            <div className="w-full border border-red-500 relative">
+              <label
+                htmlFor="username"
+                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+              >
+                تاریخ ورود:
+              </label>
 
-            <Input
-              label="تاریخ برگشت"
-              placeholder="۱۴۰۴/۰۵/۰۷"
-              variant="bordered"
-              fullWidth
-              className="mb-3 text-white"
-              startContent={
-                <CalendarDaysIcon className="text-[#B3B3B3] w-5 h-5 " />
-              }
-              classNames={{
-                inputWrapper:
-                  "border border-[#AAAAAA] bg-[#393939] hover:bg-[#393939] hover:border-[#AAAAAA]  shadow-none",
-                input: "text-white placeholder:text-[#B3B3B3]",
-                label: "text-[#B3B3B3]",
-              }}
-            />
+              <DatePicker
+                calendar={persian}
+                locale={persian_fa}
+                placeholder="وارد کنید..."
+                value={startDate}
+                onChange={(date) => setStartDate(date)}
+                inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+            <div className="w-full relative mt-5">
+              <label
+                htmlFor="username"
+                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+              >
+                تاریخ خروج:
+              </label>
+              <DatePicker
+                calendar={persian}
+                locale={persian_fa}
+                placeholder="وارد کنید..."
+                value={endDate}
+                onChange={(date) => setEndDate(date)}
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              />
+            </div>
 
             {/* */}
             <div className="flex items-center justify-between mt-4 mb-4 text-sm border border-[#AAAAAA] rounded-2xl p-3">
@@ -168,7 +175,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
           </div>
           {/* */}
 
-          <PriceReserve house={house}/>
+          <PriceReserve house={house} />
         </Card>
       </div>
     </div>
