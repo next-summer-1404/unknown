@@ -4,6 +4,11 @@ import React, { useState, useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+
 const MinimumPrice = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
