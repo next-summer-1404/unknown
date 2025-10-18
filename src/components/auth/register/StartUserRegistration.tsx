@@ -20,6 +20,7 @@ const StartUserRegistration = () => {
     setLoading(true);
     try {
       const result = await startRegisterationApi(data);
+      // console.log(data,'dataaaaaaa')
       if (result?.tempUserId) {
         Cookies.set("tempUserId", result.tempUserId, { expires: 1 });
         toast.success("ایمیل با موفقیت ثبت شد");

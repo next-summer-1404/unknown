@@ -7,7 +7,6 @@ import {
   HomeModernIcon,
   ChatBubbleOvalLeftEllipsisIcon,
   BuildingOffice2Icon,
-  CurrencyDollarIcon,
 } from "@heroicons/react/24/outline";
 import { Card, Button, Input } from "@heroui/react";
 import { CalendarDaysIcon, UsersIcon } from "@heroicons/react/24/outline";

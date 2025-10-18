@@ -1,15 +1,24 @@
 import { ArrowUturnUpIcon, ClipboardIcon, MapPinIcon, StarIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import Slider from './Slider'
+import { IHouses } from '@/types/IHouses';
+import { getHouseDetail } from '@/utils/service/api/getHouseDetail';
 
-const TopBaseDetail = () => {
+
+interface TopBaseDetailProps {
+    house: IHouses;
+}
+
+const TopBaseDetail = async({ house }: TopBaseDetailProps) => {
+  // const houseData = await getHouseDetail(id)
+
   return (
     <div className="w-11/12 h-auto m-auto mt-20 flex gap-10">
         <div className="w-5/6 h-auto ">
-          <p className="text-white text-xl font-bold p-2">هتل همایون</p>
+          <p className="text-white text-xl font-bold p-2">{house.title}</p>
           <div className="flex items-center gap-1 mx-2 py-4">
             <MapPinIcon className="w-4 h-4 text-[#AAAAAA]" />
-            <p className="text-[#AAAAAA] text-sm font-medium">آدرس:</p>
+            <p className="text-[#AAAAAA] text-sm font-medium">آدرس: {house.address}</p>
           </div>
           <div className="w-full h-[444px] rounded-xl overflow-hidden bg-[#393939] mb-20">   
             <Slider />
@@ -18,7 +27,7 @@ const TopBaseDetail = () => {
         <div className="w-1/6 h-auto ">
           <div className="flex items-center justify-center gap-3 mt-8">
             <button className="flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-[#7569FF] text-white text-sm font-semibold  transition">
-              <StarIcon className="w-4 h-4 text-white" />۵ <p>ستاره</p>
+              <StarIcon className="w-4 h-4 text-white" />{house.rate} <p>ستاره</p>
             </button>
             <div className="w-[1px] h-6 bg-[#555] mx-2" />
 

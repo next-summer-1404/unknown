@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
     try {
       const result: IResetPasswordType | null = await ResetPasswordApi(apiPayload);
-      console.log(apiPayload)
+      // console.log(apiPayload)
 
       
         Cookies.set("newPassword", result?.newPassword || "");
