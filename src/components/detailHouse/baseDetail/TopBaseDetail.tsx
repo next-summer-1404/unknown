@@ -1,5 +1,6 @@
 import { ArrowUturnUpIcon, ClipboardIcon, MapPinIcon, StarIcon } from '@heroicons/react/24/outline'
 import React from 'react'
+import Slider from './Slider'
 
 const TopBaseDetail = () => {
   return (
@@ -10,7 +11,9 @@ const TopBaseDetail = () => {
             <MapPinIcon className="w-4 h-4 text-[#AAAAAA]" />
             <p className="text-[#AAAAAA] text-sm font-medium">آدرس:</p>
           </div>
-          <div className="w-full h-[444px] rounded-xl bg-[#393939] mb-20"></div>
+          <div className="w-full h-[444px] rounded-xl overflow-hidden bg-[#393939] mb-20">   
+            <Slider />
+            </div>
         </div>
         <div className="w-1/6 h-auto ">
           <div className="flex items-center justify-center gap-3 mt-8">

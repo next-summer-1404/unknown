@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${pathname === "/" ? "absolute top-0 z-50" : ""} w-full h-16`}
+      className={`absolute top-0 z-50 w-full h-16`}
     >
       {" "}
       <div className="flex items-center w-11/12 h-12 mx-auto mt-3 px-2 rounded-2xl shadow-[inset_0_4px_8px_rgba(255,255,255,0.16),0_4px_12px_rgba(0,0,0,0.12)] bg-[#363636]">

@@ -9,7 +9,7 @@ interface Props {
 }
 const BaseDetail = ({ house }: Props) => {
   return (
-    <div className="w-full h-auto border border-red-500">
+    <div className="w-full bg-[#232323] pt-24 border border-red-500">
       <TopBaseDetail />
       <BottomBaseDetail />
       <AdvertDetail />
