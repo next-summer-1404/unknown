@@ -5,7 +5,7 @@ import {
   DocumentCurrencyDollarIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { FormEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
@@ -45,61 +45,25 @@ const SearchBar = () => {
     }
   };
 
-    const GetHouses = async () => {
-    setLoading(true);
-    try {
-      const result = await getHouses({ page: 1, limit: 100 });
-      setHouses(result.houses);
-      setNumber(result.totalCount)
-    } catch (error) {
-      console.error(error);
-      setError(String(error));
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   const GetHouses = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const result = await getHouses({ page: 1, limit: 100 });
+  //     setHouses(result.houses);
+  //     setNumber(result.totalCount)
+  //   } catch (error) {
+  //     console.error(error);
+  //     setError(String(error));
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
 
   useEffect(() => {
     Location();
-    GetHouses();
+    // GetHouses();
   }, []);
-
-  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   let transactionType = "";
-  //   if (activeTab === "reservation") transactionType = "reservation";
-  //   else if (activeTab === "rental") transactionType = "rental";
-  //   else if (activeTab === "direct_purchase")
-  //     transactionType = "direct_purchase";
-
-  //   // if (activeTab === "reservation") {
-  //   //   console.log("reservation");
-  //   // } else if (activeTab === "rental") {
-  //   //   console.log("rental");
-  //   // } else if (activeTab === "direct_purchase") {
-  //   //   console.log("direct_purchase");
-  //   // }
-
-  //   try {
-  //     const result = await getHouses({
-  //       page: 1,
-  //       limit: 100,
-  //       transactionType: transactionType,
-  //       location: selectedLocation || undefined,
-  //       guest_count: guestCount || undefined,
-
-  //       // start_date: startDate ? startDate.format("YYYY-MM-DD") : undefined,
-  //       // end_date: endDate ? endDate.format("YYYY-MM-DD") : undefined,
-  //     });
-
-  //     setHouses(result.data);
-  //     console.log("نتیجه جستجو:", result.data);
-  //   } catch (error) {
-  //     console.error("خطا در جستجو:", error);
-  //     setError(String(error));
-  //   }
-  // };
 
   return (
     <form
