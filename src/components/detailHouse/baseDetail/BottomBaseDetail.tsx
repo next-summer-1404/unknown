@@ -20,6 +20,7 @@ import { IHouses } from "@/types/IHouses";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import "react-multi-date-picker/styles/layouts/mobile.css";
 
 interface BottomBaseDetailProps {
   house: IHouses;
@@ -171,16 +172,16 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
-                  onPress={handleIncreaseGuests} // فراخوانی تابع افزایش
+                  onPress={handleIncreaseGuests} 
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   +
                 </Button>
-                <span>{guestCount} نفر</span> {/* نمایش استیت تعداد مسافران */}
+                <span>{guestCount} نفر</span> 
                 <Button
                   size="sm"
-                  onPress={handleDecreaseGuests} // فراخوانی تابع کاهش
-                  isDisabled={guestCount <= 1} // غیرفعال شدن در حالت حداقل (1 نفر)
+                  onPress={handleDecreaseGuests} 
+                  isDisabled={guestCount <= 1} 
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   -
