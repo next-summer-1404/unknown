@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import SendRequestApi from "@/utils/service/api/auth/forgetpass/SendRequestApi";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
@@ -19,18 +19,18 @@ const SendRequest = () => {
   const onSubmit = async (data: IForgetpass) => {
     setLoading(true);
     try {
-      const result = await SendRequestApi(data);
-      console.log(data,'dataaaaaaa')
-      
-        Cookies.set("resetCode", result.resetCode, { expires: 1 });
-        toast.success("کد با موفقیت ثبت شد");
-        route.push("/forgetpass/2");
-      
+      await SendRequestApi(data);
+      // console.log(data,'dataaaaaaa')
+
+      Cookies.set("user-email", data.email, { expires: 1 });
+      toast.success("کد با موفقیت ارسال شد");
+      route.push("/forgetpass/2");
     } catch (error) {
       toast.error("ارسال کد تایید ناموفق بود");
     }
     setLoading(false);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="w-full h-20 flex flex-wrap">

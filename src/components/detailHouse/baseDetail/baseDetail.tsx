@@ -12,7 +12,7 @@ const BaseDetail = ({ house }: Props) => {
     <div className="w-full h-auto border border-red-500">
       <TopBaseDetail />
       <BottomBaseDetail />
-     <AdvertDetail/>
+      <AdvertDetail />
     </div>
   );
 };
