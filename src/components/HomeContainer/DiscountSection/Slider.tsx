@@ -10,6 +10,7 @@ interface SliderProps {
   Houses: IHouses[];
 }
 const Slider = ({ Houses }: SliderProps) => {
+  console.log(Houses)
   return (
     <>
     <Swiper
@@ -35,12 +36,12 @@ const Slider = ({ Houses }: SliderProps) => {
             return (
               <SwiperSlide key={index}>
                 <CommonCard
-                  id={Item.id}
-                  rate ={Item.rate?? "..."}
                   showTitle={true}
                   showLocation={true}
                   showDetails={true}
                   showPrice={true}
+                  house ={Item}
+
                 />
               </SwiperSlide>
             );

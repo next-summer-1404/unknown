@@ -11,6 +11,7 @@ import {
 import { ICommonCardProps } from "@/types/ICommonCardProps";
 
 const CommonCard: FC<ICommonCardProps> = ({
+  house,
   showTitle = false,
   showLocation = false,
   showDetails = false,
@@ -21,8 +22,6 @@ const CommonCard: FC<ICommonCardProps> = ({
   showSecondDetails = false,
   showThirdPrice = false,
   bgColor = "#2D2D2D",
-
-  rate,
 }) => {
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
@@ -42,7 +41,7 @@ const CommonCard: FC<ICommonCardProps> = ({
         </div>
         <div className="flex items-center justify-center gap-1.5 w-16 h-8 bg-white rounded group-hover:bg-[#2D2D2D] ">
           <span className="text-md font-medium text-black group-hover:text-white leading-none mt-1">
-      {rate}  
+      {house?.rate}  
           </span>
           <StarIcon className="w-4 h-4 text-black group-hover:text-white" />
         </div>
@@ -59,7 +58,7 @@ const CommonCard: FC<ICommonCardProps> = ({
         )}
         {showTitle && (
           <div className="flex items-center justify-between">
-            <h1 className="text-white">آپارتمان لوکس زعفرانیه</h1>
+            <h1 className="text-white">{house?.title}</h1>
             <span className="h-fit bg-[#FF5555] text-white rounded-2xl pt-0.5 px-2">
               %15
             </span>
@@ -67,14 +66,14 @@ const CommonCard: FC<ICommonCardProps> = ({
         )}
         {showSecondTitle && (
           <div className="flex items-center">
-            <h1 className="text-white">آپارتمان لوکس زعفرانیه</h1>
+            <h1 className="text-white">{house?.title}</h1>
           </div>
         )}
         {showLocation && (
           <div className="flex items-center gap-1">
             <MapPinIcon className="text-[#AAAAAA] w-5 h-5" />
             <span className="text-xs font-normal text-[#AAAAAA]">
-              گیلان ، رشت
+              {house?.address}
             </span>
           </div>
         )}
@@ -82,7 +81,7 @@ const CommonCard: FC<ICommonCardProps> = ({
           <div className="flex items-center gap-1">
             <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
             <span className="text-xs font-normal text-[#AAAAAA]">
-              2 خوابه ، 2 حمامه ، ظرفیت 6 نفر
+              {house?.rooms} خوابه ، {house?.bathrooms} حمامه ، ظرفیت {house?.capacity} نفر
             </span>
           </div>
         )}
@@ -91,37 +90,37 @@ const CommonCard: FC<ICommonCardProps> = ({
             <div className="flex items-center gap-1">
               <InboxIcon className="text-[#AAAAAA] w-5 h-5" />
               <span className="text-xs font-normal text-[#AAAAAA]">
-                4 خوابه
+                {house?.rooms} خوابه
               </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
               <HomeModernIcon className="text-[#AAAAAA] w-5 h-5" />
               <span className="text-xs font-normal text-[#AAAAAA]">
-                1 پارکینگ
+                {house?.parking} پارکینگ
               </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
               <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
-              <span className="text-xs font-normal text-[#AAAAAA]">2 حمام</span>
+              <span className="text-xs font-normal text-[#AAAAAA]">{house?.bathrooms} حمام</span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
               <HomeIcon className="text-[#AAAAAA] w-5 h-5" />
-              <span className="text-xs font-normal text-[#AAAAAA]">حیاط</span>
+              <span className="text-xs font-normal text-[#AAAAAA]">حیاط {house?.yard_type}</span>
             </div>
           </div>
         )}
         {showPrice && (
           <div className="flex items-center justify-around w-full h-8 rounded-xl bg-[#444444] group-hover:bg-[#8CFF45]">
             <span className="relative text-[#AAAAAA] text-sm">
-              8.000.000 ت
+              {house?.price} ت
               <span className="absolute left-0 top-[35%] w-full h-[2px] bg-[#AAAAAA] rotate-[-8deg]"></span>
             </span>
             <div className="w-0.5 h-1/2 bg-white group-hover:bg-black"></div>
             <span className="text-white group-hover:text-black text-sm">
-              5.000.000 ت/ هر شب
+              {house?.discounted_price} ت/ هر شب
             </span>
           </div>
         )}
@@ -132,7 +131,7 @@ const CommonCard: FC<ICommonCardProps> = ({
             </span>
 
             <span className="text-white group-hover:text-black text-sm">
-              5.000.000 ت
+              {house?.price} ت
               <span className="text-[#AAAAAA] text-sm">/ هر ماه</span>
             </span>
           </div>
@@ -142,7 +141,7 @@ const CommonCard: FC<ICommonCardProps> = ({
             <span className="relative text-[#AAAAAA] text-sm">قیمت خرید:</span>
 
             <span className="text-white group-hover:text-black text-sm">
-              5.000.000 ت
+              {house?.price} ت
             </span>
           </div>
         )}
