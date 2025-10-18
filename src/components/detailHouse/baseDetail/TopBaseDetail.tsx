@@ -4,7 +4,7 @@ import Slider from './Slider'
 
 const TopBaseDetail = () => {
   return (
-    <div className="w-11/12 h-auto m-auto mt-20 flex gap-10">
+    <div className="w-11/12 h-auto m-auto flex gap-10">
         <div className="w-5/6 h-auto ">
           <p className="text-white text-xl font-bold p-2">هتل همایون</p>
           <div className="flex items-center gap-1 mx-2 py-4">
