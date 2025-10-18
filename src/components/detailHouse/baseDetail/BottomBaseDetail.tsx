@@ -119,19 +119,19 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
       </div>
       {/* */}
       <div className="w-2/6 p-4 rounded-xl">
-        <Card className="bg-[#2A2A2A] text-white rounded-2xl  w-full ">
-          <div className="w-5/6 h-auto m-auto border-b-1 border-[#646464] pb-5">
+        <Card className="bg-[#2A2A2A] text-white rounded-2xl w-full ">
+          <div className="flex flex-col w-5/6 h-auto m-auto border-b-1 border-[#646464] pb-5">
             <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full  w-2/3 m-auto ">
               <BuildingOffice2Icon className="w-5 h-5 text-white" />
               <p className="text-center leading-12">رزرو خونه برای:</p>
             </h3>
 
             {/* تاریخ رفت */}
-            
-            <div className="w-full border border-red-500 relative">
+
+            <div className="w-full relative flex flex-col">
               <label
                 htmlFor="username"
-                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+                className="absolute right-3 -top-2 bg-[#2A2A2A] px-1 text-white text-sm"
               >
                 تاریخ ورود:
               </label>
@@ -142,14 +142,18 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={startDate}
                 onChange={(date) => setStartDate(date)}
+<<<<<<< HEAD
                 minDate={new Date()}
+=======
+                className="w-full"
+>>>>>>> a04b3a73848861de2b6ec24ba8c4f441e5811bb1
                 inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
               />
             </div>
-            <div className="w-full relative mt-5">
+            <div className="w-full relative mt-5 flex flex-col">
               <label
                 htmlFor="username"
-                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+                className="absolute right-3 -top-2 bg-[#2A2A2A] px-1 text-white text-sm"
               >
                 تاریخ خروج:
               </label>
@@ -159,7 +163,11 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={endDate}
                 onChange={(date) => setEndDate(date)}
+<<<<<<< HEAD
                 minDate={startDate || new Date()} 
+=======
+                className="w-full"
+>>>>>>> a04b3a73848861de2b6ec24ba8c4f441e5811bb1
                 inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
               />
             </div>
