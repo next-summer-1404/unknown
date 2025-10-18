@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@heroui/react";
 import {
   ClipboardDocumentListIcon,
@@ -19,10 +19,11 @@ import PriceReserve from "./PriceReserve";
 import { IHouses } from "@/types/IHouses";
 
 interface BottomBaseDetailProps {
-  house: IHouses; 
+  house: IHouses;
 }
 
-const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
+const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
+  const [guestCount, setGuestCount] = useState(1);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -35,6 +36,13 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
     router.push(`${pathname}?${params.toString()}`);
   };
 
+  const handleIncreaseGuests = () => {
+    setGuestCount((prevCount) => prevCount + 1);
+  };
+
+  const handleDecreaseGuests = () => {
+    setGuestCount((prevCount) => Math.max(1, prevCount - 1));
+  };
   return (
     <div className="w-11/12 m-auto h-auto flex gap-5 mt-10 border border-white">
       <div className="w-4/6 rounded-xl p-4 border border-amber-300">
@@ -67,7 +75,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
             }
           >
             <div>
-              <AboutHouse house={house}/>
+              <AboutHouse house={house} />
             </div>
           </Tab>
 
@@ -81,7 +89,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
             }
           >
             <div>
-              <HouseFacilities house={house}/>
+              <HouseFacilities house={house} />
             </div>
           </Tab>
 
@@ -152,13 +160,16 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
+                  onPress={handleIncreaseGuests}
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   +
                 </Button>
-                <span>۲ نفر</span>
+                <span>{guestCount} نفر</span>
                 <Button
                   size="sm"
+                  onPress={handleDecreaseGuests}
+                  isDisabled={guestCount <= 1}
                   className="bg-[#8CFF45] text-black font-bold rounded-lg"
                 >
                   -
@@ -168,7 +179,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
           </div>
           {/* */}
 
-          <PriceReserve house={house}/>
+          <PriceReserve house={house} />
         </Card>
       </div>
     </div>
