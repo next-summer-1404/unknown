@@ -142,11 +142,8 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={startDate}
                 onChange={(date) => setStartDate(date)}
-<<<<<<< HEAD
                 minDate={new Date()}
-=======
                 className="w-full"
->>>>>>> a04b3a73848861de2b6ec24ba8c4f441e5811bb1
                 inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
               />
             </div>
@@ -163,11 +160,8 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
                 placeholder="وارد کنید..."
                 value={endDate}
                 onChange={(date) => setEndDate(date)}
-<<<<<<< HEAD
                 minDate={startDate || new Date()} 
-=======
                 className="w-full"
->>>>>>> a04b3a73848861de2b6ec24ba8c4f441e5811bb1
                 inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
               />
             </div>
