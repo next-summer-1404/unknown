@@ -19,7 +19,7 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
       <div className="w-5/6 m-auto h-auto border-b-1 border-[#646464]  p-3 grid grid-rows-3 gap-2">
         <div className="grid grid-cols-[20px_auto] items-center gap-2">
           <StarIcon className="w-4 h-4 text-[#AAAAAA]" />
-          <p className="text-[#AAAAAA]">{house.discounted_price} تومان</p>
+          <p className="text-[#AAAAAA]">{house.discounted_price ? house.discounted_price : 0} تومان</p>
         </div>
 
         <div className="grid grid-cols-[20px_auto] items-center gap-2">
@@ -45,7 +45,7 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
           </div>
         </div>
       </div>
-      <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">{house.discounted_price} تومان</p>
+      <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">{house.discounted_price ? house.discounted_price : 0} تومان</p>
 
       <div className="flex items-center justify-center">
         <Button className="bg-[#8CFF45]  font-bold  rounded-xl w-2/3 m-auto mb-5">
