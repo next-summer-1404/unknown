@@ -6,21 +6,18 @@ import "swiper/css/pagination";
 import styles from "./Slider.module.css";
 import Image from "next/image";
 import Change from "../../../assets/images/auth1.png";
+import { IHouses } from "@/types/IHouses";
 
-interface IHouse {
-  id: number;
-  name: string;
-  image:string ;
+interface SliderProps {
+  house: IHouses;
 }
 
-const Slider = () => {
-  const Houses: IHouse[] = [
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-  ];
+const Slider = ({ house }: SliderProps) => {
+  // console.log(house.photos)
+  const photos = house.photos?.filter((p) => p?.trim() && p.trim() !== "") || [];
+
+  const displayPhotos = photos.length > 0 ? photos : [""];
+
   return (
     <>
       <Swiper
@@ -31,12 +28,12 @@ const Slider = () => {
         modules={[Pagination]}
         className={`swiper mySwiper ${styles.mySwiper} w-full h-full`}
       >
-        {Houses.map((Item, index) => {
+        {displayPhotos.map((Item, index) => {
           return (
             <SwiperSlide key={index}>
               <Image
               // اگر مقدار ایمیج استرینگ خالی، نال یا اندیفایند بود از تصویر جایگزین استفاده می کنه
-                src={Item.image?.trim() ? Item.image : Change}
+                src={Item?.trim() ? Item : Change}
                 alt=""
                 width={500}
                 height={500}

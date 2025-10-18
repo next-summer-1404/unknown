@@ -28,7 +28,7 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
           </p>
         </div>
         <div className="w-full h-[444px] rounded-xl overflow-hidden bg-[#393939] mb-20">
-          <Slider />
+          <Slider house={house}/>
         </div>
       </div>
       <div className="w-1/6 h-auto ">
