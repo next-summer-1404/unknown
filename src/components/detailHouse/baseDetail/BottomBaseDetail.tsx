@@ -16,8 +16,13 @@ import HouseFacilities from "../houseFacilities/HouseFacilities";
 import UserCommentsHouse from "../userCommentsHouse/UserCommentsHouse";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import PriceReserve from "./PriceReserve";
+import { IHouses } from "@/types/IHouses";
 
-const BottomBaseDetail = () => {
+interface BottomBaseDetailProps {
+  house: IHouses; 
+}
+
+const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({house}) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -62,7 +67,7 @@ const BottomBaseDetail = () => {
             }
           >
             <div>
-              <AboutHouse />
+              <AboutHouse house={house}/>
             </div>
           </Tab>
 
@@ -76,7 +81,7 @@ const BottomBaseDetail = () => {
             }
           >
             <div>
-              <HouseFacilities />
+              <HouseFacilities house={house}/>
             </div>
           </Tab>
 
@@ -163,7 +168,7 @@ const BottomBaseDetail = () => {
           </div>
           {/* */}
 
-          <PriceReserve />
+          <PriceReserve house={house}/>
         </Card>
       </div>
     </div>
