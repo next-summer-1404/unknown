@@ -15,7 +15,7 @@ const Header = () => {
       {" "}
       <div className="flex items-center w-11/12 h-12 mx-auto mt-3 px-2 rounded-2xl shadow-[inset_0_4px_8px_rgba(255,255,255,0.16),0_4px_12px_rgba(0,0,0,0.12)] bg-[#363636]">
         <div className="flex items-center gap-2.5">
-          <div className="w-20 h-9 bg-[#4A4A4A] rounded-xl"></div>
+          <Link href={'/'} className="w-20 h-9 bg-[#4A4A4A] rounded-xl"></Link>
           <div className="w-1 h-5 bg-[#4A4A4A] rounded-xl"></div>
         </div>
 

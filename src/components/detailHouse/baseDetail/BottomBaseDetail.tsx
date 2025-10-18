@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@heroui/react";
 import {
   ClipboardDocumentListIcon,
   HomeModernIcon,
   ChatBubbleOvalLeftEllipsisIcon,
   BuildingOffice2Icon,
-  CurrencyDollarIcon,
 } from "@heroicons/react/24/outline";
 import { Card, Button, Input } from "@heroui/react";
 import { CalendarDaysIcon, UsersIcon } from "@heroicons/react/24/outline";
@@ -16,8 +15,20 @@ import AboutHouse from "../aboutHouse/AboutHouse";
 import HouseFacilities from "../houseFacilities/HouseFacilities";
 import UserCommentsHouse from "../userCommentsHouse/UserCommentsHouse";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import PriceReserve from "./PriceReserve";
+import { IHouses } from "@/types/IHouses";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 
-const BottomBaseDetail = () => {
+interface BottomBaseDetailProps {
+  house: IHouses;
+}
+
+const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
+  const [startDate, setStartDate] = useState<DateObject | null>(null);
+  const [endDate, setEndDate] = useState<DateObject | null>(null);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -62,7 +73,7 @@ const BottomBaseDetail = () => {
             }
           >
             <div>
-              <AboutHouse />
+              <AboutHouse house={house} />
             </div>
           </Tab>
 
@@ -76,7 +87,7 @@ const BottomBaseDetail = () => {
             }
           >
             <div>
-              <HouseFacilities />
+              <HouseFacilities house={house} />
             </div>
           </Tab>
 
@@ -94,11 +105,10 @@ const BottomBaseDetail = () => {
             </div>
           </Tab>
         </Tabs>
-
       </div>
       {/* */}
       <div className="w-2/6 p-4 rounded-xl">
-        <Card className="bg-[#2A2A2A] text-white rounded-2xl  w-full">
+        <Card className="bg-[#2A2A2A] text-white rounded-2xl  w-full ">
           <div className="w-5/6 h-auto m-auto border-b-1 border-[#646464] pb-5">
             <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full  w-2/3 m-auto ">
               <BuildingOffice2Icon className="w-5 h-5 text-white" />
@@ -106,39 +116,40 @@ const BottomBaseDetail = () => {
             </h3>
 
             {/* تاریخ رفت */}
-            <Input
-              label="تاریخ رفت"
-              placeholder="۱۴۰۴/۰۵/۰۲"
-              variant="bordered"
-              fullWidth
-              className="mb-3 text-white"
-              startContent={
-                <CalendarDaysIcon className="text-[#B3B3B3] w-5 h-5 " />
-              }
-              classNames={{
-                inputWrapper:
-                  "border border-[#AAAAAA] bg-[#393939] hover:bg-[#393939] hover:border-[#AAAAAA]  shadow-none",
-                input: "text-white placeholder:text-[#B3B3B3]",
-                label: "text-[#B3B3B3]",
-              }}
-            />
+            
+            <div className="w-full border border-red-500 relative">
+              <label
+                htmlFor="username"
+                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+              >
+                تاریخ ورود:
+              </label>
 
-            <Input
-              label="تاریخ برگشت"
-              placeholder="۱۴۰۴/۰۵/۰۷"
-              variant="bordered"
-              fullWidth
-              className="mb-3 text-white"
-              startContent={
-                <CalendarDaysIcon className="text-[#B3B3B3] w-5 h-5 " />
-              }
-              classNames={{
-                inputWrapper:
-                  "border border-[#AAAAAA] bg-[#393939] hover:bg-[#393939] hover:border-[#AAAAAA]  shadow-none",
-                input: "text-white placeholder:text-[#B3B3B3]",
-                label: "text-[#B3B3B3]",
-              }}
-            />
+              <DatePicker
+                calendar={persian}
+                locale={persian_fa}
+                placeholder="وارد کنید..."
+                value={startDate}
+                onChange={(date) => setStartDate(date)}
+                inputClass="w-full border border-blue-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+            <div className="w-full relative mt-5">
+              <label
+                htmlFor="username"
+                className="absolute right-3 -top-2 bg-[#363636] px-1 text-white text-sm"
+              >
+                تاریخ خروج:
+              </label>
+              <DatePicker
+                calendar={persian}
+                locale={persian_fa}
+                placeholder="وارد کنید..."
+                value={endDate}
+                onChange={(date) => setEndDate(date)}
+                inputClass="w-full border border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
+              />
+            </div>
 
             {/* */}
             <div className="flex items-center justify-between mt-4 mb-4 text-sm border border-[#AAAAAA] rounded-2xl p-3">
@@ -163,45 +174,8 @@ const BottomBaseDetail = () => {
             </div>
           </div>
           {/* */}
-          <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full  w-1/2 m-auto ">
-            <CurrencyDollarIcon className="w-5 h-5 text-white" />
-            <p className="text-center leading-12"> قیمت های رزرو</p>
-          </h3>
-          {/* */}
-          <div className="w-5/6 m-auto h-auto border-b-1 border-[#646464]  p-3 grid grid-rows-3 gap-2">
-            <div className="grid grid-cols-[20px_auto] items-center gap-2">
-              <StarIcon className="w-4 h-4 text-[#AAAAAA]" />
-              <p className="text-[#AAAAAA]">۵ شب × ۱۷,۰۰۰,۰۰۰ ت</p>
-            </div>
 
-            <div className="grid grid-cols-[20px_auto] items-center gap-2">
-              <StarIcon className="w-4 h-4 text-[#AAAAAA]" />
-              <p className="text-[#AAAAAA]">۵ شب × ۱۲,۰۰۰,۰۰۰ ت</p>
-            </div>
-
-            <div className="grid grid-cols-[20px_auto] items-center gap-2">
-              <StarIcon className="w-4 h-4 text-[#AAAAAA]" />
-              <p className="text-[#AAAAAA]">۵ شب × ۹,۵۰۰,۰۰۰ ت</p>
-            </div>
-          </div>
-          {/* */}
-          <div className="w-5/6 m-auto h-auto flex my-5 ">
-            <div className="w-1/2 h-auto"></div>
-            <div className="w-1/2 h-auto  flex gap-10 items-center">
-              <div className="flex items-center gap-1 ">
-                <p className="line-through text-[#AAAAAA] text-md">250000</p>
-                <p className="text-md text-[#AAAAAA]">تومان</p>
-              </div>
-              <div className="w-1/4 h-auto bg-[#FF5555]  rounded-lg  ">
-                <p className="text-white text-center ">15%</p>
-              </div>
-            </div>
-          </div>
-          <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">1500000 تومان</p>
-
-          <Button className="bg-[#8CFF45]  font-bold  rounded-xl w-2/3 m-auto mb-5">
-            <p className="text-[#363636] text-lg">همین الان رزرو کن</p>
-          </Button>
+          <PriceReserve house={house} />
         </Card>
       </div>
     </div>

@@ -1,5 +1,7 @@
 "use client";
-import VerifyTheRequestApi, { VerifyTheRequestType } from "@/utils/service/api/auth/forgetpass/VerifyTheRequestApi";
+import VerifyTheRequestApi, {
+  VerifyTheRequestType,
+} from "@/utils/service/api/auth/forgetpass/VerifyTheRequestApi";
 import {
   ChevronLeftIcon,
   EyeIcon,
@@ -10,24 +12,29 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-
+import {
+  VerifyTheRequestFormT,
+  VerifyTheResultFormT,
+} from "@/types/forget-pass/verifyTheRequest";
 
 const VerifyTheRequest = () => {
-  const { register, handleSubmit } = useForm<VerifyTheRequestType>();
+  const { register, handleSubmit } = useForm<VerifyTheRequestFormT>();
   const [showPassword, setShowPassword] = useState(false);
   const route = useRouter();
 
-  const onSubmit:SubmitHandler<VerifyTheRequestType> = async (data) => {
+  const onSubmit: SubmitHandler<VerifyTheRequestFormT> = async (data) => {
+    const userEmail = Cookies.get("user-email") as string;
+
     try {
-      const result: VerifyTheRequestType | null = await VerifyTheRequestApi(
-        data
-      );
-      console.log(data,'data')
-      if (result) {
-        Cookies.set("resetCode", result.resetCode);
+      const result: VerifyTheResultFormT | null = await VerifyTheRequestApi({
+        email: userEmail,
+        resetCode: data.resetCode,
+      });
+      if (!result) {
         toast.error("پاسخی از سرور دریافت نشد");
         return;
       } else {
+        Cookies.set("resetCode", data.resetCode);
         toast.success("کد با موفقیت تأیید شد");
         route.push("/forgetpass/3");
       }
@@ -39,7 +46,7 @@ const VerifyTheRequest = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="p-2">
       <div className="w-full h-20 mt-5 flex items-center justify-around gap-10 ">
-        <div className="flex flex-col  w-1/2">
+        {/* <div className="flex flex-col  w-1/2">
           <p className="text-[#DDDDDD] mb-2"> ایمیل:</p>
           <div className="w-full border border-[#DDDDDD] flex items-center rounded-2xl p-2">
             <div>
@@ -58,14 +65,14 @@ const VerifyTheRequest = () => {
               <label className="block text-[#DDDDDD]"></label>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col w-1/2 relative">
+        </div> */}
+        <div className="flex flex-col w-full relative">
           <p className="text-[#DDDDDD] mb-2"> کد بازیابی</p>
           <div className="w-full border  border-[#DDDDDD] flex items-center rounded-2xl p-2">
             <label htmlFor="password" className="block text-[#DDDDDD]"></label>
             <input
-              name="password"
-              id="password"
+              {...register("resetCode")}
+              id="restCode"
               type={showPassword ? "text" : "password"}
               placeholder=" ******"
               className="text-[#DDDDDD] outline-none"
@@ -84,7 +91,7 @@ const VerifyTheRequest = () => {
           </div>
         </div>
       </div>
-      
+
       <button className="w-full h-10  mt-15 flex justify-center items-center bg-[#8CFF45] rounded-2xl gap-2">
         <p className="text-md text-[#363636] "> تایید</p>
         <ChevronLeftIcon className="h-4 w-4 " />
