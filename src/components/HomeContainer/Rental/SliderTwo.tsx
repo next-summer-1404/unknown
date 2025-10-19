@@ -10,14 +10,7 @@ interface SliderProps {
 }
 const SliderTwo = ({ Houses }: SliderProps) => {
 
-        const slide = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ];
+
   return (
     <>
         <Swiper

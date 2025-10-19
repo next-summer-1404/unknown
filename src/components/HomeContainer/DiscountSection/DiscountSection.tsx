@@ -11,8 +11,8 @@ import { IHouses } from "@/types/IHouses";
 
 const DiscountSection = async () => {
   const HouseList = await getHouses();
-const Houses: IHouses[]  =HouseList.houses 
-  console.log()
+  const Houses: IHouses[] = HouseList.houses;
+
   return (
     <section className="flex flex-col h-fit pt-20 px-5 bg-[#232323]">
       <div className="relative w-full bg-[#2D2D2D] rounded-3xl px-6 pt-3 pb-6">
@@ -46,7 +46,7 @@ const Houses: IHouses[]  =HouseList.houses
           </Link>
         </div>
 
-        <Slider Houses ={Houses}/>
+        <Slider Houses={Houses} />
       </div>
     </section>
   );

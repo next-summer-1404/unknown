@@ -10,7 +10,6 @@ interface SliderProps {
   Houses: IHouses[];
 }
 const Slider = ({ Houses }: SliderProps) => {
-  console.log(Houses)
   const filteredList = Houses.filter(
   (item) => typeof item.discount_id === "string" && item.discount_id.trim() !== ""
 );

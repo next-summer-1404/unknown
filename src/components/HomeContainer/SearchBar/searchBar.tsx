@@ -28,9 +28,6 @@ const SearchBar = () => {
 
   const [selectedLocation, setSelectedLocation] = useState<string>("");
 
-  // console.log(locations);
-   console.log(houses);
-   console.log(number);
 
   const Location = async () => {
     setLoading(true);

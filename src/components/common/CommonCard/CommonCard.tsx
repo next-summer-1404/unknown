@@ -35,7 +35,6 @@ const CommonCard: FC<ICommonCardProps> = ({
     }
   };
 
-  console.log(Percent())
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
       <div className="relative flex flex-col gap-7 w-full h-60 bg-[#393939] group-hover:bg-[#8CFF45] rounded-3xl px-6 pt-3 pb-6">
@@ -125,7 +124,7 @@ const CommonCard: FC<ICommonCardProps> = ({
             <div className="flex items-center gap-1">
               <HomeIcon className="text-[#AAAAAA] w-5 h-5" />
               <span className="text-xs font-normal text-[#AAAAAA]">
-                حیاط {house?.yard_type}
+                {house?.yard_type}
               </span>
             </div>
           </div>
