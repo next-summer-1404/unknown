@@ -99,30 +99,30 @@ const CommonCard: FC<ICommonCardProps> = ({
           </div>
         )}
         {showSecondDetails && (
-          <div className="flex items-center  gap-1">
-            <div className="flex items-center gap-1">
-              <InboxIcon className="text-[#AAAAAA] w-5 h-5" />
+          <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 ">
+              <InboxIcon className="text-[#AAAAAA] w-4 h-4" />
               <span className="text-xs font-normal text-[#AAAAAA]">
                 {house?.rooms} خوابه
               </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
-              <HomeModernIcon className="text-[#AAAAAA] w-5 h-5" />
+              <HomeModernIcon className="text-[#AAAAAA] w-4 h-4" />
               <span className="text-xs font-normal text-[#AAAAAA]">
                 {house?.parking} پارکینگ
               </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
-              <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
+              <BuildingOffice2Icon className="text-[#AAAAAA] w-4 h-4" />
               <span className="text-xs font-normal text-[#AAAAAA]">
                 {house?.bathrooms} حمام
               </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
-              <HomeIcon className="text-[#AAAAAA] w-5 h-5" />
+              <HomeIcon className="text-[#AAAAAA] w-4 h-4" />
               <span className="text-xs font-normal text-[#AAAAAA]">
                 {house?.yard_type}
               </span>
