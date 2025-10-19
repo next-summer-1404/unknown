@@ -9,6 +9,7 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import { ICommonCardProps } from "@/types/ICommonCardProps";
+import { getDiscountPercent } from "@/utils/helper/getDiscountPercent.ts";
 
 const CommonCard: FC<ICommonCardProps> = ({
   house,
@@ -23,6 +24,18 @@ const CommonCard: FC<ICommonCardProps> = ({
   showThirdPrice = false,
   bgColor = "#2D2D2D",
 }) => {
+  const Percent = () => {
+    if (
+      typeof house?.discounted_price === "string" &&
+      house?.discounted_price.trim() !== ""
+    ) {
+     return getDiscountPercent(house?.price, house?.discounted_price);
+    } else {
+      return 0;
+    }
+  };
+
+  console.log(Percent())
   return (
     <div className="w-80 flex flex-col  pt-2.5 flex-shrink-0 group">
       <div className="relative flex flex-col gap-7 w-full h-60 bg-[#393939] group-hover:bg-[#8CFF45] rounded-3xl px-6 pt-3 pb-6">
@@ -41,7 +54,7 @@ const CommonCard: FC<ICommonCardProps> = ({
         </div>
         <div className="flex items-center justify-center gap-1.5 w-16 h-8 bg-white rounded group-hover:bg-[#2D2D2D] ">
           <span className="text-md font-medium text-black group-hover:text-white leading-none mt-1">
-      {house?.rate}  
+            {house?.rate}
           </span>
           <StarIcon className="w-4 h-4 text-black group-hover:text-white" />
         </div>
@@ -60,7 +73,7 @@ const CommonCard: FC<ICommonCardProps> = ({
           <div className="flex items-center justify-between">
             <h1 className="text-white">{house?.title}</h1>
             <span className="h-fit bg-[#FF5555] text-white rounded-2xl pt-0.5 px-2">
-              %15
+              {Percent()}
             </span>
           </div>
         )}
@@ -81,7 +94,8 @@ const CommonCard: FC<ICommonCardProps> = ({
           <div className="flex items-center gap-1">
             <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
             <span className="text-xs font-normal text-[#AAAAAA]">
-              {house?.rooms} خوابه ، {house?.bathrooms} حمامه ، ظرفیت {house?.capacity} نفر
+              {house?.rooms} خوابه ، {house?.bathrooms} حمامه ، ظرفیت{" "}
+              {house?.capacity} نفر
             </span>
           </div>
         )}
@@ -103,12 +117,16 @@ const CommonCard: FC<ICommonCardProps> = ({
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
               <BuildingOffice2Icon className="text-[#AAAAAA] w-5 h-5" />
-              <span className="text-xs font-normal text-[#AAAAAA]">{house?.bathrooms} حمام</span>
+              <span className="text-xs font-normal text-[#AAAAAA]">
+                {house?.bathrooms} حمام
+              </span>
             </div>
             <div className="bg-[#AAAAAA] w-0.5 h-3"></div>
             <div className="flex items-center gap-1">
               <HomeIcon className="text-[#AAAAAA] w-5 h-5" />
-              <span className="text-xs font-normal text-[#AAAAAA]">حیاط {house?.yard_type}</span>
+              <span className="text-xs font-normal text-[#AAAAAA]">
+                حیاط {house?.yard_type}
+              </span>
             </div>
           </div>
         )}

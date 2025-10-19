@@ -11,6 +11,9 @@ interface SliderProps {
 }
 const Slider = ({ Houses }: SliderProps) => {
   console.log(Houses)
+  const filteredList = Houses.filter(
+  (item) => typeof item.discount_id === "string" && item.discount_id.trim() !== ""
+);
   return (
     <>
     <Swiper
@@ -32,7 +35,7 @@ const Slider = ({ Houses }: SliderProps) => {
           modules={[Pagination]}
           className="mySwiper w-full mt-6 "
         >
-          {Houses.map((Item, index) => {
+          {filteredList.map((Item, index) => {
             return (
               <SwiperSlide key={index}>
                 <CommonCard
