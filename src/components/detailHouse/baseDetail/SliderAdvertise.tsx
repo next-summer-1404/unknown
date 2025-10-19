@@ -4,20 +4,13 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import CommonCard from "@/components/common/CommonCard/CommonCard";
+import { IHouses } from "@/types/IHouses";
 
-interface IHouse {
-  id: number;
-  name: string;
-  image: string;
+interface SliderProps {
+  Houses: IHouses[];
 }
-const SliderAdvertise = () => {
-  const Houses: IHouse[] = [
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-    { id: 1, name: "slider1", image: "" },
-  ];
+const SliderAdvertise = ({ Houses }: SliderProps) => {
+
   return (
     <>
       <Swiper
@@ -39,7 +32,7 @@ const SliderAdvertise = () => {
           return (
             <SwiperSlide key={index}>
               <CommonCard
-                rate={"2.3"}
+                house={Item}
                 showSecondTitle={true}
                 showLocation={true}
                 showSecondDetails={true}
