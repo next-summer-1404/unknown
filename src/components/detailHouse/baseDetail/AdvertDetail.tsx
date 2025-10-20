@@ -8,6 +8,8 @@ const AdvertDetail =async () => {
    const HouseList = await getHouses();
   const Houses: IHouses[]  =HouseList.houses 
   // console.log(Houses)
+
+  
   return (
     <div className="w-11/12 m-auto bg-[#232323]">
         <div className="w-full h-10 bg-[#393939] rounded-2xl flex justify-between items-center p-3">

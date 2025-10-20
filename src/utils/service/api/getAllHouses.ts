@@ -5,3 +5,5 @@ export const getHouses = async (params?: HousesQueryParams) => {
   const  data  = await http.get("/houses", { params });
   return data;
 };
+
+
