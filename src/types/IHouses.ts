@@ -48,4 +48,6 @@ export interface HousesQueryParams {
   maxMortgage?: number; 
   minArea?: number; 
   maxArea?: number; 
+  address?: string;
+
 }
