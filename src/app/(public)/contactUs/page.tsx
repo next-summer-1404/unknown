@@ -1,10 +1,9 @@
+import ContactUsComp from '@/components/components/ContactUsComp/ContactUsComp'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      Contact Us
-    </div>
+    <ContactUsComp/>
   )
 }
 
