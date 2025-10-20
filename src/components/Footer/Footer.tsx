@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import styles from "./Footer.module.css";
 import {
   AtSymbolIcon,
@@ -16,7 +18,31 @@ import Insta from "../../assets/images/insta.png";
 import Whats from "../../assets/images/whatsapp.png";
 import Telegram from "../../assets/images/telegram1.png";
 import { ChevronLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
+import { ContactUs } from "@/utils/service/api/ContactUs";
+import toast from "react-hot-toast";
 const Footer = () => {
+
+const [message, setMessage] = useState({ title: "", message: "" });
+const [pending, setPending] = useState(false);
+
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setPending(true);
+  try {
+    const result = await ContactUs(message); 
+    setMessage({ title: "", message: "" });
+    // if (result.Status === 201) {
+    //   toast.success("پیام شما با موفقیت ارسال شد!");
+    // }
+    console.log(result)
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setPending(false);
+  }
+};
+ 
   return (
     <div className="bg-[#232323]  p-9">
       <div className="relative w-full bg-[#8CFF45] rounded-3xl px-6 pt-3 pb-6">
@@ -50,58 +76,46 @@ const Footer = () => {
               </div>
             </div>
 
-            <form action="" className="w-11/12 py-5 px-3">
+            <form onSubmit={handleSubmit} className="w-11/12 py-5 px-3">
               {" "}
               <div className="flex justify-center flex-wrap gap-7">
-                <div className="flex gap-5 w-full">
-                  <div className="w-1/2 relative">
-                    <label
-                      htmlFor="username"
-                      className="absolute right-3 -top-2 bg-[#8CFF45] px-1 text-[#363636] text-sm"
-                    >
-                      نام و نام خانوادگی:
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="وارد کنید..."
-                      className="w-full border border-[#363636] text-[#363636] rounded-xl h-14 px-3 py-3 focus:border-blue-500 focus:outline-none"
-                    />
-                  </div>
-                  <div className="w-1/2  relative">
-                    <label
-                      htmlFor="username"
-                      className="absolute right-3 -top-2 bg-[#8CFF45] px-1 text-[#363636] text-sm"
-                    >
-                      شماره موبایل:
-                    </label>
-                    <input
-                      type="text"
-                      id="phoneNumber"
-                      placeholder="وارد کنید..."
-                      className="w-full border border-[#363636] text-[#363636] rounded-xl h-14 px-3 py-3 focus:border-blue-500 focus:outline-none"
-                    />
-                  </div>
+                <div className="w-full relative">
+                  <label
+                    htmlFor="title"
+                    className="absolute right-3 -top-2 bg-[#8CFF45] px-1 text-[#363636] text-sm"
+                  >
+                    موضوع پیام:
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    value={message.title}
+                    onChange={(e) => setMessage({ ...message, title: e.target.value })}
+                    placeholder="وارد کنید..."
+                    className="w-full border border-[#363636] text-[#363636] rounded-xl h-14 px-3 py-3 focus:border-blue-500 focus:outline-none"
+                  />
                 </div>
-
                 <div className="w-full  relative">
                   <label
-                    htmlFor="username"
+                    htmlFor="message"
                     className="absolute right-3 -top-2 bg-[#8CFF45] px-1 text-[#363636] text-sm"
                   >
                     پیام شما:
                   </label>
                   <textarea
-                    id="comment"
+                    id="message"
                     placeholder="..."
+                    value={message.message}
+                    onChange={(e) => setMessage({ ...message, message: e.target.value })}
                     className="w-full border border-[#363636] text-[#363636] rounded-xl h-36 px-3 py-3 focus:border-blue-500 focus:outline-none resize-none"
                   />
                 </div>
                 <button
                   type="submit"
+                  disabled={pending}
                   className="flex items-center justify-center rounded-3xl h-11 w-full gap-2 px-3 py-0.5 cursor-pointer text-white bg-[#363636] drop-shadow-[0_4px_6px_rgba(117,105,255,0.2)] shadow-[inset_0_4px_6px_rgba(0,0,0,0.04)]"
                 >
-                  <h3 className="text-md"> ارسال پیام</h3>
+                  <h3 className="text-md"> {pending ? "در حال ارسال..." : "ارسال پیام"}</h3>
                   <ChevronLeftIcon className="w-5 h-5" />
                 </button>
               </div>
