@@ -20,12 +20,12 @@ const StartUserRegistration = () => {
     setLoading(true);
     try {
       const result = await startRegisterationApi(data);
-      // console.log(data,'dataaaaaaa')
-      if (result?.tempUserId) {
-        Cookies.set("tempUserId", result.tempUserId, { expires: 1 });
+      console.log(data,'dataaaaaaa')
+      
+        Cookies.set("tempUserId", result.tempUserId);
         toast.success("ایمیل با موفقیت ثبت شد");
         route.push("/register/2")
-      }
+      
     } catch {
       toast.error("ارسال کد تایید ناموفق بود");
     }

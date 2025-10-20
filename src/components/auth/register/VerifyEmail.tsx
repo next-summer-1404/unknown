@@ -38,23 +38,39 @@ const VerifyEmail = () => {
   };
 
   const handleVerify = async () => {
-    if (!tempUserId) {
-      // console.log(tempUserId)
+    try {
+      const result = await VerifyEmailApi({
+
+      });
+
+      if (!tempUserId) {
+      console.log(tempUserId ,'lllllllllll')
       toast.error("شناسه کاربر موجود نیست");
       return;
     }
-
-    setLoading(true);
-
-    try {
+    else{
       VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
       toast.success("ایمیل با موفقیت تأیید شد");
 
       rout.push("/register/3");
-    } catch {
-      toast.error("شناسه کاربر موجود نیست");
     }
-  };
+      
+    } catch (error) {
+      toast.error("شناسه کاربر موجود نیست");
+      
+    }
+
+  //   setLoading(true);
+
+  //   try {
+  //     // VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
+  //     // toast.success("ایمیل با موفقیت تأیید شد");
+
+  //     // rout.push("/register/3");
+  //   } catch {
+  //     // toast.error("شناسه کاربر موجود نیست");
+  //   }
+ };
 
   const renderer = ({ minutes, seconds, completed }: any) => {
     return (
