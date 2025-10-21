@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styleCard from "./HouseReserve.module.css";
 import styles from "./ImgSection.module.css";
-import testImg from "../../../assets/images/auth1.png";
 import { StarIcon } from "@heroicons/react/24/solid";
 import {
   BuildingOffice2Icon,
