@@ -22,7 +22,7 @@ export type IHouses = {
   yard_type: string;
   num_comments: number;
   discount_id: string;
-  transaction_type: string;
+  transaction_type: "rental" | "mortgage" | string;
   sellerId: string;
   sellerName: string;
   caption: string;
@@ -51,3 +51,12 @@ export interface HousesQueryParams {
   address?: string;
 
 }
+
+
+
+// export interface IHousesResponse {
+//   houses: IHouse[];
+//   totalCount: number;
+// }
+
+

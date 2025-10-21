@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import Header from "@/components/Header/header";
 import Provider from "./provider";
 import Footer from "@/components/Footer/Footer";
-import GlobalLoader from "@/components/GlobalLoader/GlobalLoader";
+import GlobalTransitionLoader from "@/components/GlobalTransitionLoader/GlobalTransitionLoader";
 // import Header from "@/components/Header/header";
 
 // const geistSans = Geist({
@@ -39,8 +39,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Peyda.className} antialiased`}>
         <Provider>
-          <GlobalLoader /> 
           <Header />
+          <GlobalTransitionLoader />
           {children}
           <Footer />
         </Provider>
