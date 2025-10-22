@@ -2,7 +2,7 @@ import { MegaphoneIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
-const DiscountCodeForm = () => {
+const TravelerContactInfo = () => {
   return (
     <div className="w-full flex flex-col  gap-3 px-2 py-2  bg-[#393939] rounded-2xl">
       <div className="w-full flex items-center gap-1.5 p-2 rounded-2xl bg-[#4D4D4D]">
@@ -31,4 +31,4 @@ const DiscountCodeForm = () => {
   );
 };
 
-export default DiscountCodeForm;
+export default TravelerContactInfo;

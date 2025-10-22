@@ -25,7 +25,7 @@ const PaymentConfirmationSection = () => {
           onClick={() =>
             router.push(`/houseReserve/${params.id}/finalReserve?step=1`)
           }
-          className="flex items-center gap-2 text-white border border-white px-4 py-2 rounded-xl text-sm hover:bg-[#8CFF45]/10 transition"
+          className="flex items-center gap-2 text-white border border-white px-4 py-2 rounded-xl text-sm hover:bg-[#8CFF45]/10 transition cursor-pointer"
         >
           <span className="rotate-180">{">"}</span>
           <span> مرحله قبل</span>
@@ -36,7 +36,7 @@ const PaymentConfirmationSection = () => {
           onClick={() =>
             router.push(`/houseReserve/${params.id}/finalReserve?step=3`)
           }
-          className="flex items-center gap-2 text-[#8CFF45] border border-[#8CFF45] px-4 py-2 rounded-xl text-sm hover:bg-[#8CFF45]/10 transition"
+          className="flex items-center gap-2 text-[#8CFF45] border border-[#8CFF45] px-4 py-2 rounded-xl text-sm hover:bg-[#8CFF45]/10 transition cursor-pointer"
         >
           <span> پرداخت آنلاین</span>
           <span className="rotate-180">{"<"}</span>

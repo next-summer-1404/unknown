@@ -1,7 +1,7 @@
 import { CheckCircleIcon, PercentBadgeIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
-const DiscountSecondReserve = () => {
+const DiscountCodeForm = () => {
   return (
     <div className="w-full flex flex-col  gap-3 px-2 py-2  bg-[#393939] rounded-2xl">
       <div className="w-full flex items-center gap-1.5 p-2 rounded-2xl bg-[#4D4D4D]">
@@ -25,7 +25,7 @@ const DiscountSecondReserve = () => {
           />
         </div>
         <div className="w-1/2">
-          <button className="flex items-center border border-[#8CFF45] rounded-xl p-1 gap-2">
+          <button className="flex items-center border border-[#8CFF45] rounded-xl p-1 gap-2 cursor-pointer">
             <CheckCircleIcon className="w-5 h-5 text-[#8CFF45]" />
             <p className="text-[#8CFF45] text-sm"> اعمال تخفیف</p>
           </button>
@@ -35,4 +35,4 @@ const DiscountSecondReserve = () => {
   );
 };
 
-export default DiscountSecondReserve;
+export default DiscountCodeForm;
