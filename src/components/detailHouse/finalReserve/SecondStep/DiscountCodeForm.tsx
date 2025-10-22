@@ -8,21 +8,24 @@ const DiscountSecondReserve = () => {
         <PercentBadgeIcon className="w-5 h-5 mr-2 text-[#FFFFFF]" />
         <p className="text-[#FFFFFF]"> کد تخفیف</p>
       </div>
-      <form className=" w-full h-auto flex mt-5">
-        <div className=" w-1/4 flex flex-col justify-center">
-          <label htmlFor="code" className="mr-4 text-[#AAAAAA]">
-            کد تخفیف
+      <form className=" w-full py-3 px-3 flex items-center gap-6">
+        <div className="w-1/4 relative">
+          <label
+            htmlFor="code"
+            className="absolute right-3 -top-2 bg-[#393939] px-1 text-[#AAAAAA] text-sm"
+          >
+            کد تخفیف:
           </label>
           <input
             id="code"
             name="code"
             type="text"
             placeholder="وارد کنید..."
-            className="border border-[#AAAAAA] text-[#AAAAAA] outline-none p-2 rounded-2xl bg-transparent mr-2"
+            className="w-full border border-[#AAAAAA] text-[#aaaaaa] rounded-xl h-10 px-3 py-1 focus:border-blue-500 focus:outline-none"
           />
         </div>
-        <div className="w-1/2 mr-5">
-          <button className="flex items-center border border-[#8CFF45] rounded-xl p-1 gap-2 mt-7">
+        <div className="w-1/2">
+          <button className="flex items-center border border-[#8CFF45] rounded-xl p-1 gap-2">
             <CheckCircleIcon className="w-5 h-5 text-[#8CFF45]" />
             <p className="text-[#8CFF45] text-sm"> اعمال تخفیف</p>
           </button>
