@@ -1,14 +1,14 @@
 import React from 'react'
-import InfoSecondReseve from './InfoSecondReseve'
 import CostSecondReserve from './CostSecondReserve'
 import TravelInfoSecond from './TravelInfoSecond'
 import DiscountSecondReserve from './DiscountSecondReserve'
 import FinishSecond from './FinishSecond'
+import InfoSecondReserve from './InfoSecondReserve'
 
-const SecondFinalReserve = () => {
+const Index = () => {
   return (
     <div className='w-full h-auto mb-40'>
-      <InfoSecondReseve/>
+      <InfoSecondReserve/>
       <CostSecondReserve/>
       <TravelInfoSecond/>
       <DiscountSecondReserve/>
@@ -17,4 +17,4 @@ const SecondFinalReserve = () => {
   )
 }
 
-export default SecondFinalReserve
+export default Index
