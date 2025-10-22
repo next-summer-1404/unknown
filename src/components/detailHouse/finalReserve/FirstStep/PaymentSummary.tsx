@@ -15,7 +15,7 @@ const PaymentSummary = () => {
   return (
     <>
      
-      <div className="w-11/12 mx-auto mt-10 h-auto pb-5  rounded-2xl flex justify-between items-center px-6 border-2 border-dashed border-[#AAAAAA]">
+      <div className=" h-20 rounded-2xl flex justify-between items-center px-6 border-2 border-dashed border-[#AAAAAA]">
         {/* قیمت بلیط */}
         <div className="flex  gap-2 text-[#8CFF45] text-sm items-center">
           <span className="text-[#fff] text-lg">قیمت بلیط:</span>
