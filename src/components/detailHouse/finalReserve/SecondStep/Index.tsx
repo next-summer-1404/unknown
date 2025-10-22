@@ -1,18 +1,18 @@
 import React from 'react'
-import CostSecondReserve from './CostSecondReserve'
-import TravelInfoSecond from './TravelInfoSecond'
-import DiscountSecondReserve from './DiscountSecondReserve'
-import FinishSecond from './FinishSecond'
-import InfoSecondReserve from './InfoSecondReserve'
+import AdditionalCost from './AdditionalCost'
+import TravelerContactInfo from './TravelerContactInfo'
+import DiscountCodeForm from './DiscountCodeForm'
+import PaymentConfirmationSection from './PaymentConfirmationSection'
+import BookerInfo from './BookerInfo'
 
 const Index = () => {
   return (
     <div className='w-full h-auto mb-40'>
-      <InfoSecondReserve/>
-      <CostSecondReserve/>
-      <TravelInfoSecond/>
-      <DiscountSecondReserve/>
-      <FinishSecond/>
+      <BookerInfo/>
+      <AdditionalCost/>
+      <TravelerContactInfo/>
+      <DiscountCodeForm/>
+      <PaymentConfirmationSection/>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter, useParams } from "next/navigation";
 
 
-const FinishSecond = () => {
+const PaymentConfirmationSection = () => {
      const router = useRouter();
       const params = useParams();  
     
@@ -47,4 +47,4 @@ const FinishSecond = () => {
   )
 }
 
-export default FinishSecond
+export default PaymentConfirmationSection

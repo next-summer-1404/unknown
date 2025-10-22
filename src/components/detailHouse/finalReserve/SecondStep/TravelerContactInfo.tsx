@@ -1,7 +1,7 @@
 import { MegaphoneIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
-const TravelInfoSecond = () => {
+const DiscountCodeForm = () => {
   return (
     <div className="w-11/12 mx-auto my-10 h-auto  bg-[#393939]  rounded-2xl ">
       <div className="p-2 rounded-2xl bg-[#4D4D4D] flex gap-1 items-center">
@@ -23,4 +23,4 @@ const TravelInfoSecond = () => {
   );
 };
 
-export default TravelInfoSecond;
+export default DiscountCodeForm;
