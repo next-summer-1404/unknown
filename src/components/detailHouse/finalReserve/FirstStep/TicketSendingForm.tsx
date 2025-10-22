@@ -2,7 +2,7 @@
 import { CheckCircleIcon, UsersIcon } from "@heroicons/react/24/outline";
 const TicketSendingForm = () => {
   return (
-     <div className="w-11/12 mx-auto mt-10 h-auto pb-10 bg-[#393939]  rounded-2xl ">
+     <div className=" h-auto bg-[#393939]  rounded-2xl ">
         <div className="p-2 rounded-2xl bg-[#4D4D4D] flex gap-1 items-center">
           <UsersIcon className="w-5 h-5 mr-2 text-[#FFFFFF]" />
           <p className="text-[#FFFFFF]"> ارسال بلیط به دیگری</p>

@@ -1,52 +1,81 @@
 "use client";
 
-import { BuildingOfficeIcon, CalendarDaysIcon, MapPinIcon, StarIcon } from '@heroicons/react/24/outline'
-import React from 'react'
+import {
+  BuildingOfficeIcon,
+  CalendarDaysIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
+import Image from "next/image";
+import React from "react";
+import file from "../../../../assets/images/auth1.png";
+import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 const BookingPropertyInf = () => {
   return (
-    <div className="w-11/12 mx-auto mt-10 h-40 bg-[#393939]  rounded-2xl  text-center text-white flex">
-        <div className="w-1/3 flex">
-          <div className="w-1/3 border border-red-700 rounded-2xl h-30 mt-5 mr-3"></div>
-          <div className="w-2/3">
-            <div className="w-18 h-8 rounded-2xl mr-5 bg-[#7569FF] flex items-center gap-1 mt-3 p-1">
-              <StarIcon className="w-5 h-5" />
-              <p>ستاره</p>
-            </div>
-            <p className="text-right text-xl leading-14 mr-5 font-semibold">
-              هتل سراوان رانین رشت
+    <div className="lg:h-36 flex items-center px-2 py-2 bg-[#393939] rounded-2xl text-center text-white">
+      <div className="w-[41%] py-1 h-full flex ">
+        <Image
+          src={file}
+          alt=""
+          width={200}
+          className="w-[37%] h-full rounded-2xl"
+        />
+        <div className="flex-1 flex flex-col justify-between pr-2">
+          <div className="w-19 h-8 rounded-xl bg-[#7569FF] flex items-center gap-1">
+            <StarIcon className="w-5 h-5" />
+            <span className="mt-1 text-[14px]">5 ستاره</span>
+          </div>
+          <h3 className="text-right text-lg font-bold">هتل سراوان رانین رشت</h3>
+          <div className="flex w-full">
+            <MapPinIcon className="w-5 h-5" />
+            <span className="text-sm">آدرس:</span>
+            <p className="text-sm text-[#AAAAAA] font-light mr-0.5 truncate ">
+              گیلان ، رشت ، میدان آزادی
             </p>
-            <div className="flex items-center">
-              <MapPinIcon className="w-5 h-5 mr-3" />
-              <p className="text-sm text-[#AAAAAA] font-light">
-                آدرس : گیلان ، رشت ، میدان آزادی ....
-              </p>
-            </div>
-          </div>
-        </div>
-            <div className="w-1/3 h-30 my-auto border-l border-r border-[AAAAAA">
-        <div className="w-full p-2  flex items-center gap-1 mt-5">
-            <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]"/>
-            <p className="text-[#AAAAAA] font-light text-sm">تاریخ ورود:</p>
-        </div>
-        <div className="w-full p-2  flex items-center gap-1">
-            <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]"/>
-            <p className="text-[#AAAAAA] font-light text-sm">تاریخ خروج:</p>
-        </div>
-        </div>
-        <div className="w-1/3 ">
-          <div className=" mt-10 flex items-center gap-5 mr-15">
-            <p className="text-[#AAAAAA]  line-through">25000000</p>
-            <p className="px-3 py-1 rounded-xl bg-red-400 text-sm ">32%</p>
-            <p className="text-[#8CFF45]">15000000 تومان</p>
-          </div>
-          <div className="border h-10 mr-60 rounded-2xl border-[#8CFF45] ml-5 mt-5 flex items-center gap-1 p-2 justify-center">
-            <BuildingOfficeIcon className="w-5 h-5 text-[#8CFF45]"/>
-            <button className="text-[#8CFF45] text-sm text-center">تغییر هتل</button>
           </div>
         </div>
       </div>
-  )
-}
+      <div className="h-10/12 w-0.5 bg-[#565656]"></div>
+      <div className="w-[28%] flex flex-col  justify-center items-center gap-5 h-full">
+        <div className="w-full flex items-center justify-center gap-1">
+          <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]" />
+          <span className="text-[#AAAAAA] font-light text-sm">تاریخ ورود:</span>
+          <span className="text-[#8CFF45] text-xs">12/3/1390</span>
+          <span className="text-[#8CFF45] text-xs">ساعت</span>
+          <span className="text-[#8CFF45] text-xs">11:12ب.ظ</span>
+        </div>
+        <div className="w-full flex items-center justify-center gap-1">
+          <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]" />
+          <span className="text-[#AAAAAA] font-light text-sm">تاریخ خروج:</span>
+          <span className="text-[#8CFF45] text-xs">12/3/1390</span>
+          <span className="text-[#8CFF45] text-xs">ساعت</span>
+          <span className="text-[#8CFF45] text-xs">11:12ب.ظ</span>
+        </div>
+      </div>
+      <div className="h-10/12 w-0.5 bg-[#565656]"></div>
+      <div className="w-[30%] h-full flex flex-col items-end justify-center gap-4">
+        <div className=" flex items-center gap-3">
+          <div className="flex items-center justify-center gap-1">
+            <span className="relative text-[#AAAAAA] text-sm">
+              25000000
+              <span className="absolute left-0 top-[35%] w-full h-[2px] bg-[#AAAAAA] rotate-[-10deg]"></span>
+            </span>
+            <div className="w-12 h-6 rounded-xl bg-red-400 flex items-center justify-center pt-1">
+              <h6 className="text-[14px]">32%</h6>
+            </div>
+          </div>
+          <h5 className="text-[#8CFF45] text-xl">15000000 تومان</h5>
+        </div>
+        <Link href={'/'} className="flex items-center justify-center gap-2 p-2 border h-9 w-30 rounded-xl border-[#8CFF45] cursor-pointer">
+          <BuildingOfficeIcon className="w-5 h-5 text-[#8CFF45]" />
+          <button className="text-[#8CFF45] text-sm text-center">
+            تغییر هتل
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-export default BookingPropertyInf
+export default BookingPropertyInf;
