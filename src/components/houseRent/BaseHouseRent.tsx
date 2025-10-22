@@ -9,12 +9,13 @@ import { useSearchParams } from "next/navigation";
 
 const BaseHouseRent = () => {
   const [houses, setHouses] = useState<IHouses[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const searchParams = useSearchParams();
 
   const query = searchParams.get("query") || "";
   const currentCity = searchParams.get("city") || "";
   const selectedFacility = searchParams.get("Facility") || "";
-  const property = searchParams.get("property_type") || "";
+  // const property = searchParams.get("property_type") || "";
   const sort = searchParams.get("sort") || "";
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const BaseHouseRent = () => {
       try {
         const data = await getRentHouse();
         setHouses(data.houses ?? []);
+         setTotalCount(data.totalCount ?? 0);
       } catch (error) {
         console.error("Failed to fetch houses:", error);
       }
@@ -30,31 +32,29 @@ const BaseHouseRent = () => {
   }, []);
 
   const filteredHouses = useMemo(() => {
-    console.log({ query, currentCity, property, selectedFacility, houses });
+    console.log({ query, currentCity, selectedFacility, houses });
 
     let result = houses.filter((h) => {
       const queryMatch = query
         ? h.title?.toLowerCase().includes(query.toLowerCase())
         : true;
 
-      const cityMatch = currentCity
-        ? h.address?.toLowerCase().includes(currentCity.toLowerCase()) ||
-          h.tags?.some((t) =>
-            t.toLowerCase().includes(currentCity.toLowerCase())
-          )
+       const cityMatch = currentCity
+        ? h.address?.includes(currentCity) ||
+          h.tags?.some((t) => t.includes(currentCity))
         : true;
 
-      const typeMatch = property
-        ? h.categories?.name &&
-          h.categories.name.toLowerCase() === property.toLowerCase()
-        : true;
+      // const typeMatch = property
+      //   ? h.categories?.name &&
+      //     h.categories.name.toLowerCase() === property.toLowerCase()
+      //   : true;
 
       const facilityMatch = selectedFacility
         ? (selectedFacility === "پارکینگ" && h.parking > 0) ||
           (selectedFacility === "تعداد اتاق" && h.rooms > 0)
         : true;
 
-      return queryMatch && cityMatch && typeMatch && facilityMatch;
+      return queryMatch && cityMatch  && facilityMatch;
     });
 
     switch (sort) {
@@ -83,9 +83,8 @@ const BaseHouseRent = () => {
     }
 
     return result;
-  }, [houses, query, currentCity, property, selectedFacility, sort]);
+  }, [houses, query, currentCity, selectedFacility, sort]);
 
-  const totalCount = filteredHouses.length;
 
   return (
     <div className="w-full bg-[#232323] py-8">

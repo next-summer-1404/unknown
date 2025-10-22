@@ -84,7 +84,7 @@ const CardRent: FC<Props> = ({ house }) => {
           <div className=" h-full flex flex-col gap-3 justify-end items-end">
             <h1 className="text-2xl text-[#8CFF45]">{house.price} ت</h1>
             <Link
-              href={"/"}
+              href={`/rentals/${house.id}`}
               className="flex justify-between items-center border-[#8CFF45] border rounded-md w-fit p-2 px-4 group-hover:bg-[#8CFF45]"
             >
               <h5 className="text-xs text-[#8CFF45] group-hover:text-black w-fit">
