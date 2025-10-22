@@ -14,7 +14,7 @@ const ThirdFinalReserve = () => {
         };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh]  text-white">
+    <div className="flex flex-col items-center justify-center min-h-[70vh] text-white">
       <div className="w-28 h-28 rounded-3xl bg-[#8CFF45]/10 flex items-center justify-center shadow-[0_0_35px_#8CFF45]">
         <CheckIcon className="w-16 h-16 text-[#8CFF45]" />
       </div>

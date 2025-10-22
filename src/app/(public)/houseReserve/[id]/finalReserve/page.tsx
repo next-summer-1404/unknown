@@ -1,9 +1,9 @@
 "use client";
 
-import FirstFinalReserve from "@/components/detailHouse/finalReserve/firstFinalReseve/FirstFinalReserve";
-import TopFirstFinal from "@/components/detailHouse/finalReserve/firstFinalReseve/TopFirstFinal";
-import SecondFinalReserve from "@/components/detailHouse/finalReserve/secondFinalReserve/SecondFinalReserve";
-import ThirdFinalReserve from "@/components/detailHouse/finalReserve/ThirdFinalReserve";
+import FirstStep from "@/components/detailHouse/finalReserve/FirstStep/Index";
+import StepIndicator from "@/components/detailHouse/finalReserve/StepIndicator";
+import SecondFinalReserve from "@/components/detailHouse/finalReserve/SecondStep/SecondFinalReserve";
+import ThirdFinalReserve from "@/components/detailHouse/finalReserve/ThirdStep/ThirdFinalReserve";
 
 export default function FinalReservePage({
   params,
@@ -16,9 +16,9 @@ export default function FinalReservePage({
 
   return (
     <div className="flex flex-col gap-6">
-      <TopFirstFinal />
+      <StepIndicator />
 
-      {stepNumber === 1 && <FirstFinalReserve />}
+      {stepNumber === 1 && <FirstStep />}
       {stepNumber === 2 && <SecondFinalReserve />}
       {stepNumber === 3 && <ThirdFinalReserve />}
 

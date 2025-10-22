@@ -3,7 +3,7 @@
 import { BuildingOfficeIcon, CalendarDaysIcon, MapPinIcon, StarIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 
-const ContainFirstFinal = () => {
+const BookingPropertyInf = () => {
   return (
     <div className="w-11/12 mx-auto mt-10 h-40 bg-[#393939]  rounded-2xl  text-center text-white flex">
         <div className="w-1/3 flex">
@@ -49,4 +49,4 @@ const ContainFirstFinal = () => {
   )
 }
 
-export default ContainFirstFinal
+export default BookingPropertyInf

@@ -3,7 +3,7 @@ import { CheckCircleIcon, UsersIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useRouter, useParams } from "next/navigation";
 
-const TicketFirstFinal = () => {
+const CheckoutSummary = () => {
   const router = useRouter();
   const params = useParams();  
 
@@ -87,4 +87,4 @@ const TicketFirstFinal = () => {
   );
 };
 
-export default TicketFirstFinal;
+export default CheckoutSummary;

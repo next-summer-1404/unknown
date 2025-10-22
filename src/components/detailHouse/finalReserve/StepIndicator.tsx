@@ -34,7 +34,7 @@ const steps = [
   { id: 5, title: "صدور بلیط", icon: <TicketIcon className="w-5 h-5" /> },
 ];
 
-const TopFirstFinal = () => {
+const StepIndicator = () => {
   const searchParams = useSearchParams();
   const stepNumber = Number(searchParams.get("step") ?? 1);
 
@@ -86,4 +86,4 @@ const TopFirstFinal = () => {
   );
 };
 
-export default TopFirstFinal;
+export default StepIndicator;
