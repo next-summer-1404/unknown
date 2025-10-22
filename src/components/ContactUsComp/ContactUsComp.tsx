@@ -3,6 +3,7 @@ import Image from "next/image";
 import GreenArrow from "../../assets/images/greenArrow.png";
 
 import React, { useState } from "react";
+import { ContactUs } from "@/utils/service/api/ContactUs";
 
 const ContactUsComp = () => {
   const [message, setMessage] = useState({ title: "", message: "" });
@@ -26,7 +27,7 @@ const ContactUsComp = () => {
   };
 
   return (
-    <div className="my-20  h-auto flex ">
+    <div className="py-20  h-auto flex ">
       <div className="w-3/5 h-auto">
         <div className=" h-auto flex items-start gap-2 p-5  ">
           <p className="text-[#8CFF45] tect-md ">ارتباط با ما</p>
