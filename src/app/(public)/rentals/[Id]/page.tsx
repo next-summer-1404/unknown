@@ -9,6 +9,8 @@ interface Props {
 
 const RentDetailPage = async ({ params }: Props) => {
   const house: IHouses = await getHouseDetail(params.id);
+  console.log("params.idbbbbbbbbb:", params.id);
+  
 
   return <BaseDetailRent house={house} />;
 };
