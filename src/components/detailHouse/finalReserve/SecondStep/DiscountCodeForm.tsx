@@ -3,8 +3,8 @@ import React from "react";
 
 const DiscountSecondReserve = () => {
   return (
-    <div className="w-11/12 mx-auto mt-10 h-auto pb-5 bg-[#393939]  rounded-2xl ">
-      <div className="p-2 rounded-2xl bg-[#4D4D4D] flex gap-1 items-center">
+    <div className="w-full flex flex-col  gap-3 px-2 py-2  bg-[#393939] rounded-2xl">
+      <div className="w-full flex items-center gap-1.5 p-2 rounded-2xl bg-[#4D4D4D]">
         <PercentBadgeIcon className="w-5 h-5 mr-2 text-[#FFFFFF]" />
         <p className="text-[#FFFFFF]"> کد تخفیف</p>
       </div>
