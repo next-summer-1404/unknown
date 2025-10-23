@@ -1,111 +1,40 @@
 "use client";
 import React from "react";
+import MinArea from "./MinArea";
+import MaxArea from "./MaxArea";
+import MinRent from "./MinRent";
+import MaxRent from "./MaxRent";
+import MinMortgage from "./MinMortgage";
+import MaxMortgage from "./MaxMortgage";
 
 const BottomFilter = () => {
   return (
     <div className="w-11/12 mx-auto  mt-5">
-      {/* باکس قرمز اصلی */}
       <div className="w-9/12  p-5 h-auto flex  items-center  gap-2 ">
-
         {/* حداقل متراژ */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداقل متراژ:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-14 bg-transparent outline-none text-center text-gray-100 text-sm"
-
-            
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            متر
-          </span>
-        </div>
+        <MinArea />
 
         {/* حداکثر متراژ */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداکثر متراژ:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-14 bg-transparent outline-none text-center text-gray-100 text-sm"
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            متر
-          </span>
-        </div>
-
+        <MaxArea />
         {/* جداکننده */}
         <span className="text-gray-400">|</span>
 
         {/* حداقل اجاره */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداقل اجاره:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-20 bg-transparent outline-none text-center text-gray-100 text-sm"
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            تومان
-          </span>
-        </div>
+        <MinRent />
 
         {/* حداکثر اجاره */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداکثر اجاره:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-20 bg-transparent outline-none text-center text-gray-100 text-sm"
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            تومان
-          </span>
-        </div>
+        <MaxRent />
 
         {/* جداکننده */}
         <span className="text-gray-400">|</span>
 
         {/* حداقل رهن */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداقل رهن:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-20 bg-transparent outline-none text-center text-gray-100 text-sm"
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            تومان
-          </span>
-        </div>
+        <MinMortgage />
 
         {/* حداکثر رهن */}
-        <div className="flex items-center gap-2 border border-[#dadada52] rounded-full px-1 py-2 bg-[#232323] text-gray-200 shrink-0">
-          <label className="text-gray-300 whitespace-nowrap text-xs sm:text-sm">
-            حداکثر رهن:
-          </label>
-          <input
-            type="number"
-            placeholder="0"
-            className="w-20 bg-transparent outline-none text-center text-gray-100 text-sm"
-          />
-          <span className="text-gray-400 whitespace-nowrap text-xs sm:text-sm">
-            تومان
-          </span>
-        </div>
+        <MaxMortgage />
       </div>
-       {/* استایل جهانی برای حذف دکمه‌های عددی */}
+      {/* استایل جهانی برای حذف دکمه‌های عددی */}
       <style jsx global>{`
         /* Chrome, Safari, Edge, Opera */
         input[type="number"]::-webkit-inner-spin-button,

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
@@ -8,14 +8,14 @@ const FacilityFilter = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const selectedType = searchParams.get("Facility") || "";
+  const selectedOrder = searchParams.get("order") || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     const params = new URLSearchParams(searchParams);
 
-    if (value) params.set("Facility", value);
-    else params.delete("Facility");
+    if (value) params.set("order", value);
+    else params.delete("order");
 
     router.replace(`${pathname}?${params.toString()}`);
   };
@@ -24,11 +24,12 @@ const FacilityFilter = () => {
       <CurrencyDollarIcon className="w-5 h-5 text-[#AAAAAA]" />
       <select
         className="bg-[#2a2a2a] outline-none text-sm"
-        value={selectedType}
+        value={selectedOrder}
         onChange={handleChange}
       >
-        <option> پارکینگ </option>
-        <option> اتاق خواب </option>
+        <option value="">همه امکانات</option>
+        <option value="bedroom">اتاق خواب</option>
+        <option value="parking">پارکینگ</option>
       </select>
     </div>
   );

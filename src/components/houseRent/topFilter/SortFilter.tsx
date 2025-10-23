@@ -25,9 +25,10 @@ const SortFilter = () => {
         defaultValue={searchParams.get("sort") || ""}
         onChange={handleChange}
       >
-        <option>جدیدترین آگهی‌ها</option>
-        <option>ارزان‌ترین</option>
-        <option>گران‌ترین</option>
+        
+        <option value="">بدون مرتب‌سازی</option>
+        <option value="capacity">بیشترین ظرفیت</option>
+        <option value="transaction_type">نوع معامله </option>
       </select>
     </div>
   );
