@@ -2,6 +2,7 @@
 import { BuildingOffice2Icon, ChevronLeftIcon } from '@heroicons/react/24/outline'
 import { getHouses } from '@/utils/service/api/getAllHouses';
 import { IHouses } from '@/types/IHouses';
+import SliderAdvertise from '../detailHouse/baseDetail/SliderAdvertise';
 
 
 const AdvertHouseRent =async () => {
