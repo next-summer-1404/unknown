@@ -11,10 +11,12 @@ const AboutHouseRent = ({ house }: Props) => {
     <>
       <div className="w-11/12 mx-auto h-auto mt-5 ">
         <p className="text-[#AAAAAA] text-sm leading-8">
-         {house.caption}
+          {house?.caption?.trim()
+            ? house.caption
+            : "هیچ مطلبی درباره ملک ارائه نشده است"}
         </p>
       </div>
-     <AdvertHouseRent/>
+      <AdvertHouseRent />
     </>
   );
 };
