@@ -5,11 +5,11 @@ import { IHouses } from '@/types/IHouses';
 
 
 const AdvertHouseRent =async () => {
-   const HouseList = await getHouses();
-  const Houses: IHouses[]  =HouseList.houses 
+  //  const HouseList = await getHouses();
+  // const Houses: IHouses[]  =HouseList.houses 
   // console.log(Houses)
   return (
-    <div className="w-11/12 m-auto bg-[#232323]">
+    <div className="w-11/12 m-auto bg-[#232323] mt-30">
         <div className="w-full h-10 bg-[#393939] rounded-2xl flex justify-between items-center p-3">
           <div className="flex gap-1">
             <BuildingOffice2Icon className="w-5 h-5 text-white" />

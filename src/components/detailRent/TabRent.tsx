@@ -10,6 +10,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { IHouses } from "@/types/IHouses";
 import AboutHouseRent from "./AboutHouseRent";
+import RentFacilities from "./RentFacilities";
+import LocationRent from "./LocationRent";
+import UserCommentsHouse from "../detailHouse/userCommentsHouse/UserCommentsHouse";
+import CommentRent from "./CommentRent";
 
 interface Props {
   house: IHouses;
@@ -70,7 +74,7 @@ const TabRent: React.FC<Props> = ({ house }) => {
           </div>
         }
       >
-        {/* <HouseFacilities house={house} /> */}
+        <RentFacilities house={house} />
       </Tab>
 
       <Tab
@@ -82,7 +86,7 @@ const TabRent: React.FC<Props> = ({ house }) => {
           </div>
         }
       >
-        {/* <HouseFacilities house={house} /> */}
+        <LocationRent house={house} />
       </Tab>
 
       <Tab
@@ -94,7 +98,7 @@ const TabRent: React.FC<Props> = ({ house }) => {
           </div>
         }
       >
-        {/* <UserCommentsHouse house={house} /> */}
+        <CommentRent house={house} />
       </Tab>
     </Tabs>
   );
