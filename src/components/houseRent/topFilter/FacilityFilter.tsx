@@ -28,8 +28,8 @@ const FacilityFilter = () => {
         onChange={handleChange}
       >
         <option value="">همه امکانات</option>
-        <option value="bedroom">اتاق خواب</option>
-        <option value="parking">پارکینگ</option>
+        <option value="اتاق خواب">اتاق خواب</option>
+        <option value="پارکینگ">پارکینگ</option>
       </select>
     </div>
   );

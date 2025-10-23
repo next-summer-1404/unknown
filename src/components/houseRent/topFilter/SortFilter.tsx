@@ -27,8 +27,8 @@ const SortFilter = () => {
       >
         
         <option value="">بدون مرتب‌سازی</option>
-        <option value="capacity">بیشترین ظرفیت</option>
-        <option value="transaction_type">نوع معامله </option>
+        <option value="ظرفیت"> ظرفیت</option>
+        <option value="نوع معامله">نوع معامله </option>
       </select>
     </div>
   );
