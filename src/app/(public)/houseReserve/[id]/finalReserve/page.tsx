@@ -2,7 +2,7 @@
 
 import FirstStep from "@/components/detailHouse/finalReserve/FirstStep/Index";
 import StepIndicator from "@/components/detailHouse/finalReserve/StepIndicator";
-import SecondFinalReserve from "@/components/detailHouse/finalReserve/SecondStep/SecondFinalReserve";
+import SecondStep from "@/components/detailHouse/finalReserve/SecondStep/Index";
 import ThirdFinalReserve from "@/components/detailHouse/finalReserve/ThirdStep/ThirdFinalReserve";
 
 export default function FinalReservePage({
@@ -19,7 +19,7 @@ export default function FinalReservePage({
       <StepIndicator />
 
       {stepNumber === 1 && <FirstStep />}
-      {stepNumber === 2 && <SecondFinalReserve />}
+      {stepNumber === 2 && <SecondStep />}
       {stepNumber === 3 && <ThirdFinalReserve />}
 
       {![1, 2, 3].includes(stepNumber) && (
