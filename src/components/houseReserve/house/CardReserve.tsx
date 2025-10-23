@@ -27,24 +27,37 @@ const CardReserve: FC<Props> = ({ house, onSelect }) => {
     : 0;
 
   const mainPhoto =
-    house.photos && house.photos.length > 0 ? house.photos[0] : auth1.src;
+    house.photos?.[0] && house.photos[0].trim() !== ""
+      ? house.photos[0]
+      : auth1.src;
 
   return (
-    <div className="w-full border-b border-[#4E4E4E] flex items-center gap-5" onClick={onSelect}>
+    <div
+      className="w-full border-b border-[#4E4E4E] flex items-center gap-5"
+      onClick={onSelect}
+    >
       {/* */}
-      <div className="w-3/12 h-auto"  >
+      <div className="w-3/12 h-auto">
         <div className="relative w-full rounded-2xl overflow-hidden">
           <div className="relative bg-[#351cb3] rounded-2xl min-h-[200px] overflow-hidden">
             <div
               className={`${styles.cardShape} absolute top-0 left-0 w-9/12 h-7 z-20 bg-[#2A2A2A] rounded-[0_0_40px_0]`}
             ></div>
-            <Image
+            {/* <Image
               src={mainPhoto}
               alt={house.title || "house"}
               fill
               className="object-cover rounded-2xl"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
               priority={true}
+            /> */}
+            <Image
+              src={mainPhoto}
+              alt={house.title || "house"}
+              fill
+              className="object-cover rounded-2xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+              priority
             />
           </div>
         </div>
@@ -91,7 +104,10 @@ const CardReserve: FC<Props> = ({ house, onSelect }) => {
           <span>تومان</span>
         </p>
 
-        <Link href={`/houseReserve/${house.id}`} className="w-full h-10 border border-[#8CFF45] mt-15 rounded-xl hover:bg-[#8CFF45]  flex items-center justify-center gap-1 ">
+        <Link
+          href={`/houseReserve/${house.id}`}
+          className="w-full h-10 border border-[#8CFF45] mt-15 rounded-xl hover:bg-[#8CFF45]  flex items-center justify-center gap-1 "
+        >
           <BuildingOffice2Icon className="w-5 h-5 text-[#AAAAAA] " />
           <p className="text-[#AAAAAA] text-center ">بررسی و رزرو هتل</p>
         </Link>

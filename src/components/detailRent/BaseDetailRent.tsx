@@ -1,16 +1,31 @@
-import { IHouses } from '@/types/IHouses';
-import React from 'react'
+import { IHouses } from "@/types/IHouses";
+import React from "react";
+import InfoCall from "./InfoCall";
+import EndTop from "./EndTop";
+import TabRent from "./TabRent";
+
 
 interface Props {
   house: IHouses;
 }
 
-const BaseDetailRent = ({ house }: Props) => {
-  return (
-    <div className='border border-red-400 w-full h-[1080px]'>
-      BaseDetailRent
-    </div>
-  )
-}
+const BaseDetailRent: React.FC<Props> = ({ house }) => {
+ 
 
-export default BaseDetailRent
+  return (
+    <div className="border border-red-400 w-full h-[2080px]">
+      <div className="w-11/12 h-auto mx-auto mt-30 flex gap-5 ">
+        <div className="w-5/12 h-96 border border-red-400 rounded-2xl"></div>
+        <div className="w-4/12 h-96 flex flex-col gap-5">
+          <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
+          <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
+        </div>
+        <InfoCall />
+      </div>
+      <EndTop />
+      <TabRent house={house}/>
+    </div>
+  );
+};
+
+export default BaseDetailRent;
