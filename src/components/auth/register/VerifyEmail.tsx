@@ -13,17 +13,18 @@ const VerifyEmail = () => {
   const [otp, setOtp] = React.useState(["", "", "", "", "", ""]);
   const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
   const [loading, setLoading] = React.useState(false);
-  const [tempUserId, setTempUserId] = React.useState<string | null>(null);
+  // const [tempUserId, setTempUserId] = React.useState<string | null>(null);
   const [otpStatet, setOtpState] = useState("");
   const rout = useRouter();
+  const tempUserId = Cookies.get("tempUserId") as string;
 
-  useEffect(() => {
-    const id = Cookies.get("tempUserId");
-    if (!id) {
-      toast.error("شناسه کاربر یافت نشد");
-    }
-    setTempUserId(id || null);
-  }, []);
+  // useEffect(() => {
+  //   const id = Cookies.get("tempUserId");
+  //   if (!id) {
+  //     toast.error("شناسه کاربر یافت نشد");
+  //   }
+  //   setTempUserId(id);
+  // }, []);
 
   const handleChange = (value: string, index: number) => {
     if (/^\d?$/.test(value)) {
@@ -39,38 +40,36 @@ const VerifyEmail = () => {
 
   const handleVerify = async () => {
     try {
-      const result = await VerifyEmailApi({
-
-      });
+      // const result = await VerifyEmailApi({
+      //   tempUserId: tempUserId,
+      //   verificationCode: otpStatet,
+      // });
 
       if (!tempUserId) {
-      console.log(tempUserId ,'lllllllllll')
-      toast.error("شناسه کاربر موجود نیست");
-      return;
-    }
-    else{
-      VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
-      toast.success("ایمیل با موفقیت تأیید شد");
+        console.log(tempUserId, "lllllllllll");
+        toast.error("شناسه کاربر موجود نیست");
+        return;
+      } else {
+        VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
+        toast.success("ایمیل با موفقیت تأیید شد");
 
-      rout.push("/register/3");
-    }
-      
+        rout.push("/register/3");
+      }
     } catch (error) {
       toast.error("شناسه کاربر موجود نیست");
-      
     }
 
-  //   setLoading(true);
+    //   setLoading(true);
 
-  //   try {
-  //     // VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
-  //     // toast.success("ایمیل با موفقیت تأیید شد");
+    //   try {
+    //     // VerifyEmailApi({ tempUserId, verificationCode: otpStatet });
+    //     // toast.success("ایمیل با موفقیت تأیید شد");
 
-  //     // rout.push("/register/3");
-  //   } catch {
-  //     // toast.error("شناسه کاربر موجود نیست");
-  //   }
- };
+    //     // rout.push("/register/3");
+    //   } catch {
+    //     // toast.error("شناسه کاربر موجود نیست");
+    //   }
+  };
 
   const renderer = ({ minutes, seconds, completed }: any) => {
     return (
@@ -113,7 +112,10 @@ const VerifyEmail = () => {
       </div>
 
       <div className="w-full h-auto mt-20 flex items-center justify-around gap-10">
-        <Link href={'/register/1'} className="w-1/2 flex items-center justify-center gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45]">
+        <Link
+          href={"/register/1"}
+          className="w-1/2 flex items-center justify-center gap-2 border border-white h-auto p-3 rounded-2xl hover:bg-[#8CFF45]"
+        >
           <ArrowPathIcon className="w-4 h-4 text-white" />
           <p className="text-white text-md font-semibold">تغییر شماره موبایل</p>
         </Link>

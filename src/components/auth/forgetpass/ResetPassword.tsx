@@ -40,7 +40,7 @@ const ResetPassword = () => {
       
         Cookies.set("newPassword", result?.newPassword || "");
         toast.success("رمز عبور با موفقیت تغییر کرد.");
-        route.push("/dashboard");
+        route.push("/login");
       
     } catch {
       toast.error("خطا در تأیید کد"); 

@@ -32,7 +32,7 @@ const CompleteRegistration = () => {
 
       await RegisterActionStep3(formData);
       toast.success("ثبت‌نام کامل شد");
-      route.push("/dashboard");
+      route.push("/login");
     } catch (error) {
       toast.error("ثبت‌نام ناموفق بود");
     }
