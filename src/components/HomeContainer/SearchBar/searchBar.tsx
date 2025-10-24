@@ -131,9 +131,9 @@ const SearchBar = () => {
               className=" w-full border bg-[#363636] border-gray-300 text-white rounded-xl h-16 px-3 py-3 focus:border-blue-500 focus:outline-none"
             >
               <option value="">استان، شهر، اقامتگاه...</option>
-              {locations.map((loc) => (
+              {locations.map((loc, index) => (
                 <option
-                  key={loc.id}
+                  key={index}
                   value={loc.area_name}
                   className="cursor-pointer"
                 >

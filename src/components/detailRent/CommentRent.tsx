@@ -11,7 +11,7 @@ interface Props {
 
 const CommentRent = ({house} :Props) => {
   return (
-    <div className='w-11/12 mx-auto mt-10 border-4 border-blue-400'>
+    <div className='w-full mt-10 border-4 border-blue-400'>
       <UserCommentsHouse house={house}/>
     </div>
   )

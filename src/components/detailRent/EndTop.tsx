@@ -10,7 +10,7 @@ interface Props {
 const EndTop = ({ house }: Props) => {
   return (
     <>
-      <div className="w-1/2 h-auto mt-5 mr-16 flex gap-2">
+      <div className="w-1/2 h-auto mt-5  flex gap-2">
         <div className="w-1/4 p-3 border border-[#565656] rounded-2xl flex items-center justify-center bg-[#393939]">
           <p className="text-white ">{house?.categories?.name || "بدون دسته‌بندی"} </p>
         </div>
@@ -28,11 +28,11 @@ const EndTop = ({ house }: Props) => {
           </p>
         </div>
       </div>
-      <div className="w-1/2 h-auto p-2 mr-16 mt-5">
+      <div className="w-1/2 h-auto p-2 mt-5">
         <p className="text-white text-xl"> {house?.title|| 'هتل جدید'}</p>
       </div>
       <div className="flex ">
-        <div className="w-1/2 h-auto p-2 mr-16 mt-5 flex gap-1 ">
+        <div className="w-1/2 h-auto p-2  mt-5 flex gap-1 ">
           <MapPinIcon className="w-5 h-5 text-[#AAAAAA]" />
           <p className="text-[#AAAAAA] text-sm">
             {" "}

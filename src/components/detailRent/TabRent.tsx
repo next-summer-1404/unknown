@@ -42,7 +42,7 @@ const TabRent: React.FC<Props> = ({ house }) => {
       color="success"
       fullWidth
       classNames={{
-        tabList: "bg-[#3A3A3A] rounded-xl p-1 flex justify-start mt-10 w-11/12 mx-auto",
+        tabList: "bg-[#3A3A3A] rounded-xl p-1 flex justify-start mt-10 w-full",
         tab: [
           "rounded-xl font-semibold text-sm transition-all duration-200",
           "data-[selected=true]:bg-[#8CFF45] data-[selected=true]:text-black",

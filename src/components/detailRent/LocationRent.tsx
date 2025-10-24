@@ -12,7 +12,7 @@ const LocationRent = ({ house }: Props) => {
 
   return (
     <>
-      <div className="w-11/12 mx-auto mt-10 flex gap-5">
+      <div className="w-full mt-10 flex gap-5">
         <MapRent selectedHouse={selectedHouse} />
         <div className="w-1/2 h-auto ">
           <p className="text-sm leading-8 text-[#AAAAAA] p-5">

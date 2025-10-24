@@ -9,7 +9,7 @@ interface Props {
 const RentFacilities = ({ house }: Props) => {
   return (
     <>
-      <div className="w-11/12 mx-auto  mt-5 h-auto flex gap-2">
+      <div className="w-full  mt-5 h-auto flex gap-2">
         <div className="w-3/12 rounded-2xl  border bg-[#393939]">
           <p className="text-white text-center p-3"> بهداشتی</p>
           <div className="bg-[#7569FF] rounded-2xl w-2/3 m-auto mb-2">

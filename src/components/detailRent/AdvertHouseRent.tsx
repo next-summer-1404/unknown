@@ -5,6 +5,7 @@ import {
 import { getHouses } from "@/utils/service/api/getAllHouses";
 import { IHouses } from "@/types/IHouses";
 import SliderAdvertise from "../detailHouse/baseDetail/SliderAdvertise";
+import SimilarAdSlider from "./Slider/SimilarAdSlider";
 
 interface AdvertHouseRentProps {
   house: IHouses;
@@ -18,13 +19,13 @@ const AdvertHouseRent = async ({ house }: AdvertHouseRentProps) => {
   const filtered = Houses.filter(
     (h) =>
       h.id !== house.id &&
-      h.transaction_type === house.transaction_type &&
-      (h.address?.includes(mainAddressPart) ||
-        h.address?.startsWith(mainAddressPart))
+      h.transaction_type === house.transaction_type
   );
+  console.log(filtered);
+  console.log(Houses);
 
   return (
-    <div className="w-11/12 m-auto bg-[#232323] mt-30">
+    <div className="w-full bg-[#232323] pt-30">
       <div className="w-full h-10 bg-[#393939] rounded-2xl flex justify-between items-center p-3">
         <div className="flex gap-1">
           <BuildingOffice2Icon className="w-5 h-5 text-white" />
@@ -35,8 +36,14 @@ const AdvertHouseRent = async ({ house }: AdvertHouseRentProps) => {
           <ChevronLeftIcon className="w-5 h-5 text-[#8CFF45]" />
         </div>
       </div>
-      <div className="relative py-6">
-        <SliderAdvertise Houses={filtered} />
+      <div className="relative py-6 ">
+        {filtered.length > 0 ? (
+          <SimilarAdSlider Houses={filtered} />
+        ) : (
+          <p className="text-center text-white text-2xl font-bold">
+            مورد مشابهی وجود ندارد
+          </p>
+        )}
       </div>
     </div>
   );
