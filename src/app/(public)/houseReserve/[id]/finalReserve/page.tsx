@@ -13,12 +13,13 @@ export default function FinalReservePage({
   searchParams: { step?: string };
 }) {
   const stepNumber = Number(searchParams.step ?? 1);
+  const { id } = params;
 
   return (
     <div className="flex flex-col gap-6">
       <StepIndicator />
 
-      {stepNumber === 1 && <FirstStep />}
+      {stepNumber === 1 && <FirstStep id={id}/>}
       {stepNumber === 2 && <SecondStep />}
       {stepNumber === 3 && <ThirdFinalReserve />}
 
