@@ -13,12 +13,14 @@ const MinimumPrice = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const currentMinPrice = searchParams.get("minPrice") || "";
+  const currentMinPrice = searchParams.get("minPrice") || 0;
   const [value, setValue] = useState(currentMinPrice);
 
   const updateMinPrice = useDebouncedCallback((val: string) => {
     const params = new URLSearchParams(searchParams);
-    if (val) params.set("minPrice", val);
+    if (val) {
+      params.set("minPrice", val);
+    }
     else params.delete("minPrice");
     router.replace(`${pathname}?${params.toString()}`);
   }, 400);
@@ -46,7 +48,9 @@ const MinimumPrice = () => {
           onChange={(e) => {
             setValue(e.target.value);
             updateMinPrice(e.target.value);
+            console.log(value)
           }}
+
           className="
             w-full bg-transparent text-white text-center
             border border-[#AAAAAA] rounded-lg
