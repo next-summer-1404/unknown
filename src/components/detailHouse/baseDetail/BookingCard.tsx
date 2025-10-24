@@ -8,7 +8,6 @@ import { Card, Button } from "@heroui/react";
 import { BuildingOffice2Icon, UsersIcon } from "@heroicons/react/24/outline";
 import { IHouses } from "@/types/IHouses";
 import PriceReserve from "./PriceReserve";
-import http from "@/utils/service/interceptor/axiosClient";
 import AcceptPrice from "./AcceptPrice";
 import toast from "react-hot-toast";
 import { postBooking } from "@/utils/service/api/postBooking";
