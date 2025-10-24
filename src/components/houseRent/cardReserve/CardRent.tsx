@@ -15,9 +15,10 @@ import Observ from "./Observ";
 
 interface Props {
   house: IHouses;
+  bgColor?: string;
 }
 
-const CardRent: FC<Props> = ({ house }) => {
+const CardRent: FC<Props> = ({ house, bgColor = "#232323" }) => {
   const mainPhoto =
     house.photos && house.photos.length > 0 ? house.photos[0] : auth1.src;
 
@@ -25,6 +26,12 @@ const CardRent: FC<Props> = ({ house }) => {
     <div className="relative flex w-[49%] h-44 rounded-2xl bg-[#393939] p-3 group ">
       <div
         className={`${styleCard.cardShape} absolute top-0 left-0 w-9/12 h-7 z-20 bg-[#232323] rounded-[0_0_40px_0]`}
+        style={
+            {
+              backgroundColor: bgColor,
+              "--shape-color": bgColor,
+            } as CSSWithVars //global.d.ts
+          }      
       ></div>
       <div className="relative  w-[28%] h-full rounded-2xl overflow-hidden">
         <div

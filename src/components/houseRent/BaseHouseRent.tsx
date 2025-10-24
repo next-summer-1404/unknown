@@ -64,7 +64,7 @@ const BaseHouseRent = () => {
   ]);
 
   return (
-    <div className="w-full bg-[#0e0e0e] py-8 text-white">
+    <div className="w-full bg-[#232323] py-8 text-white">
       <BaseTopFilter totalCount={totalCount} />
       <BottomFilter />
       <div className="w-full px-13 pt-5 flex justify-between flex-wrap gap-6 mb-20">
