@@ -3,15 +3,13 @@ import React from "react";
 import InfoCall from "./InfoCall";
 import EndTop from "./EndTop";
 import TabRent from "./TabRent";
-
+import AdvertHouseRent from "./AdvertHouseRent";
 
 interface Props {
   house: IHouses;
 }
 
 const BaseDetailRent: React.FC<Props> = ({ house }) => {
- 
-
   return (
     <div className="border border-[#232323] w-full h-auto">
       <div className="w-11/12 h-auto mx-auto mt-30 flex gap-5 ">
@@ -20,10 +18,11 @@ const BaseDetailRent: React.FC<Props> = ({ house }) => {
           <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
           <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
         </div>
-        <InfoCall house={house}/>
+        <InfoCall house={house} />
       </div>
-      <EndTop house={house}/>
-      <TabRent house={house}/>
+      <EndTop house={house} />
+      <TabRent house={house} />
+      <AdvertHouseRent house={house}/>
     </div>
   );
 };

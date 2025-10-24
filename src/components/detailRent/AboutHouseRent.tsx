@@ -16,7 +16,6 @@ const AboutHouseRent = ({ house }: Props) => {
             : "هیچ مطلبی درباره ملک ارائه نشده است"}
         </p>
       </div>
-      <AdvertHouseRent />
     </>
   );
 };

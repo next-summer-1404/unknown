@@ -20,7 +20,6 @@ const LocationRent = ({ house }: Props) => {
           </p>
         </div>
       </div>
-      <AdvertHouseRent />
     </>
   );
 };
