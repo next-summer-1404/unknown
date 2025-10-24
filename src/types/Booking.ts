@@ -17,7 +17,7 @@ export namespace Booking {
 
   export interface DataValues {
     id: number;
-    houseId: number;
+    houseId: number | string;
     reservedDates: string[];
     traveler_details: IBook[];
     user_id: number;

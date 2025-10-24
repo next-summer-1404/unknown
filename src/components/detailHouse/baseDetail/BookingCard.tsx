@@ -11,6 +11,7 @@ import PriceReserve from "./PriceReserve";
 import http from "@/utils/service/interceptor/axiosClient";
 import AcceptPrice from "./AcceptPrice";
 import toast from "react-hot-toast";
+import { postBooking } from "@/utils/service/api/postBooking";
 
 interface Props {
   house: IHouses;
@@ -31,14 +32,16 @@ const BookingCard = ({ house }: Props) => {
       const formattedStart = startDate.format("YYYY-MM-DD");
       const formattedEnd = endDate.format("YYYY-MM-DD");
 
-      await http.post("/bookings", {
+      const res = await postBooking({
         houseId: house.id,
         reservedDates: [formattedStart, formattedEnd],
-    });
+      });
+      console.log(res);
+
       setIsReserved(true);
     } catch (error: any) {
       toast.error("مشکلی در ثبت رزرو پیش آمد");
-    } 
+    }
   };
 
   return (
