@@ -19,10 +19,11 @@ const AdvertHouseRent = async ({ house }: AdvertHouseRentProps) => {
   const filtered = Houses.filter(
     (h) =>
       h.id !== house.id &&
-      h.transaction_type === house.transaction_type
+      h.transaction_type === house.transaction_type &&
+      (h.address?.includes(mainAddressPart) ||
+        h.address?.startsWith(mainAddressPart))
   );
-  console.log(filtered);
-  console.log(Houses);
+  // console.log(filtered);
 
   return (
     <div className="w-full bg-[#232323] pt-30">
