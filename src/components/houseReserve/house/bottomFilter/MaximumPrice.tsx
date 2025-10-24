@@ -14,7 +14,6 @@ const MaximumPrice = () => {
 
   const currentMaxPrice = searchParams.get("maxPrice") || "";
   const [value, setValue] = useState(currentMaxPrice);
-
   const lastUpdateId = useRef(0);
 
   useEffect(() => {
@@ -34,7 +33,6 @@ const MaximumPrice = () => {
 
       router.replace(`${pathname}?${params.toString()}`);
     };
-
     update();
   }, [value, pathname, router, searchParams]);
 
