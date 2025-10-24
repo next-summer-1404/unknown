@@ -1,19 +1,14 @@
 import { IHouses } from "@/types/IHouses";
 import { CurrencyDollarIcon, StarIcon } from "@heroicons/react/24/outline";
-import { Button } from "@heroui/react";
-import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/navigation";
+import AcceptPrice from "./AcceptPrice";
 
 interface PriceReserveProps {
     house: IHouses;
 }
 
 const PriceReserve = ({ house }: PriceReserveProps) => {
-  const router = useRouter();
-  const handleReserveClick = () => {
-   router.push(`/houseReserve/${house.id}/finalReserve?step=1`);
-  };
+  
 
   return (
     <div>
@@ -52,12 +47,8 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
         </div>
       </div>
       <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">{house.discounted_price ? house.discounted_price : 0} تومان</p>
-
-      <div className="flex items-center justify-center">
-        <button onClick={handleReserveClick} className="bg-[#8CFF45]  font-bold  rounded-2xl w-2/3 m-auto mb-5">
-          <p className="text-[#363636] text-md text-center p-1">همین الان رزرو کن</p>
-        </button>
-      </div>
+      <AcceptPrice house={house} />
+      
     </div>
   );
 };
