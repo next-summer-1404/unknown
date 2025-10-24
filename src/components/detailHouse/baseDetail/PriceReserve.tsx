@@ -47,8 +47,8 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
         </div>
       </div>
       <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">{house.discounted_price ? house.discounted_price : 0} تومان</p>
-      <AcceptPrice house={house} />
       
+      <AcceptPrice houseId={house.id} />
     </div>
   );
 };

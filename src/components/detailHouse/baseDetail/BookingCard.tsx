@@ -8,6 +8,9 @@ import { Card, Button } from "@heroui/react";
 import { BuildingOffice2Icon, UsersIcon } from "@heroicons/react/24/outline";
 import { IHouses } from "@/types/IHouses";
 import PriceReserve from "./PriceReserve";
+import http from "@/utils/service/interceptor/axiosClient";
+import AcceptPrice from "./AcceptPrice";
+import toast from "react-hot-toast";
 
 interface Props {
   house: IHouses;
@@ -16,7 +19,27 @@ interface Props {
 const BookingCard = ({ house }: Props) => {
   const [startDate, setStartDate] = useState<DateObject | null>(null);
   const [endDate, setEndDate] = useState<DateObject | null>(null);
-  
+  const [isReserved, setIsReserved] = useState(false);
+
+  const handleReserveDates = async () => {
+    if (!startDate || !endDate) {
+      toast("لطفاً تاریخ ورود و خروج را انتخاب کنید");
+      return;
+    }
+
+    try {
+      const formattedStart = startDate.format("YYYY-MM-DD");
+      const formattedEnd = endDate.format("YYYY-MM-DD");
+
+      await http.post("/bookings", {
+        houseId: house.id,
+        reservedDates: [formattedStart, formattedEnd],
+    });
+      setIsReserved(true);
+    } catch (error: any) {
+      toast.error("مشکلی در ثبت رزرو پیش آمد");
+    } 
+  };
 
   return (
     <Card className="bg-[#2A2A2A] text-white rounded-2xl w-full">
@@ -61,6 +84,7 @@ const BookingCard = ({ house }: Props) => {
       </div>
 
       <PriceReserve house={house} />
+      {isReserved && <AcceptPrice houseId={house.id} />}
     </Card>
   );
 };
