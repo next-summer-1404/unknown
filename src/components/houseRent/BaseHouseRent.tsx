@@ -39,7 +39,8 @@ const BaseHouseRent = () => {
           location: location || undefined,
           page: 1,
           limit: 20,
-        };console.log("ببببببببب", params);
+        };
+        // console.log("ببببببببب", params);
 
 
         const data = await getRentHouse(params);
