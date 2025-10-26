@@ -87,19 +87,7 @@ const Header = () => {
               <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
             )}
           </div>
-          <div className="relative">
-            {" "}
-            <Link
-              className={`flex items-center px-5 py-2.5 text-lg text-center transition-colors 
-                  ${pathname === "/blogs" ? "text-[#8CFF45]" : ""}`}
-              href="/blogs"
-            >
-              مقالات ما
-            </Link>
-            {pathname === "/blogs" && (
-              <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
-            )}
-          </div>
+         
           <div className="relative">
             {" "}
             <Link
@@ -110,6 +98,19 @@ const Header = () => {
               تماس با ما
             </Link>
             {pathname === "/contactUs" && (
+              <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
+            )}
+          </div>
+           <div className="relative">
+            {" "}
+            <Link
+              className={`flex items-center px-5 py-2.5 text-lg text-center transition-colors 
+                  ${pathname === "/seller" ? "text-[#8CFF45]" : ""}`}
+              href="/seller"
+            >
+               داشبورد
+            </Link>
+            {pathname === "/seller" && (
               <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
             )}
           </div>
