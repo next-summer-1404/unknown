@@ -12,7 +12,7 @@ const ContainDashboard = () => {
   return (
     <div className="flex gap-5 w-full h-auto">
       <div className="flex-1 bg-[#393939] rounded-2xl">
-        <div className="h-10 flex items-center px-3 gap-2 pt-2">
+        <div className="h-14 flex items-center px-3 gap-2 pt-2">
           <WindowIcon className="w-5 h-5 text-[#AAA]" />
           <p className="text-[#AAA] text-[15px]">آمار درآمدها</p>
         </div>
