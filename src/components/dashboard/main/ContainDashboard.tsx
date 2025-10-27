@@ -3,10 +3,7 @@ import React from "react";
 import { UserIcon, WindowIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import GreenArrow from "../../../assets/images/greenArrow.png";
-import {
-  CircularProgressbar,
-  buildStyles,
-} from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const ContainDashboard = () => {
@@ -84,7 +81,7 @@ const ContainDashboard = () => {
               text={`${percentage}%`}
               styles={buildStyles({
                 textColor: "#AAA",
-                pathColor: "#00FF66", 
+                pathColor: "#00FF66",
                 trailColor: "#555",
                 textSize: "24px",
               })}

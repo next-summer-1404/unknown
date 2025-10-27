@@ -1,4 +1,4 @@
-import SellerDashboard from '@/components/dashboard/main'
+import SellerDashboard from '@/components/dashboard'
 import React from 'react'
 
 const SellerPage = () => {

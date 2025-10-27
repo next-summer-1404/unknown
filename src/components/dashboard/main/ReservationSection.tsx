@@ -24,7 +24,7 @@ const reservationRows = Array.from({ length: 6 }, (_, i) => ({
 
 export default function ReservationSection() {
   return (
-    <MainTable
+    <MainTable 
       title="رزروهای اخیر مشتریان"
       columns={reservationColumns}
       rows={reservationRows}
