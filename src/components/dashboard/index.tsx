@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import SideMain from "./main/SideMain";
 import DashboardHeader from "./main/DashboardHeader";
@@ -7,6 +6,7 @@ import ContainDashboard from "./main/ContainDashboard";
 import ReservationSection from "./main/ReservationSection";
 import PropertyManagement from "./propertyManagement/PropertyManagement";
 import BookingManagement from "./bookingManagement/BookingManagement";
+import FinancialManagement from "./financialManagement/FinancialManagement";
 
 const SellerDashboard = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -28,6 +28,7 @@ const SellerDashboard = () => {
 
         {activeSection === "property" && <PropertyManagement />}
         {activeSection === "reservation" && <BookingManagement />}
+        {activeSection === "finance" && <FinancialManagement />}
       </div>
     </div>
   );
