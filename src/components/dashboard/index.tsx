@@ -6,6 +6,7 @@ import HeroDashboard from "./main/HeroDashboard";
 import ContainDashboard from "./main/ContainDashboard";
 import ReservationSection from "./main/ReservationSection";
 import PropertyManagement from "./propertyManagement/PropertyManagement";
+import BookingManagement from "./bookingManagement/BookingManagement";
 
 const SellerDashboard = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -26,6 +27,7 @@ const SellerDashboard = () => {
         )}
 
         {activeSection === "property" && <PropertyManagement />}
+        {activeSection === "reservation" && <BookingManagement />}
       </div>
     </div>
   );
