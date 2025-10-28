@@ -1,7 +1,7 @@
 import { IHouses } from "@/types/IHouses";
 import Image from "next/image";
 import React from "react";
-import auth1 from "../../../../../assets/images/auth1.png";
+import auth1 from "../../../../../../assets/images/auth1.png";
 
 interface AboutHouseProps {
   house: IHouses;

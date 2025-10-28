@@ -17,8 +17,8 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
   // const houseData = await getHouseDetail(id)
 
   return (
-    <div className="w-11/12 h-auto m-auto mt-20 flex gap-10">
-      <div className="w-5/6 h-auto ">
+    <div className="w-full flex justify-between">
+      <div className="w-[77%] h-auto ">
         <p className="text-white text-xl font-bold p-2">{house.title}</p>
         <div className="flex items-center gap-1 mx-2 py-4">
           <MapPinIcon className="w-4 h-4 text-[#AAAAAA]" />
@@ -30,8 +30,8 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
           <Slider house={house} />
         </div>
       </div>
-      <div className="w-1/6 h-auto ">
-        <div className="flex items-center justify-center gap-3 mt-8">
+      <div className="w-[21%] flex flex-col items-center gap-6 pt-8">
+        <div className="flex items-center justify-center gap-3 ">
           <div className="flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-[#7569FF] text-white text-sm font-semibold  transition">
             {house.rate ? (
               <>
@@ -55,8 +55,8 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
             <ArrowUturnUpIcon className="w-5 h-5 bg-[#8CFF45]" />
           </Link>
         </div>
-        <div className="w-full h-auto  my-5 grid grid-cols-2 gap-5">
-          <div className="h-24 w-24 bg-[#393939] rounded-2xl"></div>
+        <div className="w-fit grid grid-cols-2 gap-5">
+          <div className="h-25 w-25 bg-[#393939] rounded-2xl"></div>
           <div className="h-24 w-24 bg-[#393939] rounded-2xl"></div>
           <div className="h-24 w-24 bg-[#393939] rounded-2xl"></div>
           <div className="h-24 w-24 bg-[#393939] rounded-2xl"></div>
