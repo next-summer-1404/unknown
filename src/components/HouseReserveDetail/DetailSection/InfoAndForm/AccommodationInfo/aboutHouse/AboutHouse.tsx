@@ -1,7 +1,7 @@
 import { IHouses } from "@/types/IHouses";
 import Image from "next/image";
 import React from "react";
-import auth1 from "../../../assets/images/auth1.png";
+import auth1 from "../../../../../../assets/images/auth1.png";
 
 interface AboutHouseProps {
   house: IHouses;
@@ -11,7 +11,7 @@ const AboutHouse = ({ house }: AboutHouseProps) => {
   const firstPhoto = house.photos?.[0] || auth1.src;
   const secondPhotoSrc = house.photos?.[1] || house.photos?.[0] || auth1.src
 
- 
+
 
   return (
     <div className="w-full h-auto mt-10">

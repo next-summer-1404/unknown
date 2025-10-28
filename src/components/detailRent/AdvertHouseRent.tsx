@@ -4,7 +4,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { getHouses } from "@/utils/service/api/getAllHouses";
 import { IHouses } from "@/types/IHouses";
-import SliderAdvertise from "../detailHouse/baseDetail/SliderAdvertise";
+import SliderAdvertise from "../HouseReserveDetail/DetailSection/BottomSlider/SliderAdvertise";
 import SimilarAdSlider from "./Slider/SimilarAdSlider";
 
 interface AdvertHouseRentProps {

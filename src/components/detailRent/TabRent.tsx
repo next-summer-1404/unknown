@@ -12,7 +12,7 @@ import { IHouses } from "@/types/IHouses";
 import AboutHouseRent from "./AboutHouseRent";
 import RentFacilities from "./RentFacilities";
 import LocationRent from "./LocationRent";
-import UserCommentsHouse from "../detailHouse/userCommentsHouse/UserCommentsHouse";
+import UserCommentsHouse from "../HouseReserveDetail/DetailSection/InfoAndForm/AccommodationInfo/userCommentsHouse/UserCommentsHouse";
 import CommentRent from "./CommentRent";
 
 interface Props {
@@ -62,7 +62,6 @@ const TabRent: React.FC<Props> = ({ house }) => {
         }
       >
         <AboutHouseRent house={house} />
-
       </Tab>
 
       <Tab

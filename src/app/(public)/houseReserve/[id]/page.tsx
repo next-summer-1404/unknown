@@ -1,5 +1,5 @@
 import React from "react";
-import BaseDetail from "../../../../components/detailHouse/baseDetail/baseDetail";
+import BaseDetail from "../../../../components/HouseReserveDetail/DetailSection/Index";
 import { getHouseDetail } from "../../../../utils/service/api/getHouseDetail";
 import { IHouses } from "@/types/IHouses";
 

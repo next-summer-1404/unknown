@@ -16,7 +16,7 @@ const AcceptPrice = ({ houseId }: Props) => {
       <button
         onClick={handleReserveClick}
         
-        className="bg-[#8CFF45]  font-bold  rounded-2xl w-2/3 m-auto mb-5"
+        className="bg-[#8CFF45]  font-bold  rounded-2xl w-2/3 m-auto mb-5 cursor-pointer"
       >
         <p className="text-[#363636] text-md text-center p-1">
           همین الان رزرو کن

@@ -44,7 +44,8 @@ const BookingCard = ({ house }: Props) => {
   };
 
   return (
-    <Card className="bg-[#2A2A2A] text-white rounded-2xl w-full">
+    <div className="w-2/6 p-4 rounded-xl">
+      <Card className="bg-[#2A2A2A] text-white rounded-2xl w-full">
       <div className="flex flex-col w-5/6 h-auto m-auto border-b-1 border-[#646464] pb-5">
         <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full w-2/3 m-auto">
           <BuildingOffice2Icon className="w-5 h-5 text-white" />
@@ -88,6 +89,8 @@ const BookingCard = ({ house }: Props) => {
       <PriceReserve house={house} />
       {isReserved && <AcceptPrice houseId={house.id} />}
     </Card>
+    </div>
+    
   );
 };
 
