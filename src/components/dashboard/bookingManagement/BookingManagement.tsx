@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import BookingTable from "./BookingTable";
+import FilterModal from "./FilterModal";
 
 const BookingManagement = () => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   return (
     <div className="p-3 text-right">
       <div className="h-20 flex items-center justify-between">
@@ -13,17 +17,28 @@ const BookingManagement = () => {
           <input
             type="text"
             placeholder="جستجو"
-            className="outline-none rounded-2xl text-[#AAA] w-full border border-[#555] placeholder-[#777] p-2 transition-all duration-200"
+            className="outline-none rounded-2xl text-[#AAA] w-full border border-[#555] placeholder-[#777] p-2 transition-all duration-200 "
           />
 
-          <button className="bg-[#8CFF45] text-[#393939] font-semibold rounded-2xl px-8 py-2 hover:bg-[#aaff6b] active:scale-95 transition-all duration-150">
+          <button
+            onClick={() => setIsFilterOpen(true)}
+            className="bg-[#8CFF45] text-[#393939] font-semibold rounded-2xl px-8 py-2 hover:bg-[#aaff6b] active:scale-95 transition-all duration-150"
+          >
             فیلتر
           </button>
         </div>
       </div>
 
       <div className="border-t border-dashed border-[#555] mt-2" />
-      <BookingTable/>
+
+      <BookingTable />
+
+      {/* 🔹 مدال فیلترها */}
+      <FilterModal
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        onApply={() => setIsFilterOpen(false)}
+      />
     </div>
   );
 };
