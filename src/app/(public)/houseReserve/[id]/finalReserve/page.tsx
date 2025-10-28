@@ -1,9 +1,9 @@
 "use client";
 
-import FirstStep from "@/components/HouseReserveDetail/finalReserve/FirstStep/Index";
-import StepIndicator from "@/components/HouseReserveDetail/finalReserve/StepIndicator";
-import SecondStep from "@/components/HouseReserveDetail/finalReserve/SecondStep/Index";
-import ThirdFinalReserve from "@/components/HouseReserveDetail/finalReserve/ThirdStep/ThirdFinalReserve";
+import FirstStep from "@/components/HouseReserveDetail/ReserveAndPayment/FirstStep/Index";
+import StepIndicator from "@/components/HouseReserveDetail/ReserveAndPayment/StepIndicator";
+import SecondStep from "@/components/HouseReserveDetail/ReserveAndPayment/SecondStep/Index";
+import ThirdFinalReserve from "@/components/HouseReserveDetail/ReserveAndPayment/ThirdStep/ThirdFinalReserve";
 
 export default function FinalReservePage({
   params,

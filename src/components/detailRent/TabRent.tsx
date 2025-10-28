@@ -12,7 +12,7 @@ import { IHouses } from "@/types/IHouses";
 import AboutHouseRent from "./AboutHouseRent";
 import RentFacilities from "./RentFacilities";
 import LocationRent from "./LocationRent";
-import UserCommentsHouse from "../HouseReserveDetail/userCommentsHouse/UserCommentsHouse";
+import UserCommentsHouse from "../HouseReserveDetail/DetailSection/AccommodationInfo/userCommentsHouse/UserCommentsHouse";
 import CommentRent from "./CommentRent";
 
 interface Props {

@@ -1,8 +1,8 @@
 import { IHouses } from "@/types/IHouses";
 import React from "react";
-import TopBaseDetail from "./TopBaseDetail";
-import BottomBaseDetail from "./BottomBaseDetail";
-import AdvertDetail from "./AdvertDetail";
+import TopBaseDetail from "./ImageSection/Index";
+import BottomBaseDetail from "./AccommodationInfo/Index";
+import AdvertDetail from "./BottomSlider/Index";
 
 interface Props {
   house: IHouses;
@@ -15,8 +15,6 @@ const BaseDetail = ({ house }: Props) => {
       <TopBaseDetail house={house} />
       <BottomBaseDetail house={house} />
       <AdvertDetail house={house} />
-
-
     </div>
   );
 };

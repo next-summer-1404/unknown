@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./Slider.module.css";
 import Image from "next/image";
-import Change from "../../../assets/images/auth1.png";
+import Change from "../../../../assets/images/auth1.png";
 import { IHouses } from "@/types/IHouses";
 
 interface SliderProps {

@@ -15,7 +15,6 @@ interface TopBaseDetailProps {
 
 const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
   // const houseData = await getHouseDetail(id)
-  
 
   return (
     <div className="w-11/12 h-auto m-auto mt-20 flex gap-10">
@@ -28,7 +27,7 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
           </p>
         </div>
         <div className="w-full h-[444px] rounded-xl overflow-hidden bg-[#393939] mb-20">
-          <Slider house={house}/>
+          <Slider house={house} />
         </div>
       </div>
       <div className="w-1/6 h-auto ">
@@ -49,7 +48,10 @@ const TopBaseDetail = async ({ house }: TopBaseDetailProps) => {
           <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#2F2F2F] border border-[#444] hover:bg-[#3A3A3A] transition">
             <ClipboardIcon className="w-5 h-5 text-[#AAAAAA]" />
           </button>
-          <Link href={'/houseReserve'} className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#8CFF45] transition">
+          <Link
+            href={"/houseReserve"}
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#8CFF45] transition"
+          >
             <ArrowUturnUpIcon className="w-5 h-5 bg-[#8CFF45]" />
           </Link>
         </div>

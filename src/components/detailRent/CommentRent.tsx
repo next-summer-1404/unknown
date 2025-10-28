@@ -1,5 +1,5 @@
 import React from "react";
-import UserCommentsHouse from "../HouseReserveDetail/userCommentsHouse/UserCommentsHouse";
+import UserCommentsHouse from "../HouseReserveDetail/DetailSection/AccommodationInfo/userCommentsHouse/UserCommentsHouse";
 import { IHouses } from "@/types/IHouses";
 import AdvertHouseRent from "./AdvertHouseRent";
 

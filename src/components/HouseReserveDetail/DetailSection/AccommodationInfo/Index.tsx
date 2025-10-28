@@ -1,19 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tabs, Tab} from "@heroui/react";
+import { Tabs, Tab } from "@heroui/react";
 import {
   ClipboardDocumentListIcon,
   HomeModernIcon,
   ChatBubbleOvalLeftEllipsisIcon,
 } from "@heroicons/react/24/outline";
-import AboutHouse from "../aboutHouse/AboutHouse";
-import HouseFacilities from "../houseFacilities/HouseFacilities";
-import UserCommentsHouse from "../userCommentsHouse/UserCommentsHouse";
+import AboutHouse from "./aboutHouse/AboutHouse";
+import HouseFacilities from "./houseFacilities/HouseFacilities";
+import UserCommentsHouse from "./userCommentsHouse/UserCommentsHouse";
 import { IHouses } from "@/types/IHouses";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import "react-multi-date-picker/styles/layouts/mobile.css";
-import BookingCard from "./BookingCard";
+import BookingCard from "./BookingCardForm/Index";
 
 interface BottomBaseDetailProps {
   house: IHouses;
@@ -30,7 +30,6 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
     const params = new URLSearchParams(searchParams);
     params.set("tab", key);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-
   };
 
   return (
@@ -94,7 +93,7 @@ const BottomBaseDetail: React.FC<BottomBaseDetailProps> = ({ house }) => {
       </div>
 
       <div className="w-2/6 p-4 rounded-xl">
-        <BookingCard house={house}/>
+        <BookingCard house={house} />
       </div>
     </div>
   );
