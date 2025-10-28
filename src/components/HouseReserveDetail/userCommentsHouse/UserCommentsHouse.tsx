@@ -11,7 +11,7 @@ interface UserCommentsHouseProps {
 const UserCommentsHouse = ({ house }: UserCommentsHouseProps) => {
   const [userRating, setUserRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-
+// اینجا باید کار کنم
   const ratingPercentage = (userRating / 5) * 100;
 
   const handleRatingChange = (rating: number) => {

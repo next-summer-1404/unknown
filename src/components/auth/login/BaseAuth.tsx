@@ -13,7 +13,7 @@ interface IAuth {
 
 const BaseAuth: FC<IAuth> = ({ children }) => {
   return (
-    <div className="w-full  py-10 ">
+    <div className="w-full pt-20 py-10 ">
       <div className="w-11/12 mx-auto flex flex-col md:flex-row gap-6 ">
         <div className="md:w-1/2 w-full p-6 ">
           <p className="text-[#8CFF45] font-bold text-2xl">خوش برگشتی!</p>
