@@ -4,9 +4,8 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="">
-     
+    <>
       {children}
-    </section>
+    </>
   );
 }
