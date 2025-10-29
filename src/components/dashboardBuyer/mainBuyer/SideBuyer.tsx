@@ -10,6 +10,7 @@ import {
   BellIcon,
   DocumentTextIcon,
   BuildingOfficeIcon,
+  HeartIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -20,14 +21,13 @@ type SideMainProps = {
 const menuItems = [
   { label: "داشبورد", icon: HomeIcon, section: "dashboard" },
   { label: "اطلاعات کاربری", icon: UserIcon, section: "userinfo" },
-  { label: "مدیریت املاک", icon: BuildingOfficeIcon, section: "property" },
   { label: "مدیریت رزرو", icon: PlusCircleIcon, section: "reservation" },
-  { label: "مدیریت مالی", icon: WalletIcon, section: "finance" },
-  { label: "مدیریت نظرها", icon: ChatBubbleLeftRightIcon, section: "comments" },
+  { label: " علاقه مندی ها", icon: HeartIcon, section: "favorite" },
+  { label: " پرداخت ها", icon: WalletIcon, section: "buyerPay" },
   { label: "اعلان‌ها", icon: BellIcon, section: "notifications" },
 ];
 
-export default function SideMain({ onSectionChange }: SideMainProps) {
+export default function SideBuyer({ onSectionChange }: SideMainProps) {
   const [activeSection, setActiveSection] = useState("dashboard");
 
   const handleMenuClick = (section: string) => {
@@ -77,10 +77,10 @@ export default function SideMain({ onSectionChange }: SideMainProps) {
                 : "text-[#AAAAAA] hover:text-[#8CFF45]"
             }`}
           >
-            <DocumentTextIcon className="w-5 h-5" />
-            <span className="font-medium">نظرات جدید</span>
+            <WalletIcon className="w-5 h-5" />
+            <span className="font-medium"> کیف پول</span>
           </button>
-          <p className="text-[#AAAAAA] text-sm mt-1">۵ نظر</p>
+          <p className="text-[#AAAAAA] text-sm mt-1">عدم موجودی </p>
         </div>
       </div>
     </div>

@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import BookingTable from "./BookingTable";
-import FilterModal from "./FilterModal";
+import FavFilterModal from "./FavFilterModal";
+import FavoriteTable from "./FavoriteTable";
 
-const BookingManagement = () => {
+const TopFavorite = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
     <div className="p-3 text-right">
       <div className="h-20 flex items-center justify-between">
         <p className="w-1/2 font-[500] text-xl text-[#AAA]">
-          لیست رزروهای مشتریان
+            علاقه مندی ها
         </p>
 
         <div className="flex justify-between items-center w-1/2 gap-5">
@@ -31,10 +31,9 @@ const BookingManagement = () => {
 
       <div className="border-t border-dashed border-[#555] mt-2" />
 
-      <BookingTable />
+      <FavoriteTable />
 
-      
-      <FilterModal
+      <FavFilterModal
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
         onApply={() => setIsFilterOpen(false)}
@@ -43,4 +42,4 @@ const BookingManagement = () => {
   );
 };
 
-export default BookingManagement;
+export default TopFavorite;

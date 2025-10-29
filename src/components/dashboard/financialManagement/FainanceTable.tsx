@@ -3,7 +3,6 @@ import React from "react";
 import DynamicTable from "../../common/table/DynamicTable";
 
 const FainanceTable = () => {
-  // 🔹 تعریف ستون‌ها
   const columns = [
     { key: "date", label: "تاریخ" },
     { key: "tracking", label: "شماره پیگیری" },
@@ -13,7 +12,6 @@ const FainanceTable = () => {
     { key: "action", label: "مشاهده رسید" },
   ];
 
-  // 🔹 داده‌های نمونه ردیف‌ها مطابق تصویر
   const rows = [
     {
       key: 1,

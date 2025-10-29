@@ -61,10 +61,10 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
 
   return (
     <>
-      <div className="bg-[#393939] mt-8 text-[#E5E7EB] rounded-xl p-5 border border-[#333] shadow-md h-auto">
+      <div className="bg-[#393939] mt-8 text-[#AAA] rounded-xl p-5 border border-[#333] shadow-md h-auto">
         {title && (
           <>
-            <div className="text-right text-[#E5E7EB] text-base font-semibold mb-4">
+            <div className="text-right text-[#AAA] text-base font-semibold mb-4">
               {title}
             </div>
             <div className="border-t border-dashed border-[#4B4B4B] mb-4" />
