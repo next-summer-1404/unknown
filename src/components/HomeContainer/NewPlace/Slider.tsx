@@ -17,9 +17,6 @@ const Slider = ({ Houses }: SliderProps) => {
             slidesPerView={"auto"}
             spaceBetween={30}
             centeredSlides={false}
-            // put in center of swiper
-            // slidesOffsetBefore={20}
-            // slidesOffsetAfter={30}
             breakpoints={{
               320: { slidesPerView: 1 },
               490: { slidesPerView: 1 },
@@ -30,7 +27,7 @@ const Slider = ({ Houses }: SliderProps) => {
               clickable: true,
             }}
             modules={[Pagination]}
-            className="mySwiper w-full mt-6 "
+            className=" w-full mt-6 "
           >
             {Houses.map((Item, index) => {
               return (
