@@ -39,10 +39,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Peyda.className} antialiased`}>
         <Provider>
-          <Header />
+          {/* <Header /> */}
           <GlobalTransitionLoader />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </Provider>
       </body>
     </html>
