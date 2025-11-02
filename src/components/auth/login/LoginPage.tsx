@@ -15,18 +15,14 @@ import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { ILoginRequest } from "@/types/LoginTypes";
 
-interface ILoginForm {
-  email: string;
-  password: string;
-}
 
 const LoginPage = () => {
-  const { register, handleSubmit } = useForm<ILoginForm>();
+  const { register, handleSubmit } = useForm<ILoginRequest>();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // const onSubmit = async (data: ILoginForm) => {
+  // const onSubmit = async (data: ILoginRequest) => {
   //   setLoading(true);
   //   const result = await LoginApi(data);
 
