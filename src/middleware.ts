@@ -13,57 +13,49 @@
 //   matcher: ["/dashboard/:path", "/dashboard"],
 // };
 
-import { NextRequest, NextResponse } from "next/server";
+
+
+
+
+
+
+
+import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
+import type { NextRequest } from "next/server";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+export const config = { matcher: ["/dashboard/:path*"] };
 
-export async function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken")?.value;
-  const { pathname } = request.nextUrl;
-  const isDashboard = pathname.startsWith("/dashboard");
+export async function middleware(req: NextRequest) {
+  const token = req.cookies.get("accessToken")?.value;
 
-   if (!token && isDashboard) {
-    if (process.env.NODE_ENV === "development")
-      return NextResponse.redirect(new URL("/login", request.url));
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (token && isDashboard) {
+  try {
+    const raw = process.env.JWT_SECRET!;
+    let secret: Uint8Array;
+
     try {
-      const { payload } = await jwtVerify(token, secret);
-      const role = payload.role as "buyer" | "seller" | "admin" | undefined;
-
-      if (!role) {
-        if (process.env.NODE_ENV === "development")
-          console.log("❌ Invalid JWT (no role)");
-        const res = NextResponse.redirect(new URL("/login", request.url));
-        res.cookies.delete("accessToken");
-        return res;
-      }
-
-      const allowedPath = `/dashboard/${role}`;
-
-      if (pathname === "/dashboard") {
-        if (process.env.NODE_ENV === "development")
-          return NextResponse.redirect(new URL(allowedPath, request.url));
-      }
-
-      if (!pathname.startsWith(allowedPath)) {
-        if (process.env.NODE_ENV === "development")
-          return NextResponse.redirect(new URL(allowedPath, request.url));
-      }
-
-      return NextResponse.next();
-    } catch (err) {
-      const res = NextResponse.redirect(new URL("/login", request.url));
-      res.cookies.delete("accessToken");
-      return res;
+      secret = new TextEncoder().encode(Buffer.from(raw, "base64").toString());
+    } catch {
+      secret = new TextEncoder().encode(raw);
     }
+
+    const { payload } = await jwtVerify(token, secret);
+    const role = (payload as any)?.role ?? "unknown";
+
+    if (req.nextUrl.pathname === "/dashboard") {
+      return NextResponse.redirect(new URL(`/dashboard/${role}`, req.url));
+    }
+
+    const res = NextResponse.next();
+    res.headers.set("x-role-debug", ` verified role=${role}`);
+    return res;
+  } catch (err) {
+    const res = NextResponse.redirect(new URL("/login", req.url));
+    res.headers.set("x-role-debug", "JWT verification failed");
+    return res;
   }
-
-  return NextResponse.next();
 }
-
-export const config = {
-  matcher: ["/dashboard/:path*", "/dashboard"],
-};
