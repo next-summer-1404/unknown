@@ -36,7 +36,7 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
       {/* */}
       <div className="w-5/6 m-auto h-auto flex my-5 ">
         <div className="w-1/2 h-auto"></div>
-        <div className="w-1/2 h-auto  flex gap-10 items-center">
+        <div className="w-1/2 h-auto  flex gap-3 items-center">
           <div className="flex items-center gap-1 ">
             <p className="line-through text-[#AAAAAA] text-md">{house.price}</p>
             <p className="text-md text-[#AAAAAA]">تومان</p>

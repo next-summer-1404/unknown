@@ -8,7 +8,7 @@ export interface DashboardSummary {
   };
   bookings: {
     bookingCount: number;
-    conformedBookings: number; 
+    conformedBookings: number;
     canceledBookings: number;
     pendingBookings: number;
   };

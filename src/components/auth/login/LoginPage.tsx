@@ -21,52 +21,45 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // const onSubmit = async (data: ILoginRequest) => {
-  //   setLoading(true);
-  //   const result = await LoginApi(data);
-
-  //   if (result && result.accessToken && result.refreshToken) {
-  //     Cookies.set("accessToken", result.accessToken, { expires: 1 });
-  //     Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
-  //     console.log( "token", result.accessToken);
-
-  //     router.push("/dashboard");
-  //   } else {
-  //     toast.error("ورود ناموفق بود");
-  //   }
-
-  //   setLoading(false);
-  // };
   const onSubmit = async (data: ILoginRequest) => {
     setLoading(true);
+    console.log('dddddddddd', data);
+
     try {
       const result = await LoginApi(data);
+      console.log('rrrrrrrrrrrrr', result);
+
       const token = typeof result === "string" ? result : result?.accessToken;
+      console.log("ttttttttttttt", token);
 
       if (!token) {
+        toast.error("دریافت توکن ناموفق بود");
         return;
       }
 
-      Cookies.set("accessToken", token);
+      Cookies.set("accessToken", token, { expires: 1, path: "/" });
 
       const decoded: any = jwtDecode(token);
-      const role = decoded?.role;
+      console.log('gggggggggggg', decoded);
 
+      const role = decoded?.role;
       if (!role) {
-        toast.error("نقش در توکن وجود ندارد");
+        toast.error("نقش در توکن یافت نشد");
         return;
       }
 
-      toast.success("ورود موفق ✅");
+      toast.success("ورود با موفقیت انجام شد");
 
       if (role === "buyer") {
-        window.location.href = "/dashboard/buyer";
+        router.push("/dashboard/buyer");
+      } else if (role === "seller") {
+        console.log('selllller');
+        router.push("/dashboard/seller");
+      } else {
+        router.push("/dashboard");
       }
-      if (role === "seller") {
-        window.location.href = "/dashboard/seller";
-      }
-    } catch (error) {
-      toast.error("خطای ورود");
+    } catch (error: any) {
+      toast.error("خطا در ورود، لطفاً دوباره تلاش کنید");
     } finally {
       setLoading(false);
     }
@@ -80,9 +73,9 @@ const LoginPage = () => {
             <p>ایمیل:</p>
             <input
               type="email"
-              {...register("email")}
+              {...register("email", { required: true })}
               className="w-full border border-white bg-transparent rounded-lg px-4 py-2 text-right placeholder-white focus:outline-none"
-              placeholder="Dakjshbd@Email.Com"
+              placeholder="example@email.com"
             />
           </div>
 
@@ -90,7 +83,7 @@ const LoginPage = () => {
             <p>رمز عبور:</p>
             <input
               type={showPassword ? "text" : "password"}
-              {...register("password")}
+              {...register("password", { required: true })}
               className="w-9/12 border border-[#DDDDDD] bg-transparent rounded-lg px-4 py-2 text-right placeholder-[#DDDDDD] focus:outline-none"
               placeholder="رمز عبور"
             />
@@ -120,10 +113,13 @@ const LoginPage = () => {
 
         <button
           type="submit"
-          className="w-full bg-[#8CFF45] text-[#363636] py-2 rounded-xl flex items-center justify-center gap-2 text-lg font-bold"
+          disabled={loading}
+          className={`w-full ${
+            loading ? "bg-gray-500" : "bg-[#8CFF45]"
+          } text-[#363636] py-2 rounded-xl flex items-center justify-center gap-2 text-lg font-bold`}
         >
-          ورود به حساب کاربری
-          <ChevronLeftIcon className="h-5 w-5" />
+          {loading ? "در حال ورود..." : "ورود به حساب کاربری"}
+          {!loading && <ChevronLeftIcon className="h-5 w-5" />}
         </button>
       </form>
     </div>

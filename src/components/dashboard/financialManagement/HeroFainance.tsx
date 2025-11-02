@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaperClipIcon,
 } from "@heroicons/react/24/outline";
+import { FinanceTypes } from "@/types/FinanceTypes";
+import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
 
 
 const HeroFainance = () => {
+   const [data, setData] = useState<FinanceTypes | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSummary = async () => {
+      try {
+        const res = await getDashboardFinance();
+        setData(res);
+      } catch (err) {
+        // console.log("خطا در دریافت داده مالی:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSummary();
+  }, []);
+
   const cards = [
-    { id: 1, title: "درآمد ماه جاری " },
-    { id: 2, title: "درآمد ماه قبل " },
-    { id: 3, title: "درآمد کل " },
-    { id: 4, title: "موجودی قابل برداشت "},
+    { id: 1, title: "درآمد ماه جاری", value: data?.totalCurrentMonthAmount },
+    { id: 2, title: "درآمد ماه قبل", value: data?.totalPreviousMonthAmount },
+    { id: 3, title: "درآمد کل", value: data?.totalAmount },
+    { id: 4, title: "موجودی قابل برداشت", value: data?.totalPayments },
   ];
+
 
   return (
     <div className="flex justify-between gap-5 w-full">
@@ -29,7 +50,7 @@ const HeroFainance = () => {
 
           <div className="flex justify-between items-center p-2">
             <button className="text-[16px] text-[#AAA] font-medium">
-              115،000،000     تومان
+                {item.value}
             </button>
             
           </div>
