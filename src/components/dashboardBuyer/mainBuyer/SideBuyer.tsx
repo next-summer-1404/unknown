@@ -13,6 +13,7 @@ import {
   HeartIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import WalletModal from "./WalletModal";
 
 type SideMainProps = {
   onSectionChange: (section: string) => void;
@@ -29,6 +30,7 @@ const menuItems = [
 
 export default function SideBuyer({ onSectionChange }: SideMainProps) {
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   const handleMenuClick = (section: string) => {
     setActiveSection(section);
@@ -37,7 +39,8 @@ export default function SideBuyer({ onSectionChange }: SideMainProps) {
 
   return (
     <div className="w-[270px] h-[775px] bg-[#393939] rounded-2xl flex flex-col overflow-hidden">
-      <Link href={'/'}
+      <Link
+        href={"/"}
         onClick={() => handleMenuClick("dashboard")}
         className="flex items-center justify-between px-5 h-[60px]"
       >
@@ -70,9 +73,9 @@ export default function SideBuyer({ onSectionChange }: SideMainProps) {
       <div className="px-4 h-[90px] flex flex-col justify-center items-center">
         <div className="border border-[#AAAAAA]/40 w-full rounded-xl py-3 flex flex-col items-center">
           <button
-            onClick={() => handleMenuClick("reviews")}
+             onClick={() => setShowWalletModal(!showWalletModal)} 
             className={`flex items-center gap-2 text-[15px] ${
-              activeSection === "reviews"
+              showWalletModal
                 ? "text-[#8CFF45]"
                 : "text-[#AAAAAA] hover:text-[#8CFF45]"
             }`}
@@ -82,6 +85,7 @@ export default function SideBuyer({ onSectionChange }: SideMainProps) {
           </button>
           <p className="text-[#AAAAAA] text-sm mt-1">عدم موجودی </p>
         </div>
+        {showWalletModal && <WalletModal />} 
       </div>
     </div>
   );

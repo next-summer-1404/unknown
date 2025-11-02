@@ -4,13 +4,14 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  success: boolean;
+  // success: boolean;
   accessToken: string;
   refreshToken: string;
   message?: string;
   user?: {
     id: string;
-    name: string;
+    // name: string;
     email: string;
+    role: "buyer" | "seller" | "admin";
   };
 }

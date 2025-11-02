@@ -15,7 +15,7 @@ instance.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (error.response?.status === 401 && typeof window !== "undefined") {
-      Cookies.remove("token");
+      Cookies.remove("accessToken");
       window.location.href = "/login";
     }
     return Promise.reject(error);
@@ -26,7 +26,7 @@ instance.interceptors.response.use(
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // فقط کلاینت
-    const token = Cookies.get("token");
+    const token = Cookies.get("accessToken");
 
     if (!config.headers) {
       config.headers = new AxiosHeaders();
