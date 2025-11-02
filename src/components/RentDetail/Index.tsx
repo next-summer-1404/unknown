@@ -1,9 +1,8 @@
 import { IHouses } from "@/types/IHouses";
 import React from "react";
-import InfoCall from "./InfoCall";
-import EndTop from "./EndTop";
-import TabRent from "./TabRent";
-import AdvertHouseRent from "./AdvertHouseRent";
+import TabRent from "./AboutHouseTabs/TabRent";
+import AdvertHouseRent from "./SimilarProperty/AdvertHouseRent";
+import TopInfo from "./TopInfo/Index";
 
 interface Props {
   house: IHouses;
@@ -11,18 +10,10 @@ interface Props {
 
 const Index: React.FC<Props> = ({ house }) => {
   return (
-    <div className="px-18 pt-30 w-full">
-      <div className="w-full flex gap-5 ">
-        <div className="w-5/12 h-96 border border-red-400 rounded-2xl"></div>
-        <div className="w-4/12 h-96 flex flex-col gap-5">
-          <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
-          <div className="w-full h-1/2  border border-green-400 rounded-2xl"></div>
-        </div>
-        <InfoCall house={house} />
-      </div>
-      <EndTop house={house} />
+    <div className="px-16 pt-30 w-full h-auto">
+      <TopInfo house={house} />
       <TabRent house={house} />
-      <AdvertHouseRent house={house}/>
+      <AdvertHouseRent house={house} />
     </div>
   );
 };

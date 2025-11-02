@@ -1,6 +1,5 @@
 import { IHouses } from "@/types/IHouses";
 import React from "react";
-import AdvertHouseRent from "./AdvertHouseRent";
 
 interface Props {
   house: IHouses;
