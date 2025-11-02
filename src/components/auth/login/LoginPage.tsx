@@ -15,18 +15,13 @@ import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { ILoginRequest } from "@/types/LoginTypes";
 
-interface ILoginForm {
-  email: string;
-  password: string;
-}
-
 const LoginPage = () => {
-  const { register, handleSubmit } = useForm<ILoginForm>();
+  const { register, handleSubmit } = useForm<ILoginRequest>();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // const onSubmit = async (data: ILoginForm) => {
+  // const onSubmit = async (data: ILoginRequest) => {
   //   setLoading(true);
   //   const result = await LoginApi(data);
 
@@ -42,41 +37,40 @@ const LoginPage = () => {
 
   //   setLoading(false);
   // };
-
   const onSubmit = async (data: ILoginRequest) => {
-  setLoading(true);
-  try {
-    const result = await LoginApi(data);
+    setLoading(true);
+    try {
+      const result = await LoginApi(data);
+      const token = typeof result === "string" ? result : result?.accessToken;
 
-    const token = typeof result === "string" ? result : result?.accessToken;
+      if (!token) {
+        return;
+      }
 
-    if (!token) {
-      toast.error("پاسخ نامعتبر از سرور");
-      return;
+      Cookies.set("accessToken", token);
+
+      const decoded: any = jwtDecode(token);
+      const role = decoded?.role;
+
+      if (!role) {
+        toast.error("نقش در توکن وجود ندارد");
+        return;
+      }
+
+      toast.success("ورود موفق ✅");
+
+      if (role === "buyer") {
+        window.location.href = "/dashboard/buyer";
+      }
+      if (role === "seller") {
+        window.location.href = "/dashboard/seller";
+      }
+    } catch (error) {
+      toast.error("خطای ورود");
+    } finally {
+      setLoading(false);
     }
-
-    Cookies.set("accessToken", token); 
-
-    const decoded: any = jwtDecode(token);
-    const role = decoded?.role;
-
-    if (!role) {
-      toast.error("نقش در توکن وجود ندارد");
-      return;
-    }
-
-    toast.success("ورود موفق ✅");
-
-    await new Promise((r) => setTimeout(r, 200));
-
-    window.location.href = `/dashboard/${role}`;
-  } catch (err) {
-    console.error("Login error:", err);
-    toast.error("خطا در ورود");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="w-full text-white p-6">
