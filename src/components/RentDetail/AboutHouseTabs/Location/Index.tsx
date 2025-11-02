@@ -1,6 +1,5 @@
 import { IHouses } from "@/types/IHouses";
 import React, { useState } from "react";
-import AdvertHouseRent from "./AdvertHouseRent";
 import MapRent from "./MapRent";
 
 interface Props {

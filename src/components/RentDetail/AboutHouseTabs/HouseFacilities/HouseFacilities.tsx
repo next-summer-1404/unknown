@@ -1,12 +1,11 @@
 import { IHouses } from "@/types/IHouses";
 import React from "react";
-import AdvertHouseRent from "./AdvertHouseRent";
 
 interface Props {
   house: IHouses;
 }
 
-const RentFacilities = ({ house }: Props) => {
+const HouseFacilities = ({ house }: Props) => {
   return (
     <>
       <div className="w-full  mt-5 h-auto flex gap-2">
@@ -39,4 +38,4 @@ const RentFacilities = ({ house }: Props) => {
   );
 };
 
-export default RentFacilities;
+export default HouseFacilities;

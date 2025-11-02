@@ -1,7 +1,7 @@
 import React from "react";
-import UserCommentsHouse from "../HouseReserveDetail/DetailSection/InfoAndForm/AccommodationInfo/userCommentsHouse/Index";
+import UserCommentsHouse from "../../../HouseReserveDetail/DetailSection/InfoAndForm/AccommodationInfo/userCommentsHouse/Index";
 import { IHouses } from "@/types/IHouses";
-import AdvertHouseRent from "./AdvertHouseRent";
+import AdvertHouseRent from "../../SimilarProperty/AdvertHouseRent";
 
 interface Props {
   house: IHouses;
