@@ -1,7 +1,7 @@
 import React from "react";
 import { IHouses } from "@/types/IHouses";
 import { getHouseDetail } from "@/utils/service/api/getHouseDetail";
-import BaseDetailRent from "@/components/detailRent/BaseDetailRent";
+import RentDetail from "@/components/RentDetail/Index";
 
 interface Props {
   params: { id: string };
@@ -12,7 +12,7 @@ const RentDetailPage = async ({ params }: Props) => {
   // console.log("dbbbbbbbbb:", params.id);
   
 
-  return <BaseDetailRent house={house} />;
+  return <RentDetail house={house} />;
 };
 
 export default RentDetailPage;
