@@ -23,14 +23,11 @@ const LoginPage = () => {
 
   const onSubmit = async (data: ILoginRequest) => {
     setLoading(true);
-    console.log('dddddddddd', data);
 
     try {
       const result = await LoginApi(data);
-      console.log('rrrrrrrrrrrrr', result);
 
       const token = typeof result === "string" ? result : result?.accessToken;
-      console.log("ttttttttttttt", token);
 
       if (!token) {
         toast.error("دریافت توکن ناموفق بود");
@@ -40,7 +37,6 @@ const LoginPage = () => {
       Cookies.set("accessToken", token, { expires: 1, path: "/" });
 
       const decoded: any = jwtDecode(token);
-      console.log('gggggggggggg', decoded);
 
       const role = decoded?.role;
       if (!role) {
@@ -53,7 +49,6 @@ const LoginPage = () => {
       if (role === "buyer") {
         router.push("/dashboard/buyer");
       } else if (role === "seller") {
-        console.log('selllller');
         router.push("/dashboard/seller");
       } else {
         router.push("/dashboard");

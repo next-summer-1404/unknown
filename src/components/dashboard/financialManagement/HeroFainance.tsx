@@ -5,7 +5,7 @@ import {
 import { FinanceTypes } from "@/types/FinanceTypes";
 import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
 
-
+ {/*check*/}
 const HeroFainance = () => {
    const [data, setData] = useState<FinanceTypes | null>(null);
   const [loading, setLoading] = useState(true);
@@ -14,6 +14,7 @@ const HeroFainance = () => {
     const fetchSummary = async () => {
       try {
         const res = await getDashboardFinance();
+        console.log('rrrrrrrr',res)
         setData(res);
       } catch (err) {
         // console.log("خطا در دریافت داده مالی:", err);

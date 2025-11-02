@@ -1,61 +1,38 @@
-// import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { jwtDecode } from "jwt-decode";
 
-// export const middleware = async (request: NextRequest) => {
-//   const token = request.cookies.get("accessToken");
+export const config = {
+  matcher: ["/dashboard/:path*", "/dashboard"],
+};
 
-//   if (request.nextUrl.pathname.startsWith("/dashboard") && !token) {
-//     return NextResponse.redirect(new URL("/login", request.url));
-//   }
-//   return NextResponse.next();
-// };
-
-// export const config = {
-//   matcher: ["/dashboard/:path", "/dashboard"],
-// };
-
-
-
-
-
-
-
-
-import { NextResponse } from "next/server";
-import { jwtVerify } from "jose";
-import type { NextRequest } from "next/server";
-
-export const config = { matcher: ["/dashboard/:path*"] };
-
-export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("accessToken")?.value;
+export async function middleware(request: NextRequest) {
+  const token = request.cookies.get("accessToken")?.value;
+  const pathname = request.nextUrl.pathname;
 
   if (!token) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   try {
-    const raw = process.env.JWT_SECRET!;
-    let secret: Uint8Array;
+    const decoded: any = jwtDecode(token);
+    const role = decoded?.role;
 
-    try {
-      secret = new TextEncoder().encode(Buffer.from(raw, "base64").toString());
-    } catch {
-      secret = new TextEncoder().encode(raw);
+    if (!role) {
+      const res = NextResponse.redirect(new URL("/login", request.url));
+      res.cookies.delete("accessToken");
+      return res;
     }
 
-    const { payload } = await jwtVerify(token, secret);
-    const role = (payload as any)?.role ?? "unknown";
-
-    if (req.nextUrl.pathname === "/dashboard") {
-      return NextResponse.redirect(new URL(`/dashboard/${role}`, req.url));
+    if (pathname === "/dashboard" || !pathname.includes(`/dashboard/${role}`)) {
+      return NextResponse.redirect(new URL(`/dashboard/${role}`, request.url));
     }
 
-    const res = NextResponse.next();
-    res.headers.set("x-role-debug", ` verified role=${role}`);
-    return res;
-  } catch (err) {
-    const res = NextResponse.redirect(new URL("/login", req.url));
-    res.headers.set("x-role-debug", "JWT verification failed");
+    return NextResponse.next();
+  } catch (error) {
+    console.error("JWT decode failed:", error);
+
+    const res = NextResponse.redirect(new URL("/login", request.url));
+    res.cookies.delete("accessToken");
     return res;
   }
 }
