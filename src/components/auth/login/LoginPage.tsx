@@ -12,6 +12,8 @@ import Cookies from "js-cookie";
 import LoginApi from "@/utils/service/api/auth/LoginApi";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
+import { ILoginRequest } from "@/types/LoginTypes";
 
 interface ILoginForm {
   email: string;
@@ -24,22 +26,57 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (data: ILoginForm) => {
-    setLoading(true);
+  // const onSubmit = async (data: ILoginForm) => {
+  //   setLoading(true);
+  //   const result = await LoginApi(data);
+
+  //   if (result && result.accessToken && result.refreshToken) {
+  //     Cookies.set("accessToken", result.accessToken, { expires: 1 });
+  //     Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
+  //     console.log( "token", result.accessToken);
+
+  //     router.push("/dashboard");
+  //   } else {
+  //     toast.error("ورود ناموفق بود");
+  //   }
+
+  //   setLoading(false);
+  // };
+
+  const onSubmit = async (data: ILoginRequest) => {
+  setLoading(true);
+  try {
     const result = await LoginApi(data);
 
-    if (result && result.accessToken && result.refreshToken) {
-      Cookies.set("accessToken", result.accessToken, { expires: 1 });
-      Cookies.set("refreshToken", result.refreshToken, { expires: 1 });
-      console.log( "token", result.accessToken);
+    const token = typeof result === "string" ? result : result?.accessToken;
 
-      router.push("/dashboard");
-    } else {
-      toast.error("ورود ناموفق بود");
+    if (!token) {
+      toast.error("پاسخ نامعتبر از سرور");
+      return;
     }
 
+    Cookies.set("accessToken", token); 
+
+    const decoded: any = jwtDecode(token);
+    const role = decoded?.role;
+
+    if (!role) {
+      toast.error("نقش در توکن وجود ندارد");
+      return;
+    }
+
+    toast.success("ورود موفق ✅");
+
+    await new Promise((r) => setTimeout(r, 200));
+
+    window.location.href = `/dashboard/${role}`;
+  } catch (err) {
+    console.error("Login error:", err);
+    toast.error("خطا در ورود");
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   return (
     <div className="w-full text-white p-6">

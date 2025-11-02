@@ -4,10 +4,10 @@ import { ILoginRequest, ILoginResponse } from "../../../../types/LoginTypes";
 const LoginApi = async (
   data: ILoginRequest
 ): Promise<ILoginResponse | null> => {
-  console.log(data)
+  // console.log(data);
   try {
     const res: ILoginResponse = await http.post("/auth/login", data);
-    // console.log("Response data:", res.accessToken);
+    console.log("Response data:", res.accessToken);
 
     return res;
   } catch (error) {

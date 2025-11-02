@@ -57,21 +57,7 @@ const BuyerHeader = () => {
           <BuyerMenuModal onClose={() => setIsBuyerMenuModal(false)} />
         )}
 
-        <div className="flex items-center gap-2 text-[#AAAA] text-[10px] mr-2">
-          <p className={isBuyer ? "opacity-60" : "text-[#8CFF45]"}>فروشنده</p>
-          <Switch
-            isSelected={isBuyer}
-            onValueChange={handleSwitchChange}
-            color="success"
-            size="sm"
-            aria-label="switch-role"
-            classNames={{
-              wrapper: "bg-[#393939] border border-[#555]",
-              thumb: "bg-[#8CFF45]",
-            }}
-          />
-          <p className={!isBuyer ? "opacity-60" : "text-[#8CFF45]"}>خریدار</p>
-        </div>
+        
       </div>
     </div>
   );
