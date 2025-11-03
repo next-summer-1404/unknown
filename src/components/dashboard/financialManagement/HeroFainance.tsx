@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   PaperClipIcon,
 } from "@heroicons/react/24/outline";
@@ -6,31 +6,15 @@ import { FinanceTypes } from "@/types/FinanceTypes";
 import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
 
  {/*check*/}
-const HeroFainance = () => {
-   const [data, setData] = useState<FinanceTypes | null>(null);
-  const [loading, setLoading] = useState(true);
+const HeroFainance = async() => {
+  const finance :FinanceTypes =await getDashboardFinance()
 
-  useEffect(() => {
-    const fetchSummary = async () => {
-      try {
-        const res = await getDashboardFinance();
-        console.log('rrrrrrrr',res)
-        setData(res);
-      } catch (err) {
-        // console.log("خطا در دریافت داده مالی:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSummary();
-  }, []);
 
   const cards = [
-    { id: 1, title: "درآمد ماه جاری", value: data?.totalCurrentMonthAmount },
-    { id: 2, title: "درآمد ماه قبل", value: data?.totalPreviousMonthAmount },
-    { id: 3, title: "درآمد کل", value: data?.totalAmount },
-    { id: 4, title: "موجودی قابل برداشت", value: data?.totalPayments },
+    { id: 1, title: "درآمد ماه جاری", value: finance?.totalCurrentMonthAmount },
+    { id: 2, title: "درآمد ماه قبل", value: finance?.totalPreviousMonthAmount },
+    { id: 3, title: "درآمد کل", value: finance?.totalAmount },
+    { id: 4, title: "موجودی قابل برداشت", value: finance?.totalPayments },
   ];
 
 
