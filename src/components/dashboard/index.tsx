@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import SideMain from "./main/SideMain";
 import DashboardHeader from "./main/DashboardHeader";
 import HeroDashboard from "./main/HeroDashboard";
@@ -8,8 +8,13 @@ import ReservationSection from "./main/ReservationSection";
 import PropertyManagement from "./propertyManagement/PropertyManagement";
 import BookingManagement from "./bookingManagement/BookingManagement";
 import FinancialManagement from "./financialManagement/FinancialManagement";
+import { FinanceTypes } from "@/types/FinanceTypes";
 
-const SellerDashboard = () => {
+interface SellerDashboardProps {
+  Finance: FinanceTypes;
+}
+
+const SellerDashboard:FC<SellerDashboardProps> = ({Finance}) => {
   const [activeSection, setActiveSection] = useState("dashboard");
 
   return (
@@ -29,7 +34,7 @@ const SellerDashboard = () => {
 
         {activeSection === "property" && <PropertyManagement />}
         {activeSection === "reservation" && <BookingManagement />}
-        {activeSection === "finance" && <FinancialManagement />}
+        {activeSection === "finance" && <FinancialManagement Finance={Finance}/>}
       </div>
     </div>
   );

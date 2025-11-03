@@ -1,20 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   PaperClipIcon,
 } from "@heroicons/react/24/outline";
 import { FinanceTypes } from "@/types/FinanceTypes";
-import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
-
+// import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
+interface SellerDashboardProps {
+  Finance: FinanceTypes;
+}
  {/*check*/}
-const HeroFainance = async() => {
-  const finance :FinanceTypes =await getDashboardFinance()
-
+const HeroFainance:FC<SellerDashboardProps> = ({Finance}) => {
+  // const finance :FinanceTypes =await getDashboardFinance()
+console.log(Finance)
 
   const cards = [
-    { id: 1, title: "درآمد ماه جاری", value: finance?.totalCurrentMonthAmount },
-    { id: 2, title: "درآمد ماه قبل", value: finance?.totalPreviousMonthAmount },
-    { id: 3, title: "درآمد کل", value: finance?.totalAmount },
-    { id: 4, title: "موجودی قابل برداشت", value: finance?.totalPayments },
+    { id: 1, title: "درآمد ماه جاری", value: Finance?.totalCurrentMonthAmount },
+    { id: 2, title: "درآمد ماه قبل", value: Finance?.totalPreviousMonthAmount },
+    { id: 3, title: "درآمد کل", value: Finance?.totalAmount },
+    { id: 4, title: "موجودی قابل برداشت", value: Finance?.totalPayments },
   ];
 
 

@@ -1,10 +1,13 @@
 import SellerDashboard from '@/components/dashboard'
+import { FinanceTypes } from '@/types/FinanceTypes'
+import { getDashboardFinance } from '@/utils/service/api/getDashboardFinance'
 import React from 'react'
 
-const SellerPage = () => {
+const SellerPage = async () => {
+  const Finance :FinanceTypes =await getDashboardFinance()
   return (
     <div>
-      <SellerDashboard/>
+      <SellerDashboard Finance={Finance}/>
     </div>
   )
 }

@@ -1,12 +1,17 @@
 
-import React from 'react'
+import React, { FC } from 'react'
 import HeroFainance from './HeroFainance'
 import ContainFainance from './ContainFainance'
+import { FinanceTypes } from '@/types/FinanceTypes';
 
-const FinancialManagement = () => {
+interface SellerDashboardProps {
+  Finance: FinanceTypes;
+}
+
+const FinancialManagement:FC<SellerDashboardProps> = ({Finance}) => {
   return (
     <div>
-      <HeroFainance />
+      <HeroFainance Finance={Finance}/>
       <ContainFainance/>
     </div>
   )
