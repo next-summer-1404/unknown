@@ -1,16 +1,16 @@
 import React, { FC } from "react";
-import {
-  PaperClipIcon,
-} from "@heroicons/react/24/outline";
+import { PaperClipIcon } from "@heroicons/react/24/outline";
 import { FinanceTypes } from "@/types/FinanceTypes";
-// import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
+import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
+
+
 interface SellerDashboardProps {
   Finance: FinanceTypes;
 }
- {/*check*/}
-const HeroFainance:FC<SellerDashboardProps> = ({Finance}) => {
-  // const finance :FinanceTypes =await getDashboardFinance()
-console.log(Finance)
+
+const HeroFainance: FC<SellerDashboardProps> = async ({ Finance }) => {
+  // const finance: FinanceTypes = await getDashboardFinance();
+  console.log(Finance);
 
   const cards = [
     { id: 1, title: "درآمد ماه جاری", value: Finance?.totalCurrentMonthAmount },
@@ -18,7 +18,6 @@ console.log(Finance)
     { id: 3, title: "درآمد کل", value: Finance?.totalAmount },
     { id: 4, title: "موجودی قابل برداشت", value: Finance?.totalPayments },
   ];
-
 
   return (
     <div className="flex justify-between gap-5 w-full">
@@ -31,15 +30,16 @@ console.log(Finance)
             <PaperClipIcon className="w-10 h-12 pt-4 text-[#000000] bg-[#ECECEC] absolute top-0 right-4 rounded-b-2xl" />
           </div>
 
-          <div className="text-[16px] font-medium text-[#AAA] mt-14 p-2">{item.title}</div>
+          <div className="text-[16px] font-medium text-[#AAA] mt-14 p-2">
+            {item.title}
+          </div>
 
           <div className="border-t border-dashed border-gray-300  mb-[2px]" />
 
           <div className="flex justify-between items-center p-2">
             <button className="text-[16px] text-[#AAA] font-medium">
-                {item.value}
+              {item.value}
             </button>
-            
           </div>
         </div>
       ))}
