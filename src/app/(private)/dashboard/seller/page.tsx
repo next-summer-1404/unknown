@@ -5,6 +5,7 @@ import React from 'react'
 
 const SellerPage = async () => {
   const Finance :FinanceTypes =await getDashboardFinance()
+  console.log(Finance);
   return (
     <div>
       <SellerDashboard Finance={Finance}/>
