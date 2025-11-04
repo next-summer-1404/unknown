@@ -35,6 +35,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.set("Authorization", `Bearer ${token}`);
     }
+    // check this 
     // console.log("🔹 Token sent with request:", token);
     // console.log("🔹 Final headers:", config.headers);
     return config;

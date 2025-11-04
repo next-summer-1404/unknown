@@ -53,6 +53,15 @@ const LoginPage = () => {
       } else {
         router.push("/dashboard");
       }
+//       setTimeout(() => {
+//   if (role === "buyer") {
+//     router.push("/dashboard/buyer");
+//   } else if (role === "seller") {
+//     router.push("/dashboard/seller");
+//   } else {
+//     router.push("/dashboard");
+//   }
+// }, 300);
     } catch (error: any) {
       toast.error("خطا در ورود، لطفاً دوباره تلاش کنید");
     } finally {
