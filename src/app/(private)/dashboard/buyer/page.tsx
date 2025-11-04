@@ -4,6 +4,7 @@ import { getDashboardFinance } from '@/utils/service/api/getDashboardFinance'
 import React from 'react'
 
 const BuyerPage =async () => {
+  // test
   const Finance :FinanceTypes =await getDashboardFinance()
     console.log(Finance)
   return (
