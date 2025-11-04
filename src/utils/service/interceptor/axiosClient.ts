@@ -35,7 +35,8 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.set("Authorization", `Bearer ${token}`);
     }
-
+    // console.log("🔹 Token sent with request:", token);
+    // console.log("🔹 Final headers:", config.headers);
     return config;
   },
   (error) => Promise.reject(error)
@@ -47,15 +48,11 @@ export default instance as Omit<
   AxiosInstance,
   "get" | "post" | "delete" | "put"
 > & {
-  get<T = any>(
-    ...args: Parameters<AxiosInstance["get"]>
-  ): AxiosResponseData<T>;
+  get<T = any>(...args: Parameters<AxiosInstance["get"]>): AxiosResponseData<T>;
   post<T = any>(
     ...args: Parameters<AxiosInstance["post"]>
   ): AxiosResponseData<T>;
-  put<T = any>(
-    ...args: Parameters<AxiosInstance["put"]>
-  ): AxiosResponseData<T>;
+  put<T = any>(...args: Parameters<AxiosInstance["put"]>): AxiosResponseData<T>;
   delete<T = any>(
     ...args: Parameters<AxiosInstance["delete"]>
   ): AxiosResponseData<T>;
