@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from "react";
 import PropertyTable from "./PropertyTable";
 import AddProperty from "../AddProperty/AddProperty";

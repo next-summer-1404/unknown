@@ -1,16 +1,14 @@
 import React, { FC } from "react";
 import { PaperClipIcon } from "@heroicons/react/24/outline";
 import { FinanceTypes } from "@/types/FinanceTypes";
-import { getDashboardFinance } from "@/utils/service/api/getDashboardFinance";
 
 
 interface SellerDashboardProps {
   Finance: FinanceTypes;
 }
 
-const HeroFainance: FC<SellerDashboardProps> = async ({ Finance }) => {
-  // const finance: FinanceTypes = await getDashboardFinance();
-  console.log(Finance);
+const HeroFainance: FC<SellerDashboardProps> =  ({ Finance }) => {
+  // console.log(Finance);
 
   const cards = [
     { id: 1, title: "درآمد ماه جاری", value: Finance?.totalCurrentMonthAmount },
