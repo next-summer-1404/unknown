@@ -1,27 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import Image from "next/image";
 import GreenArrow from "../.././../assets/images/greenArrow.png";
 import { BellAlertIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import UserMenuModal from "./UserMenuModal";
 import { Switch } from "@heroui/react";
-import { useRouter, usePathname } from "next/navigation";
+import { UsersTypes } from "@/types/UsersTypes";
+import { getUsers } from "@/utils/service/api/getUsers";
 
 const DashboardHeader = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
+  const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const isSeller = pathname.startsWith("/dashboard/seller");
+ useEffect(() => {
+    const id = localStorage.getItem("userId"); 
+    setUserId(id);
+  }, []);
 
-  const handleSwitchChange = (checked: boolean) => {
-    if (checked) {
-      router.push("/dashboard/seller");
-    } else {
-      router.push("/dashboard/buyer");
-    }
-  };
+  useEffect(() => {
+    if (!userId) return;
+    const fetchUser = async () => {
+      const res = await getUsers(userId);
+      console.log(res,'ffffffffff')
+      setUserInfo(res);
+    };
+    fetchUser();
+  }, [userId]);
 
   return (
     <div className="w-full rounded-2xl h-16 bg-[#393939] flex items-center">
@@ -47,7 +53,7 @@ const DashboardHeader = () => {
             onClick={() => setIsUserMenuOpen((prev) => !prev)}
           >
             <p className="text-[#AAAA] flex items-center gap-1">
-              سبحان
+              {userInfo?.user.fullName}
               <ChevronDownIcon className="w-4 h-4" />
             </p>
             <p className="text-[10px] text-[#AAAA] ">خریدار</p>
@@ -55,7 +61,7 @@ const DashboardHeader = () => {
         </div>
 
         {isUserMenuOpen && (
-          <UserMenuModal onClose={() => setIsUserMenuOpen(false)} />
+          <UserMenuModal  onClose={() => setIsUserMenuOpen(false)} userId={userId!}/>
         )}
       </div>
     </div>

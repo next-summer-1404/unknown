@@ -5,14 +5,18 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import LogoutConfirmModal from "./LogoutConfirmModal";
+import { UsersTypes } from "@/types/UsersTypes";
+import { getUsers } from "@/utils/service/api/getUsers";
 
 type UserMenuProps = {
   onClose: () => void;
+  userId: string;
 };
 
-const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ onClose, userId }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -23,6 +27,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
     window.addEventListener("mousedown", handleClickOutside);
     return () => window.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
+
+  useEffect(() => {
+    if (!userId) return;
+    const fetchUser = async () => {
+      const res = await getUsers(userId);
+      setUserInfo(res);
+    };
+    fetchUser();
+  }, [userId]);
 
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
@@ -38,8 +51,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
         <div className="flex items-center gap-3 pb-3 border-b border-dashed border-[#444]">
           <div className="w-10 h-10 bg-[#555] rounded-xl" />
           <div className="flex flex-col">
-            <p className="text-sm text-[#AAA] font-medium">سبحان عرب خزائلی</p>
-            <p className="text-xs text-[#AAA]">+989123456789</p>
+            <p className="text-sm text-[#AAA] font-medium">
+              {userInfo?.user.fullName ?? "کاربر"}
+            </p>
+            <p className="text-xs text-[#AAA]">
+              + {userInfo?.user.phoneNumber ?? ""}
+            </p>
           </div>
         </div>
 

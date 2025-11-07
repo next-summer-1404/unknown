@@ -1,40 +1,43 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import DynamicTable from "../../common/table/DynamicTable";
-import { IHouses } from "@/types/IHouses";
-import { getHouses } from "@/utils/service/api/getAllHouses";
+import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
+import { BookingCustomersResponse } from "@/types/BookingCustomersResponse ";
+
+{/* check */}
 
 const columns = [
   { key: "name", label: "نام اقامتگاه" },
   { key: "price", label: "قیمت" },
-  { key: "score", label: "امتیاز" },
-  // { key: "visits", label: "بازدیدها" },
-  { key: "bookings", label: "رزروها" },
-  // { key: "status", label: "وضعیت" },
+  // { key: "score", label: "امتیاز" },
+  { key: "visits", label: "بازدیدها" },
+  // { key: "bookings", label: "رزروها" },
+  { key: "status", label: "وضعیت" },
 ];
 
 const PropertyTable = ({ onAddClick }: { onAddClick: () => void }) => {
-  const [data, setData] = useState<IHouses[]>()
+  const [data, setData] = useState<BookingCustomersResponse | null>(null);
 
   const getData = async () => {
-    const response = await getHouses()
-    setData(response.houses)
+     const response: BookingCustomersResponse = await getCustomersBooking();
+     console.log(response,'ffffffff')
+      setData(response);
   }
 
   useEffect(() => {
-    if (!data) {
-      getData()
-    }
-  }, [data])
+   getData
+  }, [])
 
-  const rows = data?.map((h) => ({
-    key: h.id,
-    name: h.title,
-    price: `${Number(h.price).toLocaleString("fa-IR")} تومان`,
-    score: h.rate ? `${h.rate} از ۵` : "بدون امتیاز",
-    bookings: h.bookings ?? 0,
-   
-  }));
+   const rows =
+    data?.bookings.map((b) => ({
+      key: b.id,
+      name: b.house.title,
+      price: `${Number(b.house.price).toLocaleString("fa-IR")} تومان`,
+      status: b.status === "pending" ? "در انتظار تایید" : b.status,
+      dates: b.reservedDates
+        .map((rd) => new Date(rd.value).toLocaleDateString("fa-IR"))
+        .join(" تا "),
+    })) ?? [];
 
   return (
     <DynamicTable

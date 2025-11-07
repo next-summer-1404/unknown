@@ -8,7 +8,6 @@ interface SellerDashboardProps {
 }
 
 const HeroFainance: FC<SellerDashboardProps> =  ({ Finance }) => {
-  // console.log(Finance);
 
   const cards = [
     { id: 1, title: "درآمد ماه جاری", value: Finance?.totalCurrentMonthAmount },
