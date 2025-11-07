@@ -5,8 +5,8 @@ import React from 'react'
 
 const BuyerPage =async () => {
   // test
-  const Finance :FinanceTypes =await getDashboardFinance()
-    console.log(Finance)
+  // const Finance :FinanceTypes =await getDashboardFinance()
+    // console.log(Finance)
   return (
     <div>
       <DashboardBuyer/>
