@@ -9,6 +9,7 @@ import PropertyManagement from "./propertyManagement/PropertyManagement";
 import BookingManagement from "./bookingManagement/BookingManagement";
 import FinancialManagement from "./financialManagement/FinancialManagement";
 import { FinanceTypes } from "@/types/FinanceTypes";
+import SellerNotification from "./sellerNotification/SellerNotification";
 
 interface SellerDashboardProps {
   Finance: FinanceTypes;
@@ -34,6 +35,7 @@ const SellerDashboard:FC<SellerDashboardProps> = ({Finance}) => {
 
         {activeSection === "property" && <PropertyManagement />}
         {activeSection === "reservation" && <BookingManagement />}
+        {activeSection === "notifications" && <SellerNotification />}
         {activeSection === "finance" && <FinancialManagement Finance={Finance}/>}
       </div>
     </div>

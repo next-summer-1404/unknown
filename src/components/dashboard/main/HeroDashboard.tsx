@@ -1,17 +1,30 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import {
   PaperClipIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import GreenArrow from "../.././../assets/images/greenArrow.png";
+import { getSummeryStatic } from "@/utils/service/api/getSummeryStatic";
+import { DashboardSummary } from "@/types/DashboardSummary";
 
 
 const HeroDashboard = () => {
+   const [data, setData] = useState<DashboardSummary | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getSummeryStatic();
+      setData(response);
+    };
+    fetchData();
+  }, []);
+  
   const cards = [
-    { id: 1, title: "بازدید های امروز", value: 5 },
-    { id: 2, title: "رزرو های در انتظار", value: 5 },
-    { id: 3, title: "رزرو های فعال", value: 5 },
-    { id: 4, title: "کل املاک ها", value: 5 },
+    { id: 1, title: "بازدید های امروز", value: data?.bookings.bookingCount },
+    { id: 2, title: "رزرو های در انتظار", value: data?.bookings.conformedBookings},
+    { id: 3, title: "رزرو های فعال", value: data?.bookings.canceledBookings},
+    { id: 4, title: "کل املاک ها", value: data?.bookings.pendingBookings },
   ];
 
   return (

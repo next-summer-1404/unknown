@@ -1,6 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import { EllipsisVerticalIcon, TrashIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
+import React, { useEffect, useState } from "react";
+import {
+  EllipsisVerticalIcon,
+  TrashIcon,
+  CalendarDaysIcon,
+} from "@heroicons/react/24/outline";
+import { FavoriteTypes, SellerFinanceItem } from "@/types/FavoriteTypes";
+import { getFavorite } from "@/utils/service/api/getFavorite";
 
 const FavoriteTable = () => {
   const columns = [
@@ -9,38 +15,24 @@ const FavoriteTable = () => {
     { key: "address", label: "آدرس" },
   ];
 
-  const rows = [
-    {
-      key: 1,
-      name: "هتل ساروان زاهدان رشت",
-      price: "۸۰۰٬۰۰۰ تومان",
-      address: "گیلان، رشت، میدان آزادی، جنب چهار راه عط...",
-    },
-    {
-      key: 2,
-      name: "هتل ساروان زاهدان رشت",
-      price: "۸۰۰٬۰۰۰ تومان",
-      address: "گیلان، رشت، میدان آزادی، جنب چهار راه عط...",
-    },
-    {
-      key: 3,
-      name: "هتل ساروان زاهدان رشت",
-      price: "۸۰۰٬۰۰۰ تومان",
-      address: "گیلان، رشت، میدان آزادی، جنب چهار راه عط...",
-    },
-    {
-      key: 4,
-      name: "هتل ساروان زاهدان رشت",
-      price: "۸۰۰٬۰۰۰ تومان",
-      address: "گیلان، رشت، میدان آزادی، جنب چهار راه عط...",
-    },
-    {
-      key: 5,
-      name: "هتل ساروان زاهدان رشت",
-      price: "۸۰۰٬۰۰۰ تومان",
-      address: "گیلان، رشت، میدان آزادی، جنب چهار راه عط...",
-    },
-  ];
+  const [data, setData] = useState<SellerFinanceItem[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response: FavoriteTypes = await getFavorite();
+      // console.log(response,'rrrrrrrrrrr')
+      setData(response.data);
+    };
+    fetchData();
+  }, []);
+
+  const rows =
+    data?.map((h) => ({
+      key: h.id,
+      name: h.house.title,
+      price: `${Number(h.price).toLocaleString("fa-IR")} تومان`,
+      address: h.house.address,
+    })) ?? [];
 
   const [menuOpen, setMenuOpen] = useState<number | null>(null);
 
@@ -51,7 +43,10 @@ const FavoriteTable = () => {
           <thead>
             <tr className="bg-[#2D2B2B] text-[#AAA] border-b border-dashed border-[#444]">
               {columns.map((col) => (
-                <th key={col.key} className="py-3 px-4 font-normal whitespace-nowrap">
+                <th
+                  key={col.key}
+                  className="py-3 px-4 font-normal whitespace-nowrap"
+                >
                   {col.label}
                 </th>
               ))}
@@ -107,10 +102,7 @@ const FavoriteTable = () => {
           ۱
         </button>
         {[2, 3, 4].map((n) => (
-          <button
-            key={n}
-            className="px-3 py-1 rounded  transition"
-          >
+          <button key={n} className="px-3 py-1 rounded  transition">
             {n}
           </button>
         ))}

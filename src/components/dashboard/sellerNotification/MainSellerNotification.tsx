@@ -4,7 +4,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { getNotifications } from "@/utils/service/api/getNotifications";
 import { NotificationItem, NotificationTypes  } from "@/types/NotificationTypes";
 
-const MainNotifiction = () => {
+const MainSellerNotification = () => {
   const [data, setData] = useState<NotificationItem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 10;
@@ -120,4 +120,4 @@ const MainNotifiction = () => {
   );
 };
 
-export default MainNotifiction;
+export default MainSellerNotification;
