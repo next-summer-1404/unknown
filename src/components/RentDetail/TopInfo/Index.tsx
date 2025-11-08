@@ -9,13 +9,13 @@ interface Props {
 }
 const Index: FC<Props> = ({ house }) => {
   return (
-    <>
+    <div className="h-auto">
       <div className="w-full flex items-stretch justify-between gap-5">
-        <PicSection />
+        <PicSection house={house}/>
         <CallInfo house={house} />
       </div>
       <Summary house={house} />
-    </>
+    </div>
   );
 };
 

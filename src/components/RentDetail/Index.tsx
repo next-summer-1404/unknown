@@ -10,7 +10,7 @@ interface Props {
 
 const Index: React.FC<Props> = ({ house }) => {
   return (
-    <div className="px-16 pt-30 w-full h-auto">
+    <div className="px-16 pt-30 w-full">
       <TopInfo house={house} />
       <TabRent house={house} />
       <AdvertHouseRent house={house} />

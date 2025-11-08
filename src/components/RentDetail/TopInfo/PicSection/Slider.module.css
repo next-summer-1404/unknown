@@ -1,0 +1,41 @@
+:global(.mySwiper.swiper) {
+  padding-bottom: 0 !important;
+}
+
+:global(.mySwiper .swiper-wrapper) {
+  padding-bottom: 0 !important;
+}
+
+:global(.mySwiper .swiper-pagination) {
+  bottom: 0 !important;
+  top: auto !important;
+}
+
+/* :global(.mySwiper),
+:global(.mySwiper .swiper-wrapper),
+:global(.mySwiper .swiper-slide) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+:global(.mySwiper img),
+:global(.mySwiper picture),
+:global(.mySwiper .swiper-slide > div) {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+} */
+
+/* اطمینان از اینکه transform‌های پیش‌فرض Swiper باقی می‌مونن ولی scale نگیریم */
+/* :global(.mySwiper .swiper-wrapper) {
+  transform-origin: center center !important;
+} */
+
+/* حذف هر استایل مزاحم احتمالی از slide‌های inactive */
+/* :global(.mySwiper .swiper-slide-next),
+:global(.mySwiper .swiper-slide-prev) {
+  transform: none !important;
+  scale: 1 !important;
+} */
