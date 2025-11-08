@@ -32,26 +32,25 @@ export type IHouses = {
 };
 
 export interface HousesQueryParams {
-  page?: number; 
+  page?: number;
   limit?: number;
-  transactionType?: string; 
+  transactionType?: string;
   search?: string;
   order?: string;
-  sort?: string; 
+  sort?: string;
   propertyType?: string;
   location?: string;
   minPrice?: number;
   maxPrice?: number;
   minRent?: number;
-  maxRent?: number; 
-  minMortgage?: number; 
-  maxMortgage?: number; 
-  minArea?: number; 
-  maxArea?: number; 
+  maxRent?: number;
+  minMortgage?: number;
+  maxMortgage?: number;
+  minArea?: number;
+  maxArea?: number;
   address?: string;
-
 }
-
-
-
-
+export type ILocation = {
+  lat: number;
+  lng: number;
+};

@@ -1,5 +1,4 @@
 import { IHouses } from "@/types/IHouses";
-import React, { useState } from "react";
 import MapRent from "./MapRent";
 
 interface Props {
@@ -7,13 +6,12 @@ interface Props {
 }
 
 const LocationRent = ({ house }: Props) => {
-  const [selectedHouse, setSelectedHouse] = useState<IHouses | null>(null);
-
+const Location = house.location
   return (
     <>
       <div className="w-full mt-10 flex gap-5">
-        <MapRent selectedHouse={selectedHouse} />
-        <div className="w-1/2 h-auto ">
+        <MapRent Location={Location} />
+        <div className="w-[50%] h-auto ">
           <p className="text-sm leading-8 text-[#AAAAAA] p-5">
             {house.caption}
           </p>

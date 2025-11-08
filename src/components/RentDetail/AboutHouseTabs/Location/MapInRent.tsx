@@ -21,7 +21,7 @@ L.Icon.Default.mergeOptions({
 interface MapProps {
   zoom: number;
   center: [number, number];
-  selectedHouse?: {
+  Location?: {
     lat: number;
     lng: number;
   } | null;
@@ -34,17 +34,17 @@ const RecenterMap = ({ center }: { center: [number, number] }) => {
   }, [center, map]);
   return null;
 };
-const MapInRent: React.FC<MapProps> = ({ selectedHouse, zoom, center }) => {
+const MapInRent: React.FC<MapProps> = ({ Location, zoom, center }) => {
   const [position, setPosition] = useState<[number, number] | null>(
-    selectedHouse ? [selectedHouse.lat, selectedHouse.lng] : null
+    Location ? [Location.lat, Location.lng] : null
   );
   useEffect(() => {
-    if (selectedHouse) {
-      setPosition([selectedHouse.lat, selectedHouse.lng]);
+    if (Location) {
+      setPosition([Location.lat, Location.lng]);
     } else {
       setPosition(null);
     }
-  }, [selectedHouse]);
+  }, [Location]);
 
 
   // console.log(position, "aaaaa")
@@ -54,7 +54,7 @@ const MapInRent: React.FC<MapProps> = ({ selectedHouse, zoom, center }) => {
       zoom={zoom}
       style={{ width: "100%", height: "100%" }}
       // key={center.toString()}
-      key={selectedHouse ? selectedHouse.lat + selectedHouse.lng : "default"}
+      key={Location ? Location.lat + Location.lng : "default"}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/">OSM</a> contributors'
@@ -68,7 +68,7 @@ const MapInRent: React.FC<MapProps> = ({ selectedHouse, zoom, center }) => {
       )}
 
       <RecenterMap
-        center={selectedHouse ? [selectedHouse.lat, selectedHouse.lng] : center}
+        center={Location ? [Location.lat, Location.lng] : center}
       />
     </MapContainer>
   );
