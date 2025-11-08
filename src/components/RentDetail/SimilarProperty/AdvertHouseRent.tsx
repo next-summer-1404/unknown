@@ -26,7 +26,7 @@ const AdvertHouseRent = async ({ house }: AdvertHouseRentProps) => {
   // console.log(filtered);
 
   return (
-    <div className="w-full bg-[#232323] pt-30">
+    <div className="w-full bg-[#232323] pt-20">
       <div className="w-full h-10 bg-[#393939] rounded-2xl flex justify-between items-center p-3">
         <div className="flex gap-1">
           <BuildingOffice2Icon className="w-5 h-5 text-white" />

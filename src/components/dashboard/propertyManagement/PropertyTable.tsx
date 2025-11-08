@@ -25,7 +25,7 @@ const PropertyTable = ({ onAddClick }: { onAddClick: () => void }) => {
   }
 
   useEffect(() => {
-   getData
+   getData()
   }, [])
 
    const rows =

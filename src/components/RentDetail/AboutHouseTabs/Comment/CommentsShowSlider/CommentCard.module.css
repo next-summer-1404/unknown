@@ -1,0 +1,22 @@
+.cardShape::after {
+  content: "";
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  width: 26px;
+  height: 22px;
+  background: transparent;
+  box-shadow: -8px -6px 0 var(--shape-color, #232323);
+  border-top-left-radius: 20px;
+}
+.cardShape::before {
+  content: "";
+  position: absolute;
+  right: -17px;
+  top: -2px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  box-shadow: -10px -5px 0 var(--shape-color, #232323);
+  border-top-left-radius: 20px;
+}

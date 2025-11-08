@@ -10,7 +10,7 @@ import { IHouses } from "@/types/IHouses";
 import AboutHouseRent from "./AboutHouse/AboutHouseRent";
 import RentFacilities from "./HouseFacilities/HouseFacilities";
 import LocationRent from "./Location/Index";
-import CommentRent from "./Comment/CommentRent";
+import CommentRent from "./Comment/Index";
 
 interface Props {
   house: IHouses;
@@ -68,7 +68,7 @@ const TabRent: React.FC<Props> = ({ house }) => {
         {currentTab === "aboutProperty" && <AboutHouseRent house={house} />}
         {currentTab === "facilityProperty" && <RentFacilities house={house} />}
         {currentTab === "location" && <LocationRent house={house} />}
-        {currentTab === "comments" && <CommentRent house={house} />}
+        {currentTab === "userComments" && <CommentRent house={house} />}
       </div>
     </div>
   );
