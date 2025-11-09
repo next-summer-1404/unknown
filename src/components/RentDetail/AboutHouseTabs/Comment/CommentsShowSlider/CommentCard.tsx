@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "./CommentCard.module.css";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { ICommentCardProps } from "@/types/ICommentCardProps";
+import { ICommentCardProps, ICommentsData } from "@/types/ICommentCardProps";
 import Image from "next/image";
 import Home from "../../../../../assets/images/auth1.png";
 import {
@@ -10,12 +10,26 @@ import {
   ChevronLeftIcon,
 } from "@heroicons/react/24/outline";
 
-const CommentCard: FC<ICommentCardProps> = ({
+interface IProps extends ICommentCardProps {
+  Item: ICommentsData;
+}
+
+const CommentCard: FC<IProps> = ({
   showUserDetail = true,
   showComment = true,
   showReplySign = true,
   bgColor = "#232323",
+  Item,
 }) => {
+  const caption = Item?.caption;
+  const created_at = Item?.created_at ?? "";
+  const house_id = Item?.house_id ?? "N/A";
+  const id = Item?.id ?? "";
+  const parent_comment_id = Item?.parent_comment_id ?? "N/A";
+  const rating = Item?.rating ?? "";
+  const title = Item?.title ?? "N/A";
+  const user_id = Item?.user_id ?? "";
+ 
   return (
     <div className="w-full flex flex-col  pt-2.5 flex-shrink-0">
       <div className="relative flex flex-col  w-full bg-[#393939]  rounded-3xl px-4 pt-2 pb-3">
@@ -30,18 +44,18 @@ const CommentCard: FC<ICommentCardProps> = ({
         ></div>
         <div className="flex items-center justify-center gap-1.5 w-16 h-7 bg-white rounded-xl  ">
           <span className="text-md font-medium text-black leading-none mt-1">
-            15.3
+            {rating}
           </span>
           <StarIcon className="w-4 h-4 text-black " />
         </div>
 
         {showComment && (
           <div className="flex items-center gap-1 py-4">
-            <p className="text-white text-[12px] line-clamp-2">
-              ” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-              استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
-              در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
-              نیاز و کاربرد.... “
+            <p
+              className="text-white text-[12px] line-clamp-2"
+              style={{ color: "red" }}
+            >
+              {caption}
             </p>
           </div>
         )}

@@ -6,16 +6,34 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import UserCommentCard from "@/components/common/UserCommentCard/UserCommentCard";
+import { ICommentsData } from "@/types/ICommentCardProps";
+import { useEffect, useState } from "react";
+import { getComments } from "@/utils/service/api/getComments";
 
 const UserComments = () => {
-  const slide = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ];
+  const [Comments, setComments] = useState<ICommentsData[] | null>(null);
+
+  console.log(Comments);
+  const getAllComments = async () => {
+    const initialResult = await getComments({ page: 1, limit: 1 });
+    const total = initialResult.totalCount;
+
+    const allResult = await getComments({
+      page: 1,
+      limit: total,
+      sort: "created_at",
+      order: "DESC",
+    });
+    const filtered = allResult.data.filter(
+      (c: ICommentsData) => Number(c.rating) >= 4
+    );
+    setComments(filtered.slice(0, 7));
+  };
+
+  useEffect(() => {
+    getAllComments();
+  }, []);
+
   return (
     <div className="bg-[#232323] py-24 w-full flex flex-col gap-8">
       <div className="h-fit flex flex-col justify-center items-center gap-6 text-white">
@@ -55,11 +73,11 @@ const UserComments = () => {
           modules={[Pagination]}
           className=" w-full mt-6"
         >
-          {slide.map((Item, index) => {
+          {Comments?.map((Item, index) => {
             return (
               <SwiperSlide key={index}>
                 <UserCommentCard
-                  id={Item.id}
+                  Item={Item}
                   showUserDetail={true}
                   showComment={true}
                   bgColor={"#232323"}

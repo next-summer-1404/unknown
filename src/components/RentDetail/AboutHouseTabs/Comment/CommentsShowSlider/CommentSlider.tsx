@@ -4,14 +4,34 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { IHouses } from "@/types/IHouses";
+// import { IHouses } from "@/types/IHouses";
 import CommentCard from "./CommentCard";
+import { FC, useEffect, useState } from "react";
+import { getComments } from "@/utils/service/api/getComments";
+import { ICommentsData } from "@/types/ICommentCardProps";
 
-interface SliderProps {
-  Houses: IHouses[];
+interface houseIdProps {
+  houseId: string;
 }
-const CommentSlider = (/*{ Houses }: SliderProps*/) => {
-const Houses = [{id:1}, {id:2}, {id:2}, {id:2}, {id:2}]
+const CommentSlider: FC<houseIdProps> = ({ houseId }) => {
+  const [Comments, setComments] = useState<ICommentsData[] | null>(null);
+
+  // console.log(Comments);
+  const getAllComments = async () => {
+    const initialResult = await getComments({ page: 1, limit: 1 });
+    const total = initialResult.totalCount;
+
+    const allResult = await getComments({
+      page: 1,
+      limit: total,
+      house_id: Number(houseId),
+    });
+    setComments(allResult.data);
+  };
+
+  useEffect(() => {
+    getAllComments();
+  }, []);
 
   return (
     <>
@@ -30,10 +50,11 @@ const Houses = [{id:1}, {id:2}, {id:2}, {id:2}, {id:2}]
         }}
         modules={[Pagination]}
       >
-        {Houses.map((Item, index) => {
+        {Comments?.map((Item, index) => {
           return (
-            <SwiperSlide key={index} >
-              <CommentCard />
+            <SwiperSlide key={index}>
+              <CommentCard 
+              Item={Item}/>
             </SwiperSlide>
           );
         })}

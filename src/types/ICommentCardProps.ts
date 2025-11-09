@@ -10,6 +10,7 @@ export interface ICommentsParams {
   page?: number;
   limit?: number;
   sort?: string;
+  order?:string;
   house_id?: number;
   user_id?: number;
   rating?: number;
@@ -29,3 +30,13 @@ export type IComments = {
 
   totalCount: number;
 };
+export type ICommentsData ={
+  caption: string;
+    created_at: string;
+    house_id: string;
+    id: string;
+    parent_comment_id: string;
+    rating: string;
+    title: string;
+    user_id: string;
+}
