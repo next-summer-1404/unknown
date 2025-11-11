@@ -5,26 +5,25 @@ import Image from "next/image";
 import GreenArrow from "../.././../assets/images/greenArrow.png";
 import { BellAlertIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import UserMenuModal from "./UserMenuModal";
-import { Switch } from "@heroui/react";
 import { UsersTypes } from "@/types/UsersTypes";
 import { getUsers } from "@/utils/service/api/getUsers";
+import Cookies from "js-cookie"; 
 
 const DashboardHeader = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
- useEffect(() => {
-    const id = localStorage.getItem("userId"); 
-    setUserId(id);
+  useEffect(() => {
+    // console.log(userId,'fffffff')
+    const id = Cookies.get("userId"); 
+    setUserId(id ?? null);
   }, []);
 
   useEffect(() => {
-    // console.log(userId,'eeeeee')
     if (!userId) return;
     const fetchUser = async () => {
       const res = await getUsers(userId);
-      // console.log(res,'ffffffffff')
       setUserInfo(res);
     };
     fetchUser();
@@ -50,19 +49,21 @@ const DashboardHeader = () => {
         <div className="flex items-center gap-3">
           <BellAlertIcon className="w-5 h-5 text-[#AAAA]" />
           <div
-            className="flex flex-col items-center cursor-pointer select-none "
+            className="flex flex-col items-center cursor-pointer select-none"
             onClick={() => setIsUserMenuOpen((prev) => !prev)}
           >
             <p className="text-[#AAAA] flex items-center gap-1">
               {userInfo?.user.fullName}
               <ChevronDownIcon className="w-4 h-4" />
             </p>
-            <p className="text-[10px] text-[#AAAA] ">خریدار</p>
+            <p className="text-[10px] text-[#AAAA] ">
+              {userInfo?.user.role}
+            </p>
           </div>
         </div>
 
         {isUserMenuOpen && (
-          <UserMenuModal  onClose={() => setIsUserMenuOpen(false)} userId={userId!}/>
+          <UserMenuModal onClose={() => setIsUserMenuOpen(false)} userId={userId!} />
         )}
       </div>
     </div>

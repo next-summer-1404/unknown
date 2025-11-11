@@ -23,12 +23,9 @@ const LoginPage = () => {
 
   const onSubmit = async (data: ILoginRequest) => {
     setLoading(true);
-
     try {
       const result = await LoginApi(data);
-
       const token = typeof result === "string" ? result : result?.accessToken;
-
       if (!token) {
         toast.error("دریافت توکن ناموفق بود");
         return;

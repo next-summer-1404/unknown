@@ -1,12 +1,17 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import DynamicTable from "../../common/table/DynamicTable";
-import { BookingCustomersResponse, BookingItem } from "@/types/BookingCustomersResponse ";
+import {
+  BookingCustomersResponse,
+  BookingItem,
+} from "@/types/BookingCustomersResponse ";
 import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
 import Cookies from "js-cookie";
 
-{/*???*/}
+{
+  /*???*/
+}
 const columns = [
   { key: "name", label: "نام اقامتگاه" },
   { key: "date", label: "تاریخ رزرو" },
@@ -20,13 +25,13 @@ const ReservationSection: React.FC = () => {
   const getData = async () => {
     const userId = Cookies.get("userId");
     // console.log(userId,'lllll')
-     if (!userId) {
-        setData([]);
-        return;
-      }
+    if (!userId) {
+      setData([]);
+      return;
+    }
     const response: BookingCustomersResponse = await getCustomersBooking(String(userId));
     setData(response.bookings || []);
-    //  console.log(response,'rrrrrrrr')  
+    //  console.log(response,'rrrrrrrr')
   };
 
   useEffect(() => {
@@ -60,11 +65,7 @@ const ReservationSection: React.FC = () => {
   }));
 
   return (
-    <DynamicTable
-      title="رزروهای اخیر مشتریان"
-      columns={columns}
-      rows={rows}
-    />
+    <DynamicTable title="رزروهای اخیر مشتریان" columns={columns} rows={rows} />
   );
 };
 
