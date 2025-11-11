@@ -20,10 +20,11 @@ const DashboardHeader = () => {
   }, []);
 
   useEffect(() => {
+    // console.log(userId,'eeeeee')
     if (!userId) return;
     const fetchUser = async () => {
       const res = await getUsers(userId);
-      console.log(res,'ffffffffff')
+      // console.log(res,'ffffffffff')
       setUserInfo(res);
     };
     fetchUser();

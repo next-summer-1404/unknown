@@ -3,7 +3,7 @@ export interface BookingCustomersResponse {
 }
 
 export interface BookingItem {
-  id: number;
+  id: number ;
   user_id: number;
   houseId: number;
   reservedDates: ReservedDate[];

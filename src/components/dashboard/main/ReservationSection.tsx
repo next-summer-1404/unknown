@@ -1,7 +1,12 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import DynamicTable from "../../common/table/DynamicTable";
+import { BookingCustomersResponse, BookingItem } from "@/types/BookingCustomersResponse ";
+import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
+import Cookies from "js-cookie";
 
+{/*???*/}
 const columns = [
   { key: "name", label: "نام اقامتگاه" },
   { key: "date", label: "تاریخ رزرو" },
@@ -9,20 +14,51 @@ const columns = [
   { key: "status", label: "وضعیت" },
 ];
 
-const rows = Array.from({ length: 6 }, (_, i) => ({
-  key: i + 1,
-  name: "هتل ساران زمین رشت",
-  date: "۱۲ مرداد ۱۴۰۱ / 13:33",
-  price: "۸,۰۰۰,۰۰۰ تومان",
-  status: (
-    <div className="flex items-center justify-start gap-1 text-[#8CFF45] font-semibold">
-      <CheckCircleIcon className="w-4 h-4" />
-      <span>تایید شده</span>
-    </div>
-  ),
-}));
+const ReservationSection: React.FC = () => {
+  const [data, setData] = useState<BookingItem[]>([]);
 
-export default function ReservationSection() {
+  const getData = async () => {
+    const userId = Cookies.get("userId");
+    // console.log(userId,'lllll')
+     if (!userId) {
+        setData([]);
+        return;
+      }
+    const response: BookingCustomersResponse = await getCustomersBooking(String(userId));
+    setData(response.bookings || []);
+    //  console.log(response,'rrrrrrrr')  
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const rows = data.map((booking, index) => ({
+    key: index + 1,
+    name: booking?.house?.title || "—",
+    date:
+      booking?.reservedDates && booking.reservedDates.length > 0
+        ? new Date(booking.reservedDates[0].value).toLocaleDateString("fa-IR") +
+          " / " +
+          new Date(booking.reservedDates[0].value).toLocaleTimeString("fa-IR")
+        : "—",
+    price: booking?.house?.price
+      ? `${Number(booking.house.price).toLocaleString("fa-IR")} تومان`
+      : "—",
+    status: (
+      <div
+        className={`flex items-center justify-start gap-1 font-semibold ${
+          booking?.status === "pending" ? "text-yellow-400" : "text-[#8CFF45]"
+        }`}
+      >
+        <CheckCircleIcon className="w-4 h-4" />
+        <span>
+          {booking?.status === "pending" ? "در انتظار تأیید" : "تأیید شده"}
+        </span>
+      </div>
+    ),
+  }));
+
   return (
     <DynamicTable
       title="رزروهای اخیر مشتریان"
@@ -30,4 +66,6 @@ export default function ReservationSection() {
       rows={rows}
     />
   );
-}
+};
+
+export default ReservationSection;

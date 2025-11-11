@@ -1,8 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DynamicTable from "../../common/table/DynamicTable";
+import {PaymentsResponse, PaymentType } from "@/types/PaymentType ";
+import { getPayments } from "@/utils/service/api/getPayments";
 
 const FainanceTable = () => {
+  const [data, setData] = useState<PaymentType[]>([]);
+
+  const getData = async () => {
+    const response: PaymentsResponse = await getPayments();
+    setData(response.payments);
+  };
+
+  
+  useEffect(() => {
+    getData();
+  }, []);
+
   const columns = [
     { key: "date", label: "تاریخ" },
     { key: "tracking", label: "شماره پیگیری" },
@@ -12,73 +26,25 @@ const FainanceTable = () => {
     { key: "action", label: "مشاهده رسید" },
   ];
 
-  const rows = [
-    {
-      key: 1,
-      date: "۱۴۰۱ / مرداد / ۱۳",
-      tracking: "۱۳۴۵۷۸۹۱۳۴۵۷۸۹",
-      amount: "۱۲۵۰۰۰۰",
-      status: "تایید شده",
-      type: "شارژ کیف پول",
-      action: (
-        <button className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition">
-          مشاهده رسید
-        </button>
-      ),
-    },
-    {
-      key: 2,
-      date: "۱۴۰۱ / مرداد / ۱۳",
-      tracking: "۱۳۴۵۷۸۹۱۳۴۵۷۸۹",
-      amount: "۱۲۵۰۰۰۰",
-      status: "تایید نشده",
-      type: "رزرو",
-      action: (
-        <button className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition">
-          مشاهده رسید
-        </button>
-      ),
-    },
-    {
-      key: 3,
-      date: "۱۴۰۱ / مرداد / ۱۳",
-      tracking: "۱۳۴۵۷۸۹۱۳۴۵۷۸۹",
-      amount: "۱۲۵۰۰۰۰",
-      status: "تایید شده",
-      type: "شارژ کیف پول",
-      action: (
-        <button className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition">
-          مشاهده رسید
-        </button>
-      ),
-    },
-    {
-      key: 4,
-      date: "۱۴۰۱ / مرداد / ۱۳",
-      tracking: "۱۳۴۵۷۸۹۱۳۴۵۷۸۹",
-      amount: "۱۲۵۰۰۰۰",
-      status: "تایید نشده",
-      type: "رزرو",
-      action: (
-        <button className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition">
-          مشاهده رسید
-        </button>
-      ),
-    },
-    {
-      key: 5,
-      date: "۱۴۰۱ / مرداد / ۱۳",
-      tracking: "۱۳۴۵۷۸۹۱۳۴۵۷۸۹",
-      amount: "۱۲۵۰۰۰۰",
-      status: "تایید شده",
-      type: "شارژ کیف پول",
-      action: (
-        <button className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition">
-          مشاهده رسید
-        </button>
-      ),
-    },
-  ];
+  const rows = data.map((payment) => ({
+    key: payment.id,
+    date: new Date(payment.createdAt).toLocaleDateString("fa-IR"),
+    tracking: payment.transactionId ?? "—",
+    amount: payment.amount,
+    status:payment.status ,
+    type: payment.description,
+    action: (
+      <a
+        href={payment.paymentUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#8CFF45] hover:text-[#aaff6b] font-semibold transition"
+      >
+        مشاهده رسید
+      </a>
+    ),
+  }));
+
 
   return (
     <div className="text-right">

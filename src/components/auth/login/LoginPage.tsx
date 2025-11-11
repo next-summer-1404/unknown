@@ -34,12 +34,14 @@ const LoginPage = () => {
         return;
       }
 
-      Cookies.set("accessToken", token, { expires: 1, path: "/" });
-
       const decoded: any = jwtDecode(token);
-
       const role = decoded?.role;
-      if (!role) {
+      const userId = decoded?.id;
+
+      Cookies.set("accessToken", token, { expires: 1});
+      Cookies.set("userId", userId, { expires: 1});
+
+      if (!role || !userId) {
         toast.error("نقش در توکن یافت نشد");
         return;
       }
@@ -53,15 +55,6 @@ const LoginPage = () => {
       } else {
         router.push("/dashboard");
       }
-//       setTimeout(() => {
-//   if (role === "buyer") {
-//     router.push("/dashboard/buyer");
-//   } else if (role === "seller") {
-//     router.push("/dashboard/seller");
-//   } else {
-//     router.push("/dashboard");
-//   }
-// }, 300);
     } catch (error: any) {
       toast.error("خطا در ورود، لطفاً دوباره تلاش کنید");
     } finally {

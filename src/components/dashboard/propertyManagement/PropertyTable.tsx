@@ -20,7 +20,7 @@ const PropertyTable = ({ onAddClick }: { onAddClick: () => void }) => {
 
   const getData = async () => {
      const response: BookingCustomersResponse = await getCustomersBooking();
-     console.log(response,'ffffffff')
+    //  console.log(response,'ffffffff')
       setData(response);
   }
 
