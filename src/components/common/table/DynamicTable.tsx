@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import {
   EllipsisVerticalIcon,
@@ -7,7 +7,7 @@ import {
   EyeIcon,
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
-import BookingDetailsModal from "./../../dashboard/bookingManagement/BookingDetailsModal";
+import BookingDetailsModal from "@/components/dashboard/bookingManagement/BookingDetailsModal";
 
 export type Column = {
   key: string;
@@ -61,7 +61,7 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
 
   return (
     <>
-      <div className="bg-[#393939] mt-8 text-[#AAA] rounded-xl p-5 border border-[#333] shadow-md h-auto">
+      <div className="bg-[#393939] mt-8 text-[#AAA] rounded-xl p-5 border border-[#333] shadow-md h-auto min-w-0 overflow-hidden">
         {title && (
           <>
             <div className="text-right text-[#AAA] text-base font-semibold mb-4">
@@ -71,14 +71,17 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
           </>
         )}
 
-        <div className="overflow-auto rounded-xl border border-[#333]">
-          <table className="w-full border-collapse text-sm text-right">
+        <div className="overflow-x-auto overflow-y-hidden rounded-xl border border-[#333] max-w-full">
+          <table
+            className="w-full table-auto border-collapse text-sm text-right"
+            dir="rtl"
+          >
             <thead>
               <tr className="bg-[#2D2B2B] text-[#AAA] border-b border-dashed border-[#444]">
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="py-3 px-4 font-normal whitespace-nowrap"
+                    className="py-3 px-4 font-normal text-right"
                   >
                     {col.label}
                   </th>
@@ -94,7 +97,14 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
                   className="border-b border-dashed border-[#444] hover:bg-[#2a2a2a] transition"
                 >
                   {columns.map((col) => (
-                    <td key={col.key} className="py-3 px-4 whitespace-pre-wrap break-words">
+                    <td
+                      key={col.key}
+                      className={`py-3 px-4 align-top ${
+                        ["caption", "comment", "description"].includes(col.key)
+                          ? "whitespace-pre-wrap break-words max-w-[400px]"
+                          : "whitespace-nowrap"
+                      }`}
+                    >
                       {typeof item[col.key] === "string" ||
                       typeof item[col.key] === "number" ? (
                         col.key === "status" &&
@@ -136,24 +146,21 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
 
                       {menuOpen === item.key && (
                         <div
-                          className="table-action-menu absolute left-20 -translate-x-1/2 bottom-[-12]
-                                     mt-2 z-[999] bg-[#393939] border border-[#333] rounded-xl
-                                     shadow-lg p-2 w-[130px] text-xs"
+                          dir="rtl"
+                          className="table-action-menu absolute right-20 bottom-[-12px] mt-2 z-[999]
+                            bg-[#393939] border border-[#333] rounded-xl shadow-lg p-2 w-[130px] text-xs"
                         >
                           <button className="flex items-center gap-2 text-[#8CFF45] hover:bg-[#222] w-full px-2 py-1 rounded-md transition">
                             فعال‌سازی
                           </button>
-
                           <button className="flex items-center gap-2 hover:bg-[#222] w-full px-2 py-1 rounded-md transition">
                             <PencilSquareIcon className="w-4 h-4 text-[#AAA]" />
                             ویرایش
                           </button>
-
                           <button className="flex items-center gap-2 text-[#FF4556] hover:bg-[#222] w-full px-2 py-1 rounded-md transition">
                             <TrashIcon className="w-4 h-4" />
                             حذف
                           </button>
-
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
