@@ -1,13 +1,38 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BookmarkIcon, UserIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import GreenArrow from "../../../assets/images/greenArrow.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { UsersTypes } from "@/types/UsersTypes";
+import { getUsers } from "@/utils/service/api/getUsers";
+import Cookies from "js-cookie";
 
 const BuyerContain = () => {
-  const percentage = 40;
+  const [percentage, setPercentage] = useState<number>(0);
+  const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const id = Cookies.get("userId");
+    setUserId(id ?? null);
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+    const fetchUserInfo = async () => {
+      try {
+        const res = await getUsers(userId);
+        setUserInfo(res);
+        const completion = res?.additionalPercentage ?? 0;
+        setPercentage(completion);
+      } catch (err) {
+        console.error("خطا در دریافت وضعیت پروفایل:", err);
+      }
+    };
+    fetchUserInfo();
+  }, [userId]);
 
   return (
     <div className="flex gap-5 w-full h-auto">
@@ -18,8 +43,6 @@ const BuyerContain = () => {
         </div>
 
         <div className="border-t border-dashed border-gray-300 mb-[2px]" />
-
-        
       </div>
 
       <div className="flex-1 bg-[#393939] rounded-2xl px-3 pt-2 pb-4">
@@ -50,12 +73,11 @@ const BuyerContain = () => {
               تکمیل شده باشد.
             </p>
             <p className="text-[#888888] text-[12px] pt-10">
-              آخرین تغییرات در ۳ دقیقه پیش
+              آخرین تغییرات در چند دقیقه پیش
             </p>
           </div>
 
-          {/* نمودار دایره‌ای */}
-          <div className="w-1/3  rounded-xl flex items-center justify-center p-4">
+          <div className="w-1/3 rounded-xl flex items-center justify-center p-4">
             <CircularProgressbar
               value={percentage}
               text={`${percentage}%`}

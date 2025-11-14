@@ -1,28 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import GreenArrow from "../.././../assets/images/greenArrow.png";
 import { BellAlertIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import ThemeSwitch from "@/components/dashboard/main/ThemeSwitch";
 import BuyerMenuModal from "./BuyerMenuModal";
-import { useRouter, usePathname } from "next/navigation";
 import { Switch } from "@heroui/react";
+import { UsersTypes } from "@/types/UsersTypes";
+import { getUsers } from "@/utils/service/api/getUsers";
+import Cookies from "js-cookie"; 
+
 
 const BuyerHeader = () => {
   const [isBuyerMenuModal, setIsBuyerMenuModal] = useState(false);
+   const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
+    const [userId, setUserId] = useState<string | null>(null);
+  
+    useEffect(() => {
+      // console.log(userId,'fffffff')
+      const id = Cookies.get("userId"); 
+      setUserId(id ?? null);
+    }, []);
+  
+    useEffect(() => {
+      if (!userId) return;
+      const fetchUser = async () => {
+        const res = await getUsers(userId);
+        setUserInfo(res);
+      };
+      fetchUser();
+    }, [userId]);
 
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const isBuyer = pathname.startsWith("/dashboard/buyer");
-
-  const handleSwitchChange = (checked: boolean) => {
-    if (checked) {
-      router.push("/dashboard/buyer");
-    } else {
-      router.push("/dashboard/seller");
-    }
-  };
-
+  
   return (
     <div className="w-full rounded-2xl h-16 bg-[#393939] flex items-center">
       <div className="w-2/3 flex items-center justify-between p-5">
@@ -47,14 +55,15 @@ const BuyerHeader = () => {
             onClick={() => setIsBuyerMenuModal((prev) => !prev)}
           >
             <p className="text-[#AAAA] flex items-center gap-1">
-              سبحان
+              {userInfo?.user.fullName}
               <ChevronDownIcon className="w-4 h-4" />
             </p>
+            <p className="text-[#AAAA] text-xs ">{userInfo?.user.role}</p>
           </div>
         </div>
 
         {isBuyerMenuModal && (
-          <BuyerMenuModal onClose={() => setIsBuyerMenuModal(false)} />
+          <BuyerMenuModal onClose={() => setIsBuyerMenuModal(false)} userId={userId!}/>
         )}
 
         

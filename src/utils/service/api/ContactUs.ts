@@ -7,7 +7,7 @@ import { IContact } from './../../../types/IContact';
         const result = await http.post('/contact-us',value)
         return result
     } catch (error) {
-        toast.error(error.response.data.ErrorMessage[0])
+        // toast.error(error.response.data.ErrorMessage[0])
     }
 }
 
