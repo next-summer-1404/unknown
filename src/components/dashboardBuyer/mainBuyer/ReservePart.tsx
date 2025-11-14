@@ -17,7 +17,7 @@ const ReservePart: React.FC = () => {
 
   const getData = async () => {
     const response = await getBooking();
-    console.log(response,'fffffffff')
+    // console.log(response,'fffffffff')
     setData(response?.data || []);
   };
 
