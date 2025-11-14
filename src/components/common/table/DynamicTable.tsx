@@ -94,7 +94,7 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
                   className="border-b border-dashed border-[#444] hover:bg-[#2a2a2a] transition"
                 >
                   {columns.map((col) => (
-                    <td key={col.key} className="py-3 px-4 whitespace-nowrap">
+                    <td key={col.key} className="py-3 px-4 whitespace-pre-wrap break-words">
                       {typeof item[col.key] === "string" ||
                       typeof item[col.key] === "number" ? (
                         col.key === "status" &&
