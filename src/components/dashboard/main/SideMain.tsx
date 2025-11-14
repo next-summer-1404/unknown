@@ -23,7 +23,7 @@ const menuItems = [
   { label: "مدیریت املاک", icon: BuildingOfficeIcon, section: "property" },
   { label: "مدیریت رزرو", icon: PlusCircleIcon, section: "reservation" },
   { label: "مدیریت مالی", icon: WalletIcon, section: "finance" },
-  { label: "مدیریت نظرها", icon: ChatBubbleLeftRightIcon, section: "comments" },
+  { label: "مدیریت نظرها", icon: ChatBubbleLeftRightIcon, section: "comment" },
   { label: "اعلان‌ها", icon: BellIcon, section: "notifications" },
 ];
 
