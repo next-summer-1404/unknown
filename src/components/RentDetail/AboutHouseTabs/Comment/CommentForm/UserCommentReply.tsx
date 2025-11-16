@@ -2,32 +2,32 @@
 
 import { useState } from "react";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
-import { Slider } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { ICommentsParams } from "@/types/ICommentsParams";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import LoginModal from "@/components/common/LogInModal/LogInModal";
 import { PostComment } from "@/utils/service/api/postComment";
-import { IHouses } from "@/types/IHouses";
+import { ICommentsData } from "@/types/ICommentCardProps";
 
 interface UserCommentsHouseProps {
-  house: IHouses;
+  commentData: ICommentsData | null;
 }
 
-const UserComment = ({ house }: UserCommentsHouseProps) => {
+const UserCommentReply = ({ commentData }: UserCommentsHouseProps) => {
   const router = useRouter();
-  const houseId = Number(house.id);
+  const houseId = Number(commentData?.house_id);
+  const CommentId = Number(commentData?.id);
   const userId = Number(Cookies.get("userId")) || null;
-  const [value, SetValue] = useState(0);
+
+  console.log(commentData);
   const [message, setMessage] = useState<ICommentsParams>({
     house_id: houseId,
     user_id: userId,
-    title: "",
+    title: "پاسخ",
     caption: "",
-    rating: 0,
-    parent_comment_id: null,
+    rating: null,
+    parent_comment_id: CommentId,
   });
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -47,9 +47,9 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
       setMessage({
         house_id: 0,
         user_id: 0,
-        title: "",
+        title: "پاسخ",
         caption: "",
-        rating: 0,
+        rating: null,
         parent_comment_id: 0,
       });
     } catch (err) {
@@ -59,62 +59,29 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
   return (
     <>
       <form onSubmit={handleSubmit} className="flex justify-between py-10">
-        <div className="w-[39%] flex justify-between gap-2">
-          <div className="w-[35%] h-12 relative">
-            <label
-              htmlFor="title"
-              className="absolute right-3 -top-2 bg-[#232323] px-1 text-[#AAAAAA] text-sm"
-            >
-              عنوان پیام:
-            </label>
-            <input
-              type="text"
-              id="title"
-              value={message.title}
-              onChange={(e) =>
-                setMessage({ ...message, title: e.target.value })
-              }
-              placeholder="وارد کنید..."
-              className="w-full border border-[#AAAAAA] text-[#aaaaaa] rounded-xl h-full px-3 py-3 focus:border-blue-500 focus:outline-none"
-            />
-          </div>
-          <div className="w-[63%] h-12 relative flex justify-between items-center gap-3.5 px-2 border border-[#AAAAAA] text-[#aaaaaa] rounded-xl ">
-            <label
-              htmlFor="rating"
-              className="absolute right-3 -top-3 bg-[#232323] px-1 text-[#AAAAAA] text-sm "
-            >
-              امتیاز شما:
-            </label>
-            <Slider
-              id="slider"
-              aria-label="Value"
-              className={`flex-1 cursor-pointer`}
-              minValue={0}
-              maxValue={6}
-              step={0.5}
-              value={value}
-              onChange={(val: number | number[]) => {
-                const newVal = Array.isArray(val) ? val[0] : val;
-                SetValue(newVal); // تغییر اسلایدر
-                setMessage({ ...message, rating: newVal });
-              }}
-              radius="md"
-            />
-
-            <div className="flex justify-center items-center gap-1.5">
-              <span className="w-4 h-4">{value}</span>
-              <StarIconSolid className="w-4 h-4" />
-            </div>
-          </div>
+        <div className="w-[35%] h-12 relative">
+          <label
+            htmlFor="comment"
+            className="absolute right-3 -top-2 bg-[#232323] px-1 text-[#AAAAAA] text-sm"
+          >
+            برای پیام:
+          </label>
+          <input
+            type="text"
+            id="comment"
+            disabled
+            value={commentData?.caption}
+            className="w-full border border-[#AAAAAA] text-[#aaaaaa] rounded-xl h-full px-3 py-3 focus:border-blue-500 focus:outline-none"
+          />
         </div>
 
-        <div className="w-[59%] flex items-center gap-5">
+        <div className="w-[64%] flex items-center gap-5">
           <div className="flex-1 h-12 relative">
             <label
               htmlFor="caption"
               className="absolute right-3 -top-2 bg-[#232323] px-1 text-[#AAAAAA] text-sm"
             >
-              پیام شما:
+              پاسخ شما:
             </label>
             <input
               type="text"
@@ -131,7 +98,7 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
             type="submit"
             className="w-[20%] h-9 flex items-center justify-center gap-5 bg-[#8CFF45] rounded-xl cursor-pointer text-[#363636] shadow-[0px_8px_16px_0px_#8CFF4514]"
           >
-            <h4 className="">ارسال نظر</h4>
+            <h4 className="">ارسال پاسخ</h4>
             <ChevronLeftIcon className="w-5 h-5" />
           </button>
         </div>
@@ -145,4 +112,4 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
   );
 };
 
-export default UserComment;
+export default UserCommentReply;

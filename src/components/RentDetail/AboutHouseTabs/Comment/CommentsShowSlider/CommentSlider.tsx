@@ -12,8 +12,14 @@ import { ICommentsData } from "@/types/ICommentCardProps";
 
 interface houseIdProps {
   houseId: string;
+  setReplyCommentData: (data: ICommentsData) => void;
+  setCurrentTab: (tab: string) => void;
 }
-const CommentSlider: FC<houseIdProps> = ({ houseId }) => {
+const CommentSlider: FC<houseIdProps> = ({
+  houseId,
+  setReplyCommentData,
+  setCurrentTab,
+}) => {
   const [Comments, setComments] = useState<ICommentsData[] | null>(null);
 
   // console.log(Comments);
@@ -53,8 +59,11 @@ const CommentSlider: FC<houseIdProps> = ({ houseId }) => {
         {Comments?.map((Item, index) => {
           return (
             <SwiperSlide key={index}>
-              <CommentCard 
-              Item={Item}/>
+              <CommentCard
+                Item={Item}
+                setReplyCommentData={setReplyCommentData}
+                setCurrentTab={setCurrentTab}
+              />
             </SwiperSlide>
           );
         })}

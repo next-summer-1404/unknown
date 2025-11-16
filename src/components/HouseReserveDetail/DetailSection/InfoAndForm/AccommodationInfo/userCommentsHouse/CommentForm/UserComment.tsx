@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { Slider } from "@heroui/react";
-import { ICommentsData } from "@/types/ICommentsData";
+import { ICommentsParams } from "@/types/ICommentsParams";
 import { PostComment } from "@/utils/service/api/postComment";
 import { IHouses } from "@/types/IHouses";
 import Cookies from "js-cookie";
@@ -19,7 +19,7 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
   const houseId = Number(house.id);
   const userId = Number(Cookies.get("userId")) || null;
   const [value, SetValue] = useState(0);
-  const [message, setMessage] = useState<ICommentsData>({
+  const [message, setMessage] = useState<ICommentsParams>({
     house_id: houseId,
     user_id: userId,
     title: "",
