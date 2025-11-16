@@ -9,7 +9,7 @@ interface UserCommentsHouseProps {
 const Index = ({ house }: UserCommentsHouseProps) => {
   return (
     <div className="w-full pt-4">
-      <UserComment />
+      <UserComment house={house}/>
 
       <div className="w-full h-0.5 bg-gradient-to-r from-[#232323] via-[#AAAAAA] to-[#232323]"></div>
     
