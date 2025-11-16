@@ -81,12 +81,16 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="py-3 px-4 font-normal text-right"
+                    className="py-3 px-4 font-normal text-right align-top whitespace-normal break-words max-w-[150px]"
                   >
                     {col.label}
                   </th>
                 ))}
-                {withActions && <th className="text-center py-3">عملیات</th>}
+                {withActions && (
+                  <th className="text-center py-3 whitespace-normal break-words max-w-[100px]">
+                    عملیات
+                  </th>
+                )}
               </tr>
             </thead>
 

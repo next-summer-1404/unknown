@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import megaphone from "../../assets/images/megaphone1.png";
 import user1 from "../../assets/images/user1.png";
+import ThemeSwitch from "../dashboard/main/ThemeSwitch";
 
 const Header = () => {
   const pathname = usePathname();
@@ -122,6 +123,9 @@ const Header = () => {
         </div>
 
         <nav className="flex items-center gap-1.5 mr-auto ml-3">
+          <div className="px-5">
+            <ThemeSwitch/>
+          </div>
           <Image src={user1} alt="!!" width={16} height={16} />
           <Link
             href="/login"

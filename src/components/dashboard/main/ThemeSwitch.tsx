@@ -1,17 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Switch } from "@heroui/react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid"; 
+import { useTheme } from "next-themes";
 
 const ThemeSwitch = () => {
-  const [isSelected, setIsSelected] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex items-center">
       <Switch
-        isSelected={isSelected}
-        onValueChange={setIsSelected}  
+        isSelected={theme === "light"}                 
+        onValueChange={(isSelected) =>
+          setTheme(isSelected ? "light" : "dark")       
+        }
         size="lg"
         color="success"
         classNames={{
@@ -20,7 +23,7 @@ const ThemeSwitch = () => {
         }}
         thumbIcon={({ isSelected }) =>
           isSelected ? (
-            <SunIcon className="w-4 h-4 text-black" />   
+            <SunIcon className="w-4 h-4 text-black" />  
           ) : (
             <MoonIcon className="w-4 h-4 text-black" /> 
           )

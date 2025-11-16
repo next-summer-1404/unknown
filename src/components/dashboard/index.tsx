@@ -20,10 +20,10 @@ const SellerDashboard:FC<SellerDashboardProps> = ({Finance}) => {
   const [activeSection, setActiveSection] = useState("dashboard");
 
   return (
-    <div className="h-[1189px] px-10 py-20 flex gap-5">
+    <div className="h-auto px-10 py-20 flex gap-5">
       <SideMain onSectionChange={setActiveSection} />
 
-      <div className="w-full flex flex-col gap-8">
+      <div className="w-11/12 mx-auto flex flex-col gap-8">
         <DashboardHeader />
 
         {activeSection === "dashboard" && (
