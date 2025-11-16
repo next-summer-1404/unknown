@@ -9,14 +9,14 @@ const Provider = ({ children }: { children: ReactNode }) => {
   return (
     <HeroUIProvider>
       <ThemeProvider
-        attribute="class" 
+        attribute="class"
         defaultTheme="dark"
         enableSystem={false}
-        value={{ dark: "dark", light: "light" }}
-      >
-        {children}
-        <Toaster position="top-center" reverseOrder={false} />
-      </ThemeProvider>
+        storageKey="theme"
+      />
+
+      {children}
+      <Toaster position="top-center" reverseOrder={false} />
     </HeroUIProvider>
   );
 };
