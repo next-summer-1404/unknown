@@ -54,9 +54,6 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
       console.error(err);
     }
   };
-  const goToLogin = () => {
-    router.push("/login"); // مسیر صفحه لاگین
-  };
   return (
     <>
       <form onSubmit={handleSubmit} className="">
@@ -81,7 +78,7 @@ const UserComment = ({ house }: UserCommentsHouseProps) => {
           </div>
           <div className="w-[60%] h-12 relative flex justify-between items-center gap-3.5 px-2 border border-[#AAAAAA] text-[#aaaaaa] rounded-xl ">
             <label
-              htmlFor="username"
+              htmlFor="rating"
               className="absolute right-3 -top-3 bg-[#232323] px-1 text-[#AAAAAA] text-sm "
             >
               امتیاز شما:

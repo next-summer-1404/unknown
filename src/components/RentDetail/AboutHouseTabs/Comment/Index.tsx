@@ -12,8 +12,8 @@ const Index: FC<UserCommentsHouseProps> = ({ house }) => {
   const houseId = house.id
 
   return (
-    <div className="w-full pt-4 ">
-      <UserComment />
+    <div className="w-full ">
+      <UserComment house={house} />
       <div className="w-full h-0.5 bg-gradient-to-r from-[#232323] via-[#AAAAAA] to-[#232323]"></div>
       <CommentsShowSlider houseId={houseId}/>
     </div>
