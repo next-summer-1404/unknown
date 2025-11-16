@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-// ما نیاز به آیکون ستاره پر داریم، پس آن را از solid ایمپورت می‌کنیم.
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { Slider } from "@heroui/react";
 

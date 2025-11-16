@@ -44,11 +44,12 @@ const UserCommentCard: FC<IProps> = ({
 
   const imageSrc =
     typeof user?.profilePicture === "string" &&
-    user?.profilePicture.trim() !== ""
+    user?.profilePicture.trim() !== "" &&
+    /^(https?:\/\/|\/|data:image\/)/i.test(user.profilePicture.trim()) // ← تصویر معتبر هست یا نه
       ? user?.profilePicture
       : Home;
 
-  console.log(user);
+  // console.log(user);
   return (
     <div className="w-full flex flex-col  pt-2.5 flex-shrink-0">
       <div className="relative flex flex-col gap-7 w-full bg-[#393939]  rounded-3xl px-6 pt-3 pb-6">

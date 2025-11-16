@@ -13,7 +13,7 @@ import { getComments } from "@/utils/service/api/getComments";
 const UserComments = () => {
   const [Comments, setComments] = useState<ICommentsData[] | null>(null);
 
-  console.log(Comments);
+  // console.log(Comments);
   const getAllComments = async () => {
     const initialResult = await getComments({ page: 1, limit: 1 });
     const total = initialResult.totalCount;
