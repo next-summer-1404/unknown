@@ -32,7 +32,11 @@ const CommentSlider: FC<houseIdProps> = ({
       limit: total,
       house_id: Number(houseId),
     });
-    setComments(allResult.data);
+    
+    const Comments = (allResult.data as ICommentsData[]).filter(
+    (item) => item.parent_comment_id === null
+  );
+    setComments(Comments);
   };
 
   useEffect(() => {
