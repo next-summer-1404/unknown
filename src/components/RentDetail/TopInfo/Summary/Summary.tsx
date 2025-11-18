@@ -22,7 +22,7 @@ const Summary = ({ house }: Props) => {
   const router = useRouter();
   const houseId = Number(house.id);
   const userId = Number(Cookies.get("userId")) || null;
-
+// console.log(userId)
   const handleFavorite = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userId) {
@@ -47,7 +47,7 @@ const Summary = ({ house }: Props) => {
         <div className=" flex gap-2 items-center">
           <div className="w-1/8 p-3 border border-[#565656] rounded-2xl flex items-center justify-center bg-[#393939]">
             <p className="text-white ">
-              {house?.categories?.name || "بدون دسته‌بندی"}{" "}
+              {house?.categories?.name || "بدون دسته‌بندی"}
             </p>
           </div>
           <div className="w-1/8 p-3 border border-[#565656] rounded-2xl flex items-center justify-center bg-[#393939]">
@@ -78,7 +78,6 @@ const Summary = ({ house }: Props) => {
               <div className="h-9 w-9 flex items-center justify-center bg-[#393939] rounded-xl">
                 <ShareIcon className="w-6 h-6 text-[#AAAAAA]" />
               </div>
-
               {house?.isFavorite ? (
                 <button
                   // onClick={handleFavorite}
