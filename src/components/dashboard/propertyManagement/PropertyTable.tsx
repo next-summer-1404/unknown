@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import DynamicTable from "../../common/table/DynamicTable";
-import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
 import { BookingCustomersResponse } from "@/types/BookingCustomersResponse ";
+import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
 
 {/* check */}
 
@@ -15,18 +15,23 @@ const columns = [
   { key: "status", label: "وضعیت" },
 ];
 
-const PropertyTable = ({ onAddClick }: { onAddClick: () => void }) => {
+interface PropertyTableProps {
+  bookingId: string;
+  onAddClick: () => void;
+}
+
+const PropertyTable: React.FC<PropertyTableProps> = ({ onAddClick ,bookingId}) => {
   const [data, setData] = useState<BookingCustomersResponse | null>(null);
 
   const getData = async () => {
-     const response: BookingCustomersResponse = await getCustomersBooking();
+     const response: BookingCustomersResponse = await getCustomersBooking(bookingId);
     //  console.log(response,'ffffffff')
       setData(response);
   }
 
   useEffect(() => {
    getData()
-  }, [])
+  }, [bookingId])
 
    const rows =
     data?.bookings.map((b) => ({

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { BookmarkIcon, UserIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -9,10 +10,23 @@ import { UsersTypes } from "@/types/UsersTypes";
 import { getUsers } from "@/utils/service/api/getUsers";
 import Cookies from "js-cookie";
 
+import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 const BuyerContain = () => {
   const [percentage, setPercentage] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+
+  const [addedCount, setAddedCount] = useState<number>(35); 
+  const [notAddedCount, setNotAddedCount] = useState<number>(65); 
 
   useEffect(() => {
     const id = Cookies.get("userId");
@@ -34,15 +48,49 @@ const BuyerContain = () => {
     fetchUserInfo();
   }, [userId]);
 
+  const chartData = {
+    labels: ["افزوده‌شده به علاقه‌مندی‌ها", "افزوده‌نشده"],
+    datasets: [
+      {
+        data: [addedCount, notAddedCount],
+        backgroundColor: ["#8CFF45", "#FF4D4D"],
+        borderColor: "#222",
+        borderWidth: 2,
+        hoverOffset: 10, 
+      },
+    ],
+  };
+
+  const chartOptions = {
+    plugins: {
+      legend: {
+        position: "bottom" as const,
+        labels: {
+          color: "#DDD",
+          font: {
+            family: "IRANSans",
+            size: 13,
+          },
+        },
+      },
+    },
+  };
+
   return (
     <div className="flex gap-5 w-full h-auto">
-      <div className="flex-1 bg-[#393939] rounded-2xl">
+      <div className="flex-1 bg-[#393939] rounded-2xl shadow-md">
         <div className="h-14 flex items-center px-3 gap-2 pt-2">
           <BookmarkIcon className="w-5 h-5 text-[#AAA]" />
-          <p className="text-[#AAA] text-[15px]"> نمودار رزرو های شما</p>
+          <p className="text-[#AAA] text-[15px]">نمودار علاقه‌مندی‌های شما</p>
         </div>
 
-        <div className="border-t border-dashed border-gray-300 mb-[2px]" />
+        <div className="border-t border-dashed border-gray-400 mb-2" />
+
+        <div className="flex justify-center items-center p-5 h-[300px]">
+          <div style={{ width: "250px", height: "250px" }}>
+            <Pie data={chartData} options={chartOptions} />
+          </div>
+        </div>
       </div>
 
       <div className="flex-1 bg-[#393939] rounded-2xl px-3 pt-2 pb-4">
@@ -63,7 +111,7 @@ const BuyerContain = () => {
           </div>
         </div>
 
-        <div className="border-t border-dashed border-gray-300 mb-4" />
+        <div className="border-t border-dashed border-gray-400 mb-4" />
 
         <div className="flex gap-4">
           <div className="w-2/3 p-5 rounded-xl">
@@ -76,14 +124,13 @@ const BuyerContain = () => {
               آخرین تغییرات در چند دقیقه پیش
             </p>
           </div>
-
-          <div className="w-1/3 rounded-xl flex items-center justify-center p-4">
+          <div className="w-1/3 flex items-center justify-center p-4">
             <CircularProgressbar
               value={percentage}
               text={`${percentage}%`}
               styles={buildStyles({
                 textColor: "#AAA",
-                pathColor: "#00FF66",
+                pathColor: "#8CFF45",
                 trailColor: "#555",
                 textSize: "24px",
               })}
