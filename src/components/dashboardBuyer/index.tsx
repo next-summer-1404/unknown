@@ -4,11 +4,11 @@ import SideBuyer from "./mainBuyer/SideBuyer";
 import BuyerHeader from "./mainBuyer/BuyerHeader";
 import BuyerHero from "./mainBuyer/BuyerHero";
 import BuyerContain from "./mainBuyer/BuyerContain";
-import ReservationSection from "../dashboard/main/ReservationSection";
 import Payments from "./payments/Payments";
 import BuyerFavorite from "./favorite/BuyerFavorite";
 import Notifiction from "./notifiction/Notifiction";
 import UseInformation from "./useInformation/UseInformation";
+import ReservePart from "./mainBuyer/ReservePart";
 
 const DashboardBuyer = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -24,7 +24,7 @@ const DashboardBuyer = () => {
           <>
             <BuyerHero />
             <BuyerContain />
-            <ReservationSection />
+            <ReservePart />
           </>
         )}
 

@@ -6,13 +6,17 @@ import Cookies from "js-cookie";
 import GreenArrow from "../../../assets/images/greenArrow.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
 import { getUsers } from "@/utils/service/api/getUsers";
 import { UsersTypes } from "@/types/UsersTypes";
+import { DashboardSummary } from "@/types/DashboardSummary";
+import { getSummeryStatic } from "@/utils/service/api/getSummeryStatic";
 
 const ContainDashboard = () => {
   const [percentage, setPercentage] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+  const [summary, setSummary] = useState<DashboardSummary | null>(null);
 
   useEffect(() => {
     const id = Cookies.get("userId");
@@ -25,8 +29,7 @@ const ContainDashboard = () => {
       try {
         const res = await getUsers(userId);
         setUserInfo(res);
-        const completion = res?.additionalPercentage  ?? 0; 
-        setPercentage(completion);
+        setPercentage(res?.additionalPercentage ?? 0);
       } catch (err) {
         console.error("خطا در دریافت وضعیت پروفایل:", err);
       }
@@ -34,40 +37,78 @@ const ContainDashboard = () => {
     fetchUserInfo();
   }, [userId]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getSummeryStatic();
+        setSummary(res);
+      } catch (error) {
+        console.error("خطا در دریافت آمار داشبورد:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="flex gap-5 w-full h-auto">
       <div className="flex-1 bg-[#393939] rounded-2xl">
         <div className="h-14 flex items-center px-3 gap-2 pt-2">
           <WindowIcon className="w-5 h-5 text-[#AAA]" />
-          <p className="text-[#AAA] text-[15px]">آمار درآمدها</p>
+          <p className="text-[#AAA] text-[15px]">آمار کاربران</p>
         </div>
 
         <div className="border-t border-dashed border-gray-300 mb-[2px]" />
 
         <div className="flex flex-col gap-3 px-5 py-4 text-right">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#8CFF45]" />
-              <p className="text-[#D1D5DB] text-[15px]">درآمد ماه جاری</p>
-            </div>
-            <div className="px-3 py-1 rounded-lg bg-[#8CFF45] text-[#000] text-[15px] font-semibold">
-              115,000,000 تومان
-            </div>
-          </div>
+          {summary ? (
+            <>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#8CFF45]" />
+                  <p className="text-[#D1D5DB] text-[15px]">تعداد کل کاربران</p>
+                </div>
+                <div className="px-3 py-1 rounded-lg bg-[#8CFF45] text-[#393939] text-[15px] font-semibold">
+                  {summary.users.userCount.toLocaleString("fa-IR")}
+                </div>
+              </div>
 
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#BDBDBD]" />
-              <p className="text-[#D1D5DB] text-[15px]">درآمد کل</p>
-            </div>
-            <div className="px-3 py-1 rounded-lg bg-[#D9D9D9] text-[#000] text-[15px] font-semibold">
-              195,000,000 تومان
-            </div>
-          </div>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#BDBDBD]" />
+                  <p className="text-[#D1D5DB] text-[15px]">فروشندگان</p>
+                </div>
+                <div className="px-3 py-1 rounded-lg bg-[#D9D9D9] text-[#393939] text-[15px] font-semibold">
+                  {summary.users.sellers.toLocaleString("fa-IR")}
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#8CFF45]" />
+                  <p className="text-[#D1D5DB] text-[15px]">خریداران</p>
+                </div>
+                <div className="px-3 py-1 rounded-lg bg-[#8CFF45] text-[#393939] text-[15px] font-semibold">
+                  {summary.users.buyers.toLocaleString("fa-IR")}
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#BDBDBD]" />
+                  <p className="text-[#D1D5DB] text-[15px]">ادمین‌ها</p>
+                </div>
+                <div className="px-3 py-1 rounded-lg bg-[#D9D9D9] text-[#393939] text-[15px] font-semibold">
+                  {summary.users.admins.toLocaleString("fa-IR")}
+                </div>
+              </div>
+
+            </>
+          ) : (
+            <p className="text-[#AAA] text-sm text-center">در حال بارگذاری...</p>
+          )}
         </div>
       </div>
 
-      {/* بخش وضعیت پروفایل */}
       <div className="flex-1 bg-[#393939] rounded-2xl px-3 pt-2 pb-4">
         <div className="flex items-center justify-between h-10 mb-2">
           <div className="flex items-center gap-2">
@@ -76,13 +117,7 @@ const ContainDashboard = () => {
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
             <p className="text-[#AAA] text-[15px]">ویرایش</p>
-            <Image
-              src={GreenArrow}
-              width={50}
-              height={16}
-              alt=""
-              className="rotate-0 text-[#AAAA]"
-            />
+            <Image src={GreenArrow} width={50} height={16} alt="" />
           </div>
         </div>
 
@@ -92,10 +127,10 @@ const ContainDashboard = () => {
           <div className="w-2/3 p-5 rounded-xl">
             <p className="text-3xl text-[#AAA] font-bold">{percentage}%</p>
             <p className="text-sm text-[#AAA] leading-8 mt-2">
-              برای اینکه بازدید خوبی داشته باشید، پروفایل شما باید حداقل
-              ۷۰٪ تکمیل شده باشد.
+              برای اینکه بازدید خوبی داشته باشید، پروفایل شما باید حداقل ۷۰٪
+              تکمیل شده باشد.
             </p>
-            <p className="text-[#888888] text-[12px] pt-10">
+            <p className="text-[#888] text-[12px] pt-10">
               آخرین تغییرات در چند دقیقه پیش
             </p>
           </div>
