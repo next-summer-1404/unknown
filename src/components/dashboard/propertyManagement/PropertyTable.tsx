@@ -1,53 +1,52 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import DynamicTable from "../../common/table/DynamicTable";
-import { BookingCustomersResponse } from "@/types/BookingCustomersResponse ";
-import { getCustomersBooking } from "@/utils/service/api/getCustomersBooking";
-
-{/* check */}
+import { getSellerUser } from "@/utils/service/api/getSellerUser";
+import { GetSellerHousesResponse } from "@/types/SellerUserType";
 
 const columns = [
-  { key: "name", label: "نام اقامتگاه" },
+  { key: "title", label: "نام اقامتگاه" },
   { key: "price", label: "قیمت" },
-  // { key: "score", label: "امتیاز" },
-  { key: "visits", label: "بازدیدها" },
-  // { key: "bookings", label: "رزروها" },
-  { key: "status", label: "وضعیت" },
+  { key: "transaction_type", label: "نوع معامله" },
+  { key: "rate", label: "امتیاز" },
+  { key: "address", label: "آدرس" },
 ];
 
 interface PropertyTableProps {
-  bookingId: string;
   onAddClick: () => void;
 }
 
-const PropertyTable: React.FC<PropertyTableProps> = ({ onAddClick ,bookingId}) => {
-  const [data, setData] = useState<BookingCustomersResponse | null>(null);
+const PropertyTable: React.FC<PropertyTableProps> = ({ onAddClick }) => {
+  const [data, setData] = useState<GetSellerHousesResponse | null>(null);
 
   const getData = async () => {
-     const response: BookingCustomersResponse = await getCustomersBooking(bookingId);
-    //  console.log(response,'ffffffff')
-      setData(response);
-  }
+    const response = await getSellerUser();
+    setData(response);
+  };
 
   useEffect(() => {
-   getData()
-  }, [bookingId])
+    getData();
+  }, []);
 
-   const rows =
-    data?.bookings.map((b) => ({
-      key: b.id,
-      name: b.house.title,
-      price: `${Number(b.house.price).toLocaleString("fa-IR")} تومان`,
-      status: b.status === "pending" ? "در انتظار تایید" : b.status,
-      dates: b.reservedDates
-        .map((rd) => new Date(rd.value).toLocaleDateString("fa-IR"))
-        .join(" تا "),
+  const rows =
+    data?.houses.map((house) => ({
+      key: house.id,
+      title: house.title,
+      price: `${Number(house.price).toLocaleString("fa-IR")} تومان`,
+      transaction_type:
+        house.transaction_type === "reservation"
+          ? "اجاره"
+          : house.transaction_type === "sale"
+          ? "فروش"
+          : "رهن",
+      rate: house.rate ?? "—",
+      address: house.address,
     })) ?? [];
 
   return (
     <DynamicTable
       columns={columns}
-      rows={rows ? rows : []}
+      rows={rows}
       withActions
       addButtonText="افزودن ملک +"
       onAddClick={onAddClick}
