@@ -4,16 +4,14 @@ import React, { useState } from "react";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import { Card, Button } from "@heroui/react";
-import { BuildingOffice2Icon, UsersIcon } from "@heroicons/react/24/outline";
+import { Card } from "@heroui/react";
+import { BuildingOffice2Icon} from "@heroicons/react/24/outline";
 import { IHouses } from "@/types/IHouses";
 import PriceReserve from "./PriceReserve";
 import AcceptPrice from "./AcceptPrice";
 import toast from "react-hot-toast";
 import { postBooking } from "@/utils/service/api/postBooking";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import LoginModal from "@/components/common/LogInModal/LogInModal";
 
 interface Props {
   house: IHouses;
@@ -24,7 +22,6 @@ const BookingCard = ({ house }: Props) => {
   const [endDate, setEndDate] = useState<DateObject | null>(null);
   const [startTime, setStartTime] = useState<string | null>(null);
   const [endTime, setEndTime] = useState<string | null>(null);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [isReserved, setIsReserved] = useState(false);
 
   const router = useRouter();
@@ -41,7 +38,7 @@ const BookingCard = ({ house }: Props) => {
       )}T${startTime}:00`;
       const formattedEnd = `${endDate.format("YYYY-MM-DD")}T${endTime}:00`;
 
-    // 4. تست گرفتن داده‌ها
+   
     console.log("Start DateTime:", formattedStart);
     console.log("End DateTime:", formattedEnd);
 
@@ -131,7 +128,6 @@ const BookingCard = ({ house }: Props) => {
         <PriceReserve house={house} />
         <AcceptPrice houseId={house.id} onReserve={handleAcceptClick} />
       </Card>
-   
     </>
   );
 };
