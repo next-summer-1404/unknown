@@ -23,6 +23,7 @@ const Summary = ({ house }: Props) => {
   const houseId = Number(house.id);
   const userId = Number(Cookies.get("userId")) || null;
 // console.log(userId)
+// check favorite
   const handleFavorite = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userId) {

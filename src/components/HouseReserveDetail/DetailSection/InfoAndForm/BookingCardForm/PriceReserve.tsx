@@ -1,14 +1,17 @@
 import { IHouses } from "@/types/IHouses";
 import { CurrencyDollarIcon, StarIcon } from "@heroicons/react/24/outline";
-import React from "react";
-import AcceptPrice from "./AcceptPrice";
+import { useRouter } from "next/navigation";
 
 interface PriceReserveProps {
     house: IHouses;
 }
 
 const PriceReserve = ({ house }: PriceReserveProps) => {
-  
+  const router = useRouter();
+  const houseId= house?.id
+    const handleReserveClick = () => {
+      router.push(`/houseReserve/${houseId}/finalReserve?step=1`);
+    };
 
   return (
     <div>
@@ -48,7 +51,6 @@ const PriceReserve = ({ house }: PriceReserveProps) => {
       </div>
       <p className="text-[#8CFF45] text-3xl  mr-56 pb-10">{house.discounted_price ? house.discounted_price : 0} تومان</p>
       
-      <AcceptPrice houseId={house.id} />
     </div>
   );
 };

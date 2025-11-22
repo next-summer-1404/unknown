@@ -16,9 +16,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.8)] ">
-      <div className="bg-white rounded-lg p-6 w-96 text-center">
-        <h2 className="text-lg font-bold mb-4">هنوز وارد نشده‌اید!</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(86,86,86,0.8)] ">
+      <div className="bg-[#2a2a2a] rounded-lg p-6 w-96 text-center text-white">
+        <h2 className="text-lg font-bold mb-4 ">هنوز وارد نشده‌اید!</h2>
         <p className="mb-6">آیا می‌خواهید به صفحه ورود بروید؟</p>
         <div className="flex justify-center gap-4">
           <button
