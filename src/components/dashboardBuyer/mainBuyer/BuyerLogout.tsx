@@ -23,7 +23,7 @@ const BuyerLogout: React.FC<BuyerLogoutProps> = ({
         </div>
 
         <p className="text-lg font-semibold text-[#111] mb-6">
-          آیا از خروج خود مطمئن هستید؟
+          آیا از خروج خود مطمئن sfnbjk
         </p>
 
         <div className="flex justify-center items-center gap-6">

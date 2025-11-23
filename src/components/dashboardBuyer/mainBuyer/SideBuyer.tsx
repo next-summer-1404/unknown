@@ -22,7 +22,7 @@ type SideMainProps = {
 const menuItems = [
   { label: "داشبورد", icon: HomeIcon, section: "dashboard" },
   { label: "اطلاعات کاربری", icon: UserIcon, section: "userinfo" },
-  { label: "مدیریت رزرو", icon: PlusCircleIcon, section: "reservation" },
+  // { label: "مدیریت رزرو", icon: PlusCircleIcon, section: "reservation" },
   { label: " علاقه مندی ها", icon: HeartIcon, section: "favorite" },
   { label: " پرداخت ها", icon: WalletIcon, section: "buyerPay" },
   { label: "اعلان‌ها", icon: BellIcon, section: "notifications" },

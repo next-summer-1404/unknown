@@ -7,6 +7,6 @@ export const PostComment = async (value: ICommentsParams) => {
     const result = await http.post("/comments", value);
     return result;
   } catch (error) {
-    toast.error(error.response.data.ErrorMessage[0]);
+    // toast.error(error.response.data.ErrorMessage[0]);
   }
 };

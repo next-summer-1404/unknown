@@ -8,8 +8,8 @@ const LoginApi = async (
   // console.log(data);
   try {
     const res: ILoginResponse = await http.post("/auth/login", data);
-    console.log("res ==>", res)
-    console.log("Response data:", res.accessToken);
+    // console.log("res ==>", res)
+    // console.log("Response data:", res.accessToken);
 
     return res;
   } catch (error) {

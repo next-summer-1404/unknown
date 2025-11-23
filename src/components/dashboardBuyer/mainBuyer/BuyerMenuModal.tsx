@@ -7,6 +7,8 @@ import {
 import BuyerLogout from "./BuyerLogout";
 import { getUsers } from "@/utils/service/api/getUsers";
 import { UsersTypes } from "@/types/UsersTypes";
+import { logOutApi } from "@/utils/service/api/logOutApi";
+import { useRouter } from "next/navigation";
 
 type BuyerMenuModalProps = {
   onClose: () => void;
@@ -15,8 +17,10 @@ type BuyerMenuModalProps = {
 
 const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
   const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [userInfo, setUserInfo] = useState<UsersTypes | null>(null);
+  const [gotLogin, setGotoLogin] = useState(false)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -24,7 +28,6 @@ const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
         onClose();
       }
     };
-    window.addEventListener("mousedown", handleClickOutside);
     return () => window.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
@@ -37,11 +40,21 @@ const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
     fetchUser();
   }, [userId]);
 
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-    onClose();
+  const handleConfirmLogout = async () => {
+    const res = await logOutApi(); 
+    console.log("res ==>", res)
+   
+    if (res.message === "Logout successful") {
+      setShowLogoutModal(true)
+      setGotoLogin(true)
+    }
   };
 
+  useEffect(() => {
+    if (gotLogin) {
+      router.push("/login"); 
+    }
+  }, [gotLogin])
 
   return (
     <>
@@ -52,7 +65,7 @@ const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
         <div className="flex items-center gap-3 pb-3 border-b border-dashed border-[#444]">
           <div className="w-10 h-10 bg-[#555] rounded-xl" />
           <div className="flex flex-col">
-            <p className="text-sm text-[#AAA] font-medium">  
+            <p className="text-sm text-[#AAA] font-medium">
               {userInfo?.user.fullName ?? "کاربر"}
             </p>
             <p className="text-xs text-[#AAA]">
@@ -63,12 +76,12 @@ const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
 
         <div className="flex items-center justify-start gap-2 py-3">
           <PlusIcon className="w-4 h-4 text-[#8CFF45]" />
-          <p className="text-sm text-[#AAA]"> شارژ کردن کیف پول</p>
+          <p className="text-sm text-[#AAA]">شارژ کردن کیف پول</p>
         </div>
 
         <button
           onClick={() => setShowLogoutModal(true)}
-          className="mt-2 flex items-center gap-2 text-[#AAA] ] transition text-sm"
+          className="mt-2 flex items-center gap-2 text-[#AAA] transition text-sm"
         >
           <ArrowRightOnRectangleIcon className="w-4 h-4 text-[#8CFF45]" />
           تنظیمات نوتیفیکشن
@@ -83,7 +96,7 @@ const BuyerMenuModal: React.FC<BuyerMenuModalProps> = ({ onClose, userId }) => {
         </button>
       </div>
 
-      {/* مدال خروج */}
+      {/* مدال تایید خروج */}
       <BuyerLogout
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}
