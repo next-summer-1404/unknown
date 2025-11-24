@@ -1,19 +1,16 @@
 "use client";
 
+import { useParams, useSearchParams } from "next/navigation";
 import FirstStep from "@/components/HouseReserveDetail/ReserveAndPayment/FirstStep/Index";
 import StepIndicator from "@/components/HouseReserveDetail/ReserveAndPayment/StepIndicator";
 import SecondStep from "@/components/HouseReserveDetail/ReserveAndPayment/SecondStep/Index";
 import ThirdFinalReserve from "@/components/HouseReserveDetail/ReserveAndPayment/ThirdStep/ThirdFinalReserve";
 
-export default function FinalReservePage({
-  params,
-  searchParams,
-}: {
-  params: { id: string };
-  searchParams: { step?: string };
-}) {
-  const stepNumber = Number(searchParams.step ?? 1);
-  const { id } = params;
+export default function FinalReservePage() {
+ const params = useParams(); // unwrap params
+  const searchParams = useSearchParams();
+  const stepNumber = Number(searchParams.get("step") ?? 1);
+  const id = params?.id;
 
   return (
     <div className="flex flex-col gap-6">

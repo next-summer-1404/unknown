@@ -10,8 +10,17 @@ import React from "react";
 import file from "../../../../assets/images/auth1.png";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useBookingStore } from "@/store/useBookingStore";
+import { DateTimeChange } from "@/utils/helper/DateTimeChange";
 
 const BookingPropertyInf = () => {
+
+  const reservedDates = useBookingStore((state) => state.reservedDates);
+
+  const startDisplay = reservedDates[0] || "--";
+  const endDisplay = reservedDates[1] || "--";
+  console.log(startDisplay)
+   console.log(endDisplay)
   return (
     <div className="lg:h-36 flex items-center px-2 py-2 bg-[#393939] rounded-2xl text-center text-white">
       <div className="w-[41%] py-1 h-full flex ">
@@ -41,16 +50,16 @@ const BookingPropertyInf = () => {
         <div className="w-full flex items-center justify-center gap-1">
           <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]" />
           <span className="text-[#AAAAAA] font-light text-sm">تاریخ ورود:</span>
-          <span className="text-[#8CFF45] text-xs">12/3/1390</span>
-          <span className="text-[#8CFF45] text-xs">ساعت</span>
-          <span className="text-[#8CFF45] text-xs">11:12ب.ظ</span>
+          <span className="text-[#8CFF45] text-xs">
+            {DateTimeChange(startDisplay)}
+            </span>
+          
         </div>
         <div className="w-full flex items-center justify-center gap-1">
           <CalendarDaysIcon className="w-5 h-5 text-[#AAAAAA]" />
           <span className="text-[#AAAAAA] font-light text-sm">تاریخ خروج:</span>
-          <span className="text-[#8CFF45] text-xs">12/3/1390</span>
-          <span className="text-[#8CFF45] text-xs">ساعت</span>
-          <span className="text-[#8CFF45] text-xs">11:12ب.ظ</span>
+          <span className="text-[#8CFF45] text-xs">{DateTimeChange(endDisplay)}</span>
+         
         </div>
       </div>
       <div className="h-10/12 w-0.5 bg-[#565656]"></div>

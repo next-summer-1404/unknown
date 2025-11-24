@@ -5,13 +5,16 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { Card } from "@heroui/react";
-import { BuildingOffice2Icon} from "@heroicons/react/24/outline";
+import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import { IHouses } from "@/types/IHouses";
 import PriceReserve from "./PriceReserve";
 import AcceptPrice from "./AcceptPrice";
 import toast from "react-hot-toast";
-import { postBooking } from "@/utils/service/api/postBooking";
+// import { postBooking } from "@/utils/service/api/postBooking";
 import { useRouter } from "next/navigation";
+import { useBookingStore } from "@/store/useBookingStore";
+import gregorian from "react-date-object/calendars/gregorian";
+import gregorian_en from "react-date-object/locales/gregorian_en";
 
 interface Props {
   house: IHouses;
@@ -22,43 +25,48 @@ const BookingCard = ({ house }: Props) => {
   const [endDate, setEndDate] = useState<DateObject | null>(null);
   const [startTime, setStartTime] = useState<string | null>(null);
   const [endTime, setEndTime] = useState<string | null>(null);
-  const [isReserved, setIsReserved] = useState(false);
 
   const router = useRouter();
- 
 
   const handleAcceptClick = async () => {
-   
     if (!startDate || !startTime || !endDate || !endTime) {
       toast.error("لطفاً تاریخ و ساعت ورود و خروج را وارد کنید");
       return;
     }
-    const formattedStart = `${startDate.format(
-        "YYYY-MM-DD"
-      )}T${startTime}:00`;
-      const formattedEnd = `${endDate.format("YYYY-MM-DD")}T${endTime}:00`;
+    const gregorianStart = new DateObject({
+      date: startDate,
+      calendar: persian,
+      locale: persian_fa,
+    }).convert(gregorian, gregorian_en);
 
-   
-    console.log("Start DateTime:", formattedStart);
-    console.log("End DateTime:", formattedEnd);
+    const gregorianEnd = new DateObject({
+      date: endDate,
+      calendar: persian,
+      locale: persian_fa,
+    }).convert(gregorian, gregorian_en);
+
+    // تبدیل به Date استاندارد
+    const startJsDate = gregorianStart.toDate();
+    const endJsDate = gregorianEnd.toDate();
+
+    // اضافه کردن ساعت به تاریخ
+    const [startHour, startMinute] = startTime.split(":").map(Number);
+    const [endHour, endMinute] = endTime.split(":").map(Number);
+
+    startJsDate.setHours(startHour, startMinute, 0, 0);
+    endJsDate.setHours(endHour, endMinute, 0, 0);
+
+    // ISO format که API می‌خواهد
+    const startISO = startJsDate.toISOString();
+    const endISO = endJsDate.toISOString();
+
+    useBookingStore.getState().setReservedDates(startISO, endISO);
+    useBookingStore.getState().setHouseId(house.id);
+
+    console.log("Start ISO:", startISO);
+    console.log("End ISO:", endISO);
 
     router.push(`/houseReserve/${house.id}/finalReserve?step=1`);
-
-    try {
-     
-
-      // const res = await postBooking({
-      //   houseId: house.id,
-      //   reservedDates: [formattedStart, formattedEnd],
-      // });
-      // console.log(res);
-    
-      
-
-      setIsReserved(true);
-    } catch (error: any) {
-      toast.error("مشکلی در ثبت رزرو پیش آمد");
-    }
   };
 
   return (

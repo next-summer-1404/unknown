@@ -1,9 +1,15 @@
-import { Booking } from "@/types/Booking";
+import { BookingPayload } from "@/types/Booking";
+import { toast } from "react-hot-toast";
 import http from "../interceptor/axiosClient";
 
-export const postBooking = async (Props:Partial<Booking.DataValues>) => {
-  const  data  = await http.post("/bookings" ,Props);
-  return data;
+export const postBooking = async (value: BookingPayload) => {
+  try {
+    const  result  = await http.post("/bookings" ,value);
+  return result;
+  } catch (error) {
+    toast.error("مشکلی پیش آمده");
+  }
+  
 };
 
 
