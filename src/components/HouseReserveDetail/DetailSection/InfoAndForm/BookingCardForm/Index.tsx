@@ -57,8 +57,8 @@ const BookingCard = ({ house }: Props) => {
     endJsDate.setHours(endHour, endMinute, 0, 0);
 
     // ISO format که API می‌خواهد
-    const startISO = startJsDate.toISOString();
-    const endISO = endJsDate.toISOString();
+    const startISO = startJsDate.toLocaleString("sv-SE").replace(" ", "T");
+    const endISO = endJsDate.toLocaleString("sv-SE").replace(" ", "T");
 
     useBookingStore.getState().setReservedDates(startISO, endISO);
     useBookingStore.getState().setHouseId(house.id);

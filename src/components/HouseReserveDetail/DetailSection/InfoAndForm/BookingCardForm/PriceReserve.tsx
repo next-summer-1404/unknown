@@ -7,12 +7,9 @@ interface PriceReserveProps {
 }
 
 const PriceReserve = ({ house }: PriceReserveProps) => {
-  const router = useRouter();
-  const houseId= house?.id
-    const handleReserveClick = () => {
-      router.push(`/houseReserve/${houseId}/finalReserve?step=1`);
-    };
-
+  // const router = useRouter();
+  // const houseId= house?.id
+  
   return (
     <div>
       <h3 className="font-semibold flex items-center gap-2 mb-4 bg-[#565656] justify-center rounded-b-full  w-1/2 m-auto ">
