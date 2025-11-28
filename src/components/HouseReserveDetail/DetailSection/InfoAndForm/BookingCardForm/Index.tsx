@@ -45,7 +45,6 @@ const BookingCard = ({ house }: Props) => {
       locale: persian_fa,
     }).convert(gregorian, gregorian_en);
 
-    // تبدیل به Date استاندارد
     const startJsDate = gregorianStart.toDate();
     const endJsDate = gregorianEnd.toDate();
 
@@ -56,15 +55,15 @@ const BookingCard = ({ house }: Props) => {
     startJsDate.setHours(startHour, startMinute, 0, 0);
     endJsDate.setHours(endHour, endMinute, 0, 0);
 
-    // ISO format که API می‌خواهد
+    // اضافه کردن ساعت به تاریخ
     const startISO = startJsDate.toLocaleString("sv-SE").replace(" ", "T");
     const endISO = endJsDate.toLocaleString("sv-SE").replace(" ", "T");
 
     useBookingStore.getState().setReservedDates(startISO, endISO);
     useBookingStore.getState().setHouseId(house.id);
 
-    console.log("Start ISO:", startISO);
-    console.log("End ISO:", endISO);
+    // console.log("Start ISO:", startISO);
+    // console.log("End ISO:", endISO);
 
     router.push(`/houseReserve/${house.id}/finalReserve?step=1`);
   };

@@ -1,8 +1,12 @@
 import { MegaphoneIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import React, { FC } from "react";
 
-const TravelerContactInfo = () => {
+export type IProps = {
+  sharedEmail: string;
+  sharedMobile: string;
+};
+const TravelerContactInfo: FC<IProps> = ({ sharedEmail, sharedMobile }) => {
   return (
     <div className="w-full flex flex-col  gap-3 px-2 py-2  bg-[#393939] rounded-2xl">
       <div className="w-full flex items-center gap-1.5 p-2 rounded-2xl bg-[#4D4D4D]">
@@ -14,16 +18,16 @@ const TravelerContactInfo = () => {
       </div>
       <div className="flex items-center gap-2 pr-0.5">
         <div className="flex items-center">
-          <StarIcon className="w-3 h-3 text-white"/>
+          <StarIcon className="w-3 h-3 text-white" />
           <h3 className="text-white p-2">
-            شماره تماس : <span className="text-[#8CFF45]">09112540000</span>
+            شماره تماس : <span className="text-[#8CFF45]">{sharedMobile}</span>
           </h3>
         </div>
         <div className="w-0.5 h-4 bg-[#DDDDDD]"></div>
         <div className="flex items-center">
-          <StarIcon className="w-3 h-3 text-white"/>
+          <StarIcon className="w-3 h-3 text-white" />
           <h3 className="text-white p-2 ">
-            ایمیل: <span className="text-[#8CFF45]">Example@gmail.com</span>
+            ایمیل: <span className="text-[#8CFF45]">{sharedEmail}</span>
           </h3>
         </div>
       </div>

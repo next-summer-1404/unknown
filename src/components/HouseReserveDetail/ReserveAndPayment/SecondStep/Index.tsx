@@ -10,14 +10,14 @@ const Index = () => {
   //  const houseId = useBookingStore(state => state);
   // const reservedDates = useBookingStore(state => state.reservedDates);
   const travelers = useBookingStore(state => state.travelers);
-  // const sharedEmail = useBookingStore(state => state.sharedEmail);
-  // const sharedMobile = useBookingStore(state => state.sharedMobile);
-  console.log(travelers)
+  const sharedEmail = useBookingStore(state => state.sharedEmail);
+  const sharedMobile = useBookingStore(state => state.sharedMobile);
+  console.log(sharedMobile)
   return (
     <div className='w-full px-14 pt-4 pb-20 flex flex-col gap-7 '>
-      <BookerInfo/>
+      <BookerInfo travelers={travelers}/>
       <AdditionalCost/>
-      <TravelerContactInfo />
+      <TravelerContactInfo sharedEmail={sharedEmail} sharedMobile={sharedMobile}/>
       <DiscountCodeForm/>
       <PaymentConfirmationSection/>
     </div>
