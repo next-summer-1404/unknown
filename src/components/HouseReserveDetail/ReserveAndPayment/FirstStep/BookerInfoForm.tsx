@@ -5,12 +5,13 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { ArrowPathIcon } from "@heroicons/react/16/solid";
 import {
+  CheckCircleIcon,
   UserMinusIcon,
   UserPlusIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useBookingStore, Traveler } from "@/store/useBookingStore";
 
 interface BookerInfoFormProps {
@@ -47,15 +48,12 @@ const BookerInfoForm: FC<BookerInfoFormProps> = ({ onSaveTravelers }) => {
     );
   };
 
-
-
   const saveTravelers = () => {
-  // حذف id قبل از ذخیره در Zustand store
-  const cleanedTravelers = travelers.map(({ id, ...t }) => t);
-  setTravelersStore(cleanedTravelers); // ذخیره در store
-  onSaveTravelers(cleanedTravelers);   // ارسال به parent
-};
-
+    // حذف ایدی قبل از ذخیره در استور
+    const cleanedTravelers = travelers.map(({ id, ...t }) => t);
+    setTravelersStore(cleanedTravelers); // ذخیره در store
+    onSaveTravelers(cleanedTravelers); // ارسال به parent
+  };
 
   return (
     <div className="h-fit py-2 px-2 bg-[#393939] rounded-2xl ">
@@ -168,6 +166,7 @@ const BookerInfoForm: FC<BookerInfoFormProps> = ({ onSaveTravelers }) => {
                     date.format("YYYY-MM-DD")
                   )
                 }
+                
                 inputClass="w-full border border-[#aaaaaa] text-[#aaaaaa] rounded-xl h-FULL px-3 py-3 focus:border-blue-500 focus:outline-none"
               />
             </div>
@@ -180,7 +179,7 @@ const BookerInfoForm: FC<BookerInfoFormProps> = ({ onSaveTravelers }) => {
           </div>
         ))}
       </div>
-      <div className="w-full flex items-center justify-end  px-2 py-4">
+      <div className="w-full flex items-center justify-between px-2 py-4">
         <button
           onClick={handleAddTraveler}
           className="h-9 w-34 flex items-center justify-center gap-1 text-[#8CFF45] border-1 border-[#8CFF45] rounded-xl cursor-pointer"
@@ -189,10 +188,10 @@ const BookerInfoForm: FC<BookerInfoFormProps> = ({ onSaveTravelers }) => {
           <span className="text-xs">اضافه کردن مسافر</span>
         </button>
         <button
-         onClick={saveTravelers}
-          className="h-9 w-34 flex items-center justify-center gap-1 text-[#8CFF45] border-1 border-[#8CFF45] rounded-xl cursor-pointer"
+          onClick={saveTravelers}
+          className="h-9 w-34 flex items-center justify-center gap-2 text-[#8CFF45] border-1 border-[#8CFF45] rounded-xl cursor-pointer"
         >
-          <UserPlusIcon className="w-5 h-5" />
+          <CheckCircleIcon className="w-5 h-5" />
           <span className="text-xs"> ثبت مسافر</span>
         </button>
       </div>

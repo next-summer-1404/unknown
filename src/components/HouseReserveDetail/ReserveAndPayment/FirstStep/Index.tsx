@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import BookingPropertyInf from "./BookingPropertyInf";
 import PaymentSummary from "./PaymentSummary";
@@ -5,16 +6,16 @@ import TicketSendingForm from "./TicketSendingForm";
 import BookerInfoForm from "./BookerInfoForm";
 import { FC } from "react";
 import { Traveler } from "@/store/useBookingStore";
+
 interface FirstStepProps {
   id: string;
 }
 
-const Index: FC<FirstStepProps> = ({ id }) => {
+const FirstStep: FC<FirstStepProps> = ({ id }) => {
   // console.log(id, "wwww")
   const [travelers, setTravelers] = useState<Traveler[]>([]);
   const [contactInfo, setContactInfo] = useState({ email: "", phone: "" });
-  const [saveTravelersFunc, setSaveTravelersFunc] = useState<() => void>();
-  const [handleSaveFunc, setHandleSaveFunc] = useState<() => void>();
+ 
 
   // تابع اعتبارسنجی مسافران
   const validateTravelers = () => {
@@ -36,17 +37,10 @@ const Index: FC<FirstStepProps> = ({ id }) => {
 
   return (
     <div className="w-full px-14 pt-4 pb-20 flex flex-col gap-7 ">
-      <BookingPropertyInf />
-      <BookerInfoForm
-        onSaveTravelers={(data) => setTravelers(data)}
-        
-      />
-      <TicketSendingForm
-  setContactInfo={(info) => setContactInfo(info)}
-      />
+      <BookingPropertyInf id={id} />
+      <BookerInfoForm onSaveTravelers={(data) => setTravelers(data)} />
+      <TicketSendingForm setContactInfo={(info) => setContactInfo(info)} />
       <PaymentSummary
-        onSaveTravelers={saveTravelersFunc}
-        onSave={handleSaveFunc}
         validateTravelers={validateTravelers}
         validateContact={validateContact}
       />
@@ -54,4 +48,4 @@ const Index: FC<FirstStepProps> = ({ id }) => {
   );
 };
 
-export default Index;
+export default FirstStep;
