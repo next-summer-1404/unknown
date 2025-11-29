@@ -34,12 +34,13 @@ export default function UserForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage("");
+    alert("")
+    // setLoading(true);
+    // setMessage("");
 
-    if (!userId) throw new Error("شناسه کاربر یافت نشد ");
-    const res = await putUpdateUser(userId, formData);
-    setSuccess(true);
+    // if (!userId) throw new Error("شناسه کاربر یافت نشد ");
+    // const res = await putUpdateUser(userId, formData);
+    // setSuccess(true);
   };
 
   const handleReset = () => {

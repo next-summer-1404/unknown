@@ -7,10 +7,11 @@ interface BasicInfoFormProps {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-{/*check*/}
+{
+  /*check*/
+}
 const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
-
-   const [formData, setFormData] = useState<PostHousesType>({
+  const [formData, setFormData] = useState<PostHousesType>({
     id: 0,
     last_updated: new Date().toISOString(),
     num_comments: 0,
@@ -35,24 +36,34 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
     discount_id: null,
   });
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        name === "capacity" || name === "price"
-          ? Number(value)
-          : value,
+      [name]: name === "capacity" || name === "price" ? Number(value) : value,
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await postHouses(formData);
-    console.log("Response:", res);
-    setActiveStep(2);
+    const obj2 = {
+      title: e.target.title.value,
+      capacity: e.target.capacity.value,
+      transaction_type: e.target.transaction_type.value,
+      price: e.target.price.value,
+      categories: {
+        name: e.target.categories.value
+      },
+      caption:e.target.caption.value
+    }
+    const res = await postHouses(obj2);
+    console.log("basicinfo:", res);
+    setActiveStep(1);
   };
-
 
   return (
     <div className="bg-[#393939]  p-6">
@@ -61,7 +72,7 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
           <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2">عنوان ملک</label>
             <input
-             name="title"
+              name="title"
               value={formData.title}
               onChange={handleChange}
               type="text"
@@ -70,10 +81,10 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
             />
           </div>
 
-           <div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2">ظرفیت</label>
             <input
-            name="capacity"
+              name="capacity"
               value={formData.capacity}
               onChange={handleChange}
               type="text"
@@ -84,22 +95,25 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-           <div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2">نوع معامله</label>
-            <select className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]"  name="transaction_type"
+            <select
+              className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]"
+              name="transaction_type"
               value={formData.transaction_type}
-              onChange={handleChange}>
+              onChange={handleChange}
+            >
               <option value="">انتخاب کنید</option>
               <option value="اجاره">اجاره</option>
               <option value="رهن">رهن</option>
               <option value="فروش">فروش</option>
             </select>
           </div>
-         
-           <div className="flex flex-col">
+
+          <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2">قیمت</label>
             <input
-             name="price"
+              name="price"
               value={formData.price}
               onChange={handleChange}
               type="number"
@@ -107,33 +121,36 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
               className=" border border-[#AAA]  rounded-lg px-4 py-2 text-[#AAA] outline-none "
             />
           </div>
-
-          
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-         
           <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2 ">نوع ملک</label>
-            <select className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]"  name="categories.name"
+            <select
+              className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]"
+              name="categories"
               value={formData.categories.name}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
                   categories: { name: e.target.value },
                 }))
-              }>
+              }
+            >
               <option value="اداری">اداری</option>
               <option value="تجاری">تجاری</option>
               <option value="مسکونی">مسکونی</option>
             </select>
           </div>
 
-           <div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-[#AAA] text-sm mb-2 "> زیر نوع ملک </label>
-            <select className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]" name="yard_type"
+            <select
+              className=" border border-[#AAA] rounded-lg px-4 py-2 text-[#AAA] outline-none bg-[#393939]"
+              name="yard_type"
               value={formData.yard_type}
-              onChange={handleChange}>
+              onChange={handleChange}
+            >
               <option value="">آپارتمانی</option>
               <option value="ویلایی">ویلایی</option>
             </select>
@@ -143,7 +160,7 @@ const BasicInfoForm: React.FC<BasicInfoFormProps> = ({ setActiveStep }) => {
         <div className="flex flex-col">
           <label className="text-[#AAA] text-sm mb-2">توضیحات ملک</label>
           <textarea
-           name="caption"
+            name="caption"
             value={formData.caption}
             onChange={handleChange}
             rows={3}
