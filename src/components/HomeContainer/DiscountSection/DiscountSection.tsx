@@ -12,6 +12,7 @@ import { IHouses } from "@/types/IHouses";
 const DiscountSection = async () => {
   const HouseList = await getHouses();
   const Houses: IHouses[] = HouseList.houses;
+  console.log(Houses)
 
   return (
     <section className="flex flex-col h-fit pt-20 px-5 bg-[#232323]">
@@ -20,7 +21,7 @@ const DiscountSection = async () => {
           className={`${styles.cardShape} w-10/12 h-16 absolute top-0 left-0 bg-[#232323] rounded-[0_0_40px_0]`}
         ></div>
         <div className="flex justify-center items-center gap-3 rounded-3xl h-10 w-44 mt-0.5 bg-[#FF5555]">
-          <div className=""> sssssssssbbbbb</div>
+          <div className=""> 22:10:11</div>
           <ClockIcon className="w-7 h-7" />
         </div>
 

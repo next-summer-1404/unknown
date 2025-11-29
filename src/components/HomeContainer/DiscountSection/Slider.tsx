@@ -10,9 +10,11 @@ interface SliderProps {
   Houses: IHouses[];
 }
 const Slider = ({ Houses }: SliderProps) => {
-  const filteredList = Houses.filter(
-  (item) => typeof item.discount_id === "string" && item.discount_id.trim() !== ""
-);
+//   const filteredList = Houses.filter(
+//   (item) => typeof item.discount_id === "string" && item.discount_id.trim() !== ""
+// );
+// موقت
+const filteredList = Houses
   return (
     <>
     <Swiper

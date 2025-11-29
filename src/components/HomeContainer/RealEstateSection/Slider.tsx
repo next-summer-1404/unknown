@@ -9,10 +9,11 @@ interface SliderProps {
   Houses: IHouses[];
 }
 const Slider = ({ Houses }: SliderProps) => {
-  const PurchaseData = Houses.filter(
-    (item) => item.transaction_type === "direct_purchase"
-  );
-  
+  // const PurchaseData = Houses.filter(
+  //   (item) => item.transaction_type === "direct_purchase"
+  // );
+  // موقت
+  const PurchaseData = Houses
   return (
     <>
       <Swiper

@@ -23,7 +23,7 @@ const RentMortgage = ({ Houses }: IProps) => {
   return (
     <div className="bg-[#232323] pt-11">
       <div className="relative flex flex-col pb-13 bg-[#2D2D2D] w-full shadow-[0px_12px_32px_0px_#00000014] rounded-b-[60px] overflow-hidden">
-        <div className="flex flex-col gap-2 items-center justify-center mt-24">
+        <div className="flex flex-col gap-2 items-center justify-center mt-24  px-11">
           <div className="h-fit flex flex-col justify-center items-center gap-6 text-white">
             <div className="h-fit flex justify-center items-center gap-5 ">
               <Image src={GreenArrow} width={60} height={70} alt="" />
