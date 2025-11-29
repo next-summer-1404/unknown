@@ -1,40 +1,12 @@
+import { BookerExport } from "@/types/Booker";
 import { PencilSquareIcon, UsersIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { FC } from "react";
 
-const BookerInfo = () => {
-  // این برای تست است
-  const travelers = [
-    {
-      ageRange: "بزرگسال",
-      fullName: "علی رضایی",
-      gender: "مرد",
-      idNumber: "1234567890",
-      birthDate: "1370/05/10",
-      service: "بیمه مسافرتی",
-      servicePrice: "200,000",
-      totalPrice: "5,000,000",
-    },
-    {
-      ageRange: "کودک",
-      fullName: "زهرا احمدی",
-      gender: "زن",
-      idNumber: "AB1234567",
-      birthDate: "1392/11/22",
-      service: "ترنسفر فرودگاهی",
-      servicePrice: "150,000",
-      totalPrice: "3,200,000",
-    },
-    {
-      ageRange: "نوزاد",
-      fullName: "نیما رضایی",
-      gender: "مرد",
-      idNumber: "N/A",
-      birthDate: "1402/01/15",
-      service: "بیمه مسافرتی",
-      servicePrice: "100,000",
-      totalPrice: "800,000",
-    },
-  ];
+export type IProps = {
+  travelers: BookerExport[];
+};
+const BookerInfo: FC<IProps> = ({travelers}) => {
+
 
   return (
     <div className="w-full flex flex-col items-center gap-3 px-2 py-2  bg-[#393939] rounded-2xl ">
@@ -67,14 +39,14 @@ const BookerInfo = () => {
               key={index}
               className="flex justify-between items-center text-[13px] text-[#AAAAAA] h-9 py-2"
             >
-              <td className="w-[10%] text-start">{t.ageRange}</td>
-              <td className="w-[12%] text-start">{t.fullName}</td>
-              <td className="w-[10%] text-start">{t.gender}</td>
-              <td className="w-[14%] text-start">{t.idNumber}</td>
               <td className="w-[10%] text-start">{t.birthDate}</td>
-              <td className="w-[10%] text-start">{t.service}</td>
-              <td className="w-[10%] text-start">{t.servicePrice}</td>
-              <td className="w-[12%] text-end">{t.totalPrice}</td>
+              <td className="w-[12%] text-start">{t.firstName} {t.lastName}</td>
+              <td className="w-[10%] text-start">{t.gender=="male"?"مرد":"زن"}</td>
+              <td className="w-[14%] text-start">{t.nationalId}</td>
+              <td className="w-[10%] text-start">{t.birthDate }</td>
+              <td className="w-[10%] text-start">{t.service??"--"}</td>
+              <td className="w-[10%] text-start">{t.servicePrice??"--"}</td>
+              <td className="w-[12%] text-end">{t.totalPrice??"--"}</td>
             </tr>
           ))}
         </tbody>

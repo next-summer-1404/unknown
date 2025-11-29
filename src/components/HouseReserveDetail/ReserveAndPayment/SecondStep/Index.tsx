@@ -4,13 +4,20 @@ import DiscountCodeForm from './DiscountCodeForm'
 import BookerInfo from './BookerInfo'
 import PaymentConfirmationSection from './PaymentConfirmationSection'
 import TravelerContactInfo from './TravelerContactInfo'
+import { useBookingStore } from "@/store/useBookingStore";
 
 const Index = () => {
+  //  const houseId = useBookingStore(state => state);
+  // const reservedDates = useBookingStore(state => state.reservedDates);
+  const travelers = useBookingStore(state => state.travelers);
+  const sharedEmail = useBookingStore(state => state.sharedEmail);
+  const sharedMobile = useBookingStore(state => state.sharedMobile);
+
   return (
     <div className='w-full px-14 pt-4 pb-20 flex flex-col gap-7 '>
-      <BookerInfo/>
+      <BookerInfo travelers={travelers}/>
       <AdditionalCost/>
-      <TravelerContactInfo />
+      <TravelerContactInfo sharedEmail={sharedEmail} sharedMobile={sharedMobile}/>
       <DiscountCodeForm/>
       <PaymentConfirmationSection/>
     </div>
