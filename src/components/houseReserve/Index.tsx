@@ -2,11 +2,11 @@
 import TopFilter from "./topFilter/TopFilter";
 import BottomFilter from "./bottomFilter/Index";
 import MapReserve from "./MapSection/Index";
-import CardReserve from "./PropertyCard/CardReserve";
 import { IHouses } from "@/types/IHouses";
 import { getHouses } from "@/utils/service/api/getAllHouses";
 import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
+import PropertyList from "./PropertyList/Index";
 
 const BaseReserve = () => {
   const [houses, setHouses] = useState<IHouses[]>([]);
@@ -104,21 +104,7 @@ const BaseReserve = () => {
       <div className="w-11/12 h-[700px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
         <div className="w-3/5  flex flex-col gap-5 pl-3">
           <BottomFilter />
-          <div className="w-full overflow-y-auto ">
-            {filteredHouses.length ? (
-              filteredHouses.map((house) => (
-                <CardReserve
-                  key={house.id}
-                  house={house}
-                  onSelect={() => setSelectedHouse(house)}
-                />
-              ))
-            ) : (
-              <p className="text-gray-400 text-center mt-10">
-                هیچ نتیجه‌ای یافت نشد.
-              </p>
-            )}
-          </div>
+          <PropertyList filteredHouses={filteredHouses} setSelectedHouse={setSelectedHouse}/>
         </div>
         {/* نقشه */}
         <MapReserve selectedHouse={selectedHouse} />
