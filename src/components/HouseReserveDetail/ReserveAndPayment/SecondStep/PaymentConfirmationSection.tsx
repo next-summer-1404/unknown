@@ -26,7 +26,7 @@ const bookingStore = useBookingStore();
     } catch (error) {
       
     }
-
+router.push(`/houseReserve/${params.id}/finalReserve?step=3`)
     // router.push(`/houseReserve/${params.id}/finalReserve?step=2`);
   };
 

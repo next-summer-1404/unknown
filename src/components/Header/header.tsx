@@ -2,13 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
 import megaphone from "../../assets/images/megaphone1.png";
 import user1 from "../../assets/images/user1.png";
 import ThemeSwitch from "../dashboard/main/ThemeSwitch";
 
 const Header = () => {
   const pathname = usePathname();
-
+const userId = Number(Cookies.get("userId")) || null;
   return (
     <header
       className={`absolute top-0 z-50 w-full h-16`}
@@ -102,7 +103,7 @@ const Header = () => {
               <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
             )}
           </div>
-           <div className="relative">
+          {userId&&(<div className="relative">
             {" "}
             <Link
               className={`flex items-center px-5 py-2.5 text-lg text-center transition-colors 
@@ -114,7 +115,8 @@ const Header = () => {
             {pathname === "/dashboard" && (
               <span className="absolute w-2/3 right-4 bottom-0 h-[4px] bg-[#8CFF45] rounded-t-md" />
             )}
-          </div>
+          </div>)}
+           
         </nav>
 
         <div className="flex items-center rounded-xl h-3/4 gap-2 px-3 py-0.5 bg-[#7569FF] drop-shadow-[0_4px_6px_rgba(117,105,255,0.2)] shadow-[inset_0_4px_6px_rgba(0,0,0,0.04)]">
