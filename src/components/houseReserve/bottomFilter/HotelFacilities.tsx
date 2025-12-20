@@ -53,7 +53,7 @@ const HotelFacilities = () => {
   };
   return (
     <div className="w-1/3 flex flex-col relative">
-      <p className="text-sm text-[#FFFFFF] mb-1">امکانات هتل:</p>
+      <label className="absolute right-3 -top-2 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">امکانات هتل:</label>
 
       <select
         className="w-full mt-1 text-white p-2 rounded-lg appearance-none pr-8 border border-[#AAAAAA] bg-[#303030]"
