@@ -7,7 +7,7 @@ const BottomFilter = () => {
   return (
     <>
       {" "}
-      <div className="w-full flex gap-2">
+      <div className="w-full flex items-center gap-2 pt-2 ">
         <HotelFacilities />
         <MinimumPrice />
         <MaximumPrice />

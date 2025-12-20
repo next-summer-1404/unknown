@@ -1,5 +1,5 @@
 import React from "react";
-import BaseReserve from "../../../components/houseReserve/PropertyList/Index";
+import BaseReserve from "../../../components/houseReserve/Index";
 const HousePage = () => {
   return (
     <div className="bg-[#232323] pt-30">

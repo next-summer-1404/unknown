@@ -52,23 +52,24 @@ const HotelFacilities = () => {
     router.replace(`${pathname}?${params.toString()}`);
   };
   return (
-    <div className="w-1/3 flex flex-col relative">
-      <label className="absolute right-3 -top-2 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">امکانات هتل:</label>
-
+    <div className="w-1/3 flex relative">
+      <label className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">
+        امکانات هتل:
+      </label>
+      <Squares2X2Icon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
       <select
-        className="w-full mt-1 text-white p-2 rounded-lg appearance-none pr-8 border border-[#AAAAAA] bg-[#303030]"
+        className="w-full h-11 border border-[#AAAAAA] text-white rounded-xl  px-3 py-3 focus:outline-none       appearance-none pr-8 "
         value={selectedFacility}
         onChange={handleChange}
       >
-        <option value="">همه‌ی امکانات</option>
+        <option value="">انتخاب کنید</option>
         {options.map((opt, i) => (
           <option key={i} value={opt}>
             {opt}
           </option>
         ))}
       </select>
-      <Squares2X2Icon className="absolute top-[38px] right-2 w-5 h-5 text-white pointer-events-none" />
-      <ChevronDownIcon className="absolute top-[38px] left-2 w-5 h-5 text-white pointer-events-none" />
+      <ChevronDownIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
     </div>
   );
 };

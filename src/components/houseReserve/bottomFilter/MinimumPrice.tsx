@@ -41,7 +41,7 @@ const MinimumPrice = () => {
     <div className="w-1/3 flex flex-col relative">
       <label
         htmlFor="min-price"
-        className="text-sm text-[#FFFFFF] mb-2 select-none"
+        className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF] z-50"
       >
         حداقل قیمت:
       </label>
@@ -55,10 +55,10 @@ const MinimumPrice = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className="
-            w-full bg-transparent text-white text-center
-            border border-[#AAAAAA] rounded-lg
+            w-full h-11 bg-transparent text-white text-center
+            border border-[#AAAAAA] rounded-xl
             p-2 outline-none
-            appearance-none
+            px-3 py-2 
           "
           style={{ MozAppearance: "textfield" }}
         />

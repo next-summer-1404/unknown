@@ -24,7 +24,7 @@ const MaximumPrice = () => {
     const updateId = ++lastUpdateId.current;
 
     const update = async () => {
-      await delay(500); 
+      await delay(500);
       if (updateId !== lastUpdateId.current) return;
 
       const params = new URLSearchParams(searchParams);
@@ -40,7 +40,7 @@ const MaximumPrice = () => {
     <div className="w-1/3 flex flex-col relative">
       <label
         htmlFor="max-price"
-        className="text-sm text-[#FFFFFF] mb-2 select-none"
+        className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF] z-50"
       >
         حداکثر قیمت:
       </label>
@@ -54,10 +54,10 @@ const MaximumPrice = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className="
-            w-full bg-transparent text-white text-center
-            border border-[#AAAAAA] rounded-lg
+            w-full h-11 bg-transparent text-white text-center
+            border border-[#AAAAAA] rounded-xl
             p-2 outline-none
-            appearance-none
+            px-3 py-2 
           "
           style={{ MozAppearance: "textfield" }}
         />
