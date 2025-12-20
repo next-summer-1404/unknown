@@ -1,5 +1,5 @@
 "use client";
-import TopFilter from "./topFilter/TopFilter";
+import TopFilter from "./topFilter/Index";
 import BottomFilter from "./bottomFilter/Index";
 import MapReserve from "./MapSection/Index";
 import { IHouses } from "@/types/IHouses";
@@ -98,10 +98,10 @@ const BaseReserve = () => {
   const totalCount = filteredHouses.length;
 
   return (
-    <div className="w-full h-auto ">
+    <div className="w-full px-13 h-auto ">
       <TopFilter totalCount={totalCount} />
 
-      <div className="w-11/12 h-[700px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
+      <div className="w-full h-[700px] m-auto mt-5 mb-30 bg-[#2A2A2A] p-4 rounded-xl flex gap-5">
         <div className="w-3/5  flex flex-col gap-5 pl-3">
           <BottomFilter />
           <PropertyList filteredHouses={filteredHouses} setSelectedHouse={setSelectedHouse}/>

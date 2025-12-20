@@ -23,7 +23,7 @@ const SearchFilter = () => {
   }, 300)
 
   return (
-    <div className="flex flex-col rounded-lg py-2 w-5/12">
+    <div className="w-1/2 flex flex-col rounded-lg ">
       <p className="text-sm text-[#FFFFFF] mb-1">جستجو:</p>
 
       <div className="flex items-center justify-center gap-1 p-2 rounded-lg border border-[#AAAAAA]">

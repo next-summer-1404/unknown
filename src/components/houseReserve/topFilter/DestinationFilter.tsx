@@ -23,10 +23,10 @@ const DestinationFilter = () => {
   };
 
   return (
-    <div className="w-48 flex flex-col relative">
+    <div className="w-1/4 flex flex-col relative">
       <p className="text-sm text-[#FFFFFF] mb-1">مقصد یا هتل شما:</p>
       <select
-        className="w-full text-white p-2 rounded-lg appearance-none pr-8 border border-[#AAAAAA] bg-[#303030]"
+        className="w-full text-white p-2 rounded-lg appearance-none pr-8 border border-[#AAAAAA] bg-[#2a2a2a]"
         defaultValue={searchParams.get("destination") || ""}
         onChange={handleChange}
       >
