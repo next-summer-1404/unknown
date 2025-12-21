@@ -64,3 +64,12 @@ body {
 .swiper .swiper-wrapper {
   padding-bottom: 2.5rem !important;
 }
+
+/* hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}

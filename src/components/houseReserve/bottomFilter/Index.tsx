@@ -12,7 +12,7 @@ const BottomFilter = () => {
         <MinimumPrice />
         <MaximumPrice />
       </div>
-      <div className="w-full h-2 bg-[#4E4E4E]"></div>
+      <div className="w-full h-1 bg-[#4E4E4E]"></div>
     </>
   );
 };
