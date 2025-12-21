@@ -1,47 +1,48 @@
-'use client'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+"use client";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const SearchFilter = () => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [term, setTerm] = useState(searchParams.get('query') || '')
+  const [term, setTerm] = useState(searchParams.get("query") || "");
 
   const handleSearch = useDebouncedCallback((term) => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams);
 
     if (term) {
-      params.set('query', term)
+      params.set("query", term);
     } else {
-      params.delete('query')
+      params.delete("query");
     }
-    router.replace(`${pathname}?${params.toString()}`)
-  }, 300)
+    router.replace(`${pathname}?${params.toString()}`);
+  }, 300);
 
   return (
-    <div className="w-1/2 flex flex-col rounded-lg ">
-      <p className="text-sm text-[#FFFFFF] mb-1">جستجو:</p>
+    <div className="w-1/2 flex relative">
+      <label className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">
+        جستجو:
+      </label>
 
-      <div className="flex items-center justify-center gap-1 p-2 rounded-lg border border-[#AAAAAA]">
-        <MagnifyingGlassIcon className="w-5 h-5 text-white mr-1" />
-
+      <div className="w-full h-11 flex justify-between items-center border border-[#AAAAAA] text-white rounded-xl px-3 py-3 focus:outline-none bg-[#2a2a2a] appearance-none pr-8 ">
         <input
           type="text"
           placeholder="نام هتل موردنظر..."
-          className="bg-transparent text-white outline-none w-full placeholder:text-white text-sm"
+          className="bg-transparent text-white outline-none w-full placeholder:text-white text-[12px]"
           value={term}
           onChange={(e) => {
-            setTerm(e.target.value)
-            handleSearch(e.target.value)
+            setTerm(e.target.value);
+            handleSearch(e.target.value);
           }}
-        />
+        />{" "}
+        <MagnifyingGlassIcon className="w-5 h-5 text-white mr-1" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchFilter
+export default SearchFilter;

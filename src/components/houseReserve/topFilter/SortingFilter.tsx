@@ -20,12 +20,12 @@ const SortingFilter = () => {
   };
 
   return (
-    <div className="w-1/4 flex flex-col relative">
-      <p className="text-sm text-[#FFFFFF] mb-1">مرتب‌سازی بر اساس:</p>
+    <div className="w-1/4 flex relative">
+      <label className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">مرتب‌سازی بر اساس:</label>
 
-      <div className="relative">
+       <BarsArrowDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
         <select
-          className="w-full text-white p-2 rounded-lg appearance-none pr-10 border border-[#AAAAAA] bg-[#2a2a2a]"
+          className="w-full h-11 border border-[#AAAAAA] text-white text-[12px] rounded-xl  px-3 py-3 focus:outline-none bg-[#2a2a2a] appearance-none pr-8"
           defaultValue={searchParams.get("sort") || ""}
           onChange={handleChange}
         >
@@ -36,9 +36,9 @@ const SortingFilter = () => {
           <option value="price_desc">گران‌ترین</option>
         </select>
 
-        <BarsArrowDownIcon className="absolute top-[10px] right-4 w-5 h-5 text-white pointer-events-none" />
-        <ChevronDownIcon className="absolute top-[8px] left-2 w-5 h-5 text-white pointer-events-none" />
-      </div>
+       
+        <ChevronDownIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
+     
     </div>
   );
 };

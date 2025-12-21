@@ -23,10 +23,13 @@ const DestinationFilter = () => {
   };
 
   return (
-    <div className="w-1/4 flex flex-col relative">
-      <p className="text-sm text-[#FFFFFF] mb-1">مقصد یا هتل شما:</p>
+    <div className="w-1/4 flex relative">
+      <lable className="absolute right-3 -top-3 bg-[#2A2A2A] px-1 text-sm text-[#FFFFFF]">
+        مقصد یا هتل شما:
+      </lable>
+      <MapPinIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />{" "}
       <select
-        className="w-full text-white p-2 rounded-lg appearance-none pr-8 border border-[#AAAAAA] bg-[#2a2a2a]"
+        className="w-full h-11 border border-[#AAAAAA] text-white text-[12px] rounded-xl px-3 py-3 focus:outline-none bg-[#2a2a2a] appearance-none pr-8 "
         defaultValue={searchParams.get("destination") || ""}
         onChange={handleChange}
       >
@@ -36,9 +39,7 @@ const DestinationFilter = () => {
         <option value="تهران">تهران</option>
         <option value="مرکز شهر ساری">مرکز شهر ساری</option>
       </select>
-
-      <MapPinIcon className="absolute top-[32px] right-2 w-5 h-5 text-white pointer-events-none" />
-      <ChevronDownIcon className="absolute top-[38px] left-2 w-5 h-5 text-white pointer-events-none" />
+      <ChevronDownIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
     </div>
   );
 };
