@@ -11,7 +11,7 @@ const PropertyList: FC<PropertyListProps> = ({
   setSelectedHouse,
 }) => {
   return (
-    <div className="w-full overflow-y-auto ">
+    <div className="w-full overflow-y-auto">
       {filteredHouses.length ? (
         filteredHouses.map((house) => (
           <CardReserve
